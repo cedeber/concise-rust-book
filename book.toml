@@ -3,7 +3,14 @@ authors = ["Cédric Eberhardt"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Concise Rust"
+title = "Concise Rust & WebAssembly"
+
+[rust]
+edition = "2021"
 
 [output.html]
 git-repository-url = "https://github.com/cedeber/concise-rust-book"
+
+[output.html.playground]
+editable = true
+line-numbers = true

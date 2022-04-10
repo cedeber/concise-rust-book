@@ -1,22 +1,28 @@
-# Concise Rust
+# Concise Rust & WebAssembly
 
-[Concise Rust](title-page.md)
+[Concise Rust and WebAssembly](ch00-01-title-page.md)
+[Foreword](ch00-02-foreword.md)
+[The Rust Programming Language](ch00-03-rust.md)
 
 ## Book
 
-- [Why Rust?](ch01-00-why-rust.md)
-  - [Advantages](ch01-01-advantages.md)
-  - [Problems solved](ch01-02-problems-solved.md)
-  - [Cargo & Ecosystem]()
-  - [WebAssembly]()
-- [Ownership, Borrowing]()
-
-## Crates
-
-- [Useful crates]()
+- [The Basics](ch01-00-basics.md)
+  - [Variables and Data types](ch01-01-variables.md)
+  - [Functions](ch01-02-functions.md)
+  - [Patterns](ch01-03-patterns.md)
+- [Particularities](ch02-00-particularities.md)
+  - [Ownership, Borrowing and Lifetime]()
+  - [Option and Result]()
+  - [Struct, Implementation and Traits]()
+  - [Unsafe]()
+- [WebAssembly]()
+  - [WASI & Wasmtime]()
+- [Ecosystem]()
+  - [Cargo]()
+  - [wasm-pack]()
+- [Useful Crates]()
   - [General purpose]()
   - [CLI]()
-  - [Web]()
+  - [Web]() -[Seed]()
   - [Graphics, UI]()
-
-## Useful Crates
+  - [Web]()
