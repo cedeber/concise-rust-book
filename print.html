@@ -194,293 +194,9 @@
 <li><code>cargo</code> can be expanded: <code>cargo-edit</code>, <code>cargo-watch</code>, ...</li>
 <li>Compiler giving hints thanks to <code>clippy</code></li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-basics"><a class="header" href="#the-basics">The Basics</a></h1>
 <p>A quick introduction with concepts you may have seen on other programming languages.
 At least they are very easy concepts to understand as for now.</p>
-<h2 id="type-inference"><a class="header" href="#type-inference">Type inference</a></h2>
-<p>You don't need to define the type on assignment.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let str = &quot;I am not really a String ;-)&quot;; // -&gt; &amp;str
-let a = 40_000; // -&gt; i32
-let b = 40.; // -&gt; f64
-let v: [_; 5] = [3; 5];
-//      ^ infers type for usage
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="underscores"><a class="header" href="#underscores">Underscores</a></h2>
-<p>There is a lot to say about the usage of underscores. Here are just few examples with variables.</p>
-<h3 id="unused-variables"><a class="header" href="#unused-variables">Unused variables</a></h3>
-<p>While you are coding, you can say the compiler to not complain about a variable not being used.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let _unused_variable = 42;
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="throw-away-a-value"><a class="header" href="#throw-away-a-value">Throw away a value</a></h3>
-<p>During <em>destructuring</em>, if you don't to deal with all values you can omit some with an underscore.
-In use with the rest operator <code>..</code> it's very easy to just export what you need.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let (_, b) = (3, 7); // The value 3 will not be assigned to a variable
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="immutable-by-default"><a class="header" href="#immutable-by-default">Immutable by default</a></h2>
-<p>Mutability in Rust is explicit.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">struct Number { value: i32 }
-</span><span class="boring">
-</span>let foo = 32;
-foo = 40; // Nope
-
-let n = Number {
-    value: 3
-};
-n.value = 5; // Nope
-n = Number { value: 5 } // Nope
-<span class="boring">}
-</span></code></pre></pre>
-<p>Let's make it <strong>mutable</strong>.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">struct Number { value: i32 }
-</span><span class="boring">
-</span>let mut foo = 32;
-foo = 40; // Yep
-
-let mut n = Number {
-    value: 3
-};
-n.value = 5; // Yep
-n = Number { value: 5 } // Yep
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="variable-names-are-reusable"><a class="header" href="#variable-names-are-reusable">Variable names are reusable</a></h3>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let x = 32;
-let x = 32 + 8; // still immutable!
-
-println!(&quot;{}&quot;, x); // =&gt; 40. Only the last x will be available
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="mutable-reference"><a class="header" href="#mutable-reference">Mutable reference</a></h3>
-<blockquote>
-<p>Note: Of course this in not a good practice and a function should avoid to have side effect like this.
-But sometimes this is needed, like when you want to update a graphical context for example.</p>
-</blockquote>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// This function will have side effects
-fn change(a: &amp;mut i32) {
-    *a = 5
-}
-
-let mut a: i32 = 3;
-change(&amp;mut a); // Explicit mutability. You have been warned.
-
-println!(&quot;{}&quot;, a); // =&gt; 5
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<p>Every function returns, if not specified, a <code>unit</code> type, written <code>()</code>.
-No need to specify it or return it, it is implicit.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">fn main() -&gt; () {
-    // empty
-}
-</code></pre></pre>
-<h3 id="semi-colon"><a class="header" href="#semi-colon">Semi-colon</a></h3>
-<p>A semi-colon is mandatory at the end of each expressions.
-If it is <em>omitted</em>, it means a <code>return</code>.</p>
-<blockquote>
-<p>Note: Take care of this one!</p>
-</blockquote>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn add_2(a: i32) -&gt; i32 {
-    a + 2
-}
-
-println!(&quot;{}&quot;, add_2(5)); // =&gt; 7
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="closure"><a class="header" href="#closure">Closure</a></h3>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let x = vec![1, 2, 3, 4]
-    .iter()
-    .map(|x| x + 3);
-
-let closure_annotated = |i: i32| -&gt; i32 { i + 1 };
-let closure_inferred  = |i     |          i + 1  ;
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="blocks-and-scope"><a class="header" href="#blocks-and-scope">Blocks and Scope</a></h2>
-<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
-    let x = &quot;out&quot;;
-    {
-        // this is a different `x`
-        let x = &quot;in&quot;;
-        println!(&quot;{}&quot;, x); // =&gt; in
-    }
-    println!(&quot;{}&quot;, x); // =&gt; out
-}
-</code></pre></pre>
-<h3 id="blocks-are-also-expressions"><a class="header" href="#blocks-are-also-expressions">Blocks are also expressions.</a></h3>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let x = {
-    let y = 1;
-    let z = 2;
-    y + z
-};
-
-println!(&quot;{}&quot;, x); // =&gt; 3
-<span class="boring">}
-</span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn eight() -&gt; i32 {
-    if true {
-        8
-    } else {
-        4
-    }
-}
-
-println!(&quot;{}&quot;, eight()); // =&gt; 8
-<span class="boring">}
-</span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">use rand::prelude::*;
-</span><span class="boring">
-</span>fn dice(cheat: bool) -&gt; i32 {
-    match cheat {
-        true =&gt; 6,
-        false =&gt; thread_rng().gen_range(0..=6),
-    }
-}
-
-println!(&quot;{}&quot;, dice(true)); // =&gt; 6
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="rest--destructuring"><a class="header" href="#rest--destructuring">Rest &amp; Destructuring</a></h2>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">#[derive(Debug)]
-</span><span class="boring">struct Vec2 {
-</span><span class="boring">    x: f32,
-</span><span class="boring">    y: f32
-</span><span class="boring">}
-</span><span class="boring">
-</span>// Rest
-let v1 = Vec2 { x: 1.0, y: 3.0 };
-let v2 = Vec2 { y: 2.0, ..v1};
-
-// Destructuring
-let (a, b) = (3, 7);
-
-// Destructuring with Rest
-let Vec2 { x, .. } = v2;
-
-println!{&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="patterns"><a class="header" href="#patterns">Patterns</a></h2>
-<h3 id="let-pattern"><a class="header" href="#let-pattern"><code>let</code> pattern</a></h3>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let a = Some(40);
-let b = None;
-
-print_number(a); // =&gt; 40
-print_number(b); // =&gt; No output
-
-fn print_number(n: Option&lt;i32&gt;) {
-    if let Some(value) = n {
-        println!(&quot;{}&quot;, value)
-    }
-}
-<span class="boring">}
-</span></code></pre></pre>
-<p>With destructuring and test in the same time:</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>struct Number {
-    odd: bool,
-    value: i32,
-}
-
-let one = Number { odd: true, value: 1 };
-let two = Number { odd: false, value: 2 };
-
-print_number(one); // =&gt; Odd number: 1
-print_number(two); // =&gt; Even number: 2
-
-fn print_number(n: Number) {
-    if let Number { odd: true, value } = n {
-        println!(&quot;Odd number: {}&quot;, value);
-    } else if let Number { odd: false, value } = n {
-        println!(&quot;Even number: {}&quot;, value);
-    }
-}
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="match-pattern"><a class="header" href="#match-pattern"><code>match</code> pattern</a></h3>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">struct Number {
-</span><span class="boring">    odd: bool,
-</span><span class="boring">    value: i32,
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">let one = Number { odd: true, value: 1 };
-</span><span class="boring">let two = Number { odd: false, value: 2 };
-</span><span class="boring">
-</span><span class="boring">print_number(one); // =&gt; Odd number: 1
-</span><span class="boring">print_number(two); // =&gt; Even number: 2
-</span><span class="boring">
-</span>// Same as with the if pattern
-fn print_number(n: Number) {
-    match n {
-        Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
-        Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
-    }
-}
-<span class="boring">}
-</span></code></pre></pre>
-<p>A <code>match</code> has to be exhaustive. At least one arm needs to match.
-<code>_</code> can be used as a &quot;catch-all&quot; pattern.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn print_number(n: Number) {
-    match n.value {
-        1 =&gt; println!(&quot;One&quot;),
-        2 =&gt; println!(&quot;Two&quot;),
-        _ =&gt; println!(&quot;{}&quot;, n.value),
-    }
-}
-<span class="boring">}
-</span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="variables-and-data-types"><a class="header" href="#variables-and-data-types">Variables and Data types</a></h1>
 <h2 id="variable-binding-and-type-inference"><a class="header" href="#variable-binding-and-type-inference">Variable binding and Type inference</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -554,9 +270,9 @@ tupl.0; // =&gt; 'x'
 tupl.1; // =&gt; 32
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="underscores-1"><a class="header" href="#underscores-1">Underscores</a></h2>
+<h2 id="underscores"><a class="header" href="#underscores">Underscores</a></h2>
 <p>There is a lot to say about the usage of underscores. Here are just few examples with variables.</p>
-<h3 id="throw-away-a-value-1"><a class="header" href="#throw-away-a-value-1">Throw away a value</a></h3>
+<h3 id="throw-away-a-value"><a class="header" href="#throw-away-a-value">Throw away a value</a></h3>
 <p>During destructuring, if you don't want to deal with all values you can omit some with an underscore.
 In use with the rest operator <code>..</code> it's very easy to just export what you need.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -569,7 +285,7 @@ let (_, b, ..) = (3, 7, 14, 45);
 let (width, _) = get_size();
 <span class="boring">}
 </span></code></pre></pre>
-<h3 id="unused-variables-1"><a class="header" href="#unused-variables-1">Unused variables</a></h3>
+<h3 id="unused-variables"><a class="header" href="#unused-variables">Unused variables</a></h3>
 <p>While you are coding, you can say the compiler to not complain about a variable not being used.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -577,7 +293,7 @@ let (width, _) = get_size();
 </span>let _unused_variable = 42;
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="immutable-by-default-1"><a class="header" href="#immutable-by-default-1">Immutable by default</a></h2>
+<h2 id="immutable-by-default"><a class="header" href="#immutable-by-default">Immutable by default</a></h2>
 <p>Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the value.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -610,7 +326,7 @@ n.value = 5; // Yep
 n = Number { value: 5 } // Yep
 <span class="boring">}
 </span></code></pre></pre>
-<h3 id="mutable-reference-1"><a class="header" href="#mutable-reference-1">Mutable reference</a></h3>
+<h3 id="mutable-reference"><a class="header" href="#mutable-reference">Mutable reference</a></h3>
 <blockquote>
 <p>Of course this in not a good practice and a function should avoid to have side effect like this. But sometimes this is needed, like when you want to update a graphical context for example.</p>
 </blockquote>
@@ -663,8 +379,202 @@ let x = &quot;Hey&quot;;
 println!(&quot;{x}&quot;); // =&gt; &quot;Hey&quot;
 <span class="boring">}
 </span></code></pre></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="functions-1"><a class="header" href="#functions-1">Functions</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="patterns-1"><a class="header" href="#patterns-1">Patterns</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
+<h2 id="functions-1"><a class="header" href="#functions-1">Functions</a></h2>
+<p>Every function returns, if not specified, a <strong>unit</strong> type, written <code>()</code>. No need to specify it or return it, it is implicit.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() -&gt; () {
+    // empty
+}
+</code></pre></pre>
+<h3 id="semi-colon"><a class="header" href="#semi-colon">Semi colon</a></h3>
+<p>A semi-colon is mandatory at the end of each expressions. If it is <em>omitted</em>, it means a <code>return</code>.</p>
+<blockquote>
+<p>Take care of this one!</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn add_2(a: i32) -&gt; i32 {
+    a + 2
+}
+
+println!(&quot;{}&quot;, add_2(5)); // =&gt; 7
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="closure"><a class="header" href="#closure">Closure</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x = vec![1, 2, 3, 4]
+    .iter()
+    .map(|x| x + 3);
+
+let closure_annotated = |i: i32| -&gt; i32 { i + 1 };
+let closure_inferred = |i | i + 1 ;
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="blocks-and-scope"><a class="header" href="#blocks-and-scope">Blocks and Scope</a></h2>
+<p>A pair of brackets declares a block, which has its own scope.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+    let x = &quot;out&quot;;
+    {
+        // this is a different `x`
+        let x = &quot;in&quot;;
+        println!(&quot;{x}&quot;); // =&gt; in
+    }
+    println!(&quot;{x}&quot;); // =&gt; out
+}
+</code></pre></pre>
+<h3 id="blocks-are-also-expressions"><a class="header" href="#blocks-are-also-expressions">Blocks are also expressions</a></h3>
+<p>They can evaluate to a value and can contain multiple statements.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x = {
+    let y = 1;
+    let z = 2;
+    y + z
+};
+
+println!(&quot;{x}&quot;); // =&gt; 3
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="if-conditionals"><a class="header" href="#if-conditionals">if conditionals</a></h4>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn eight() -&gt; i32 {
+    if true {
+        8
+    } else {
+        4
+    }
+}
+
+println!(&quot;{}&quot;, eight()); // =&gt; 8
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="match-pattern"><a class="header" href="#match-pattern">match pattern</a></h4>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use rand::prelude::\*;
+
+fn dice(cheat: bool) -&gt; i32 {
+    match cheat {
+        true =&gt; 6,
+        false =&gt; thread_rng().gen_range(0..=6),
+    }
+}
+
+println!(&quot;{}&quot;, dice(true)); // =&gt; 6
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h2>
+<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing ones</strong>.</p>
+<p>The rest must be the last and not be followed by a comma.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug)]
+struct Vec2 {
+    x: f32,
+    y: f32
+}
+
+// Rest
+let v1 = Vec2 { x: 1.0, y: 3.0 };
+let v2 = Vec2 { y: 2.0, ..v1 };
+
+// Destructuring
+let (a, b) = (3, 7);
+
+// Destructuring with Rest
+let Vec2 { x, .. } = v2;
+
+println!{&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="patterns"><a class="header" href="#patterns">Patterns</a></h1>
+<h2 id="let-pattern"><a class="header" href="#let-pattern">let pattern</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = Some(40);
+let b = None;
+
+print_number(a); // =&gt; 40
+print_number(b); // =&gt; No output
+
+fn print_number(n: Option&lt;i32&gt;) {
+    if let Some(value) = n {
+        println!(&quot;{}&quot;, value)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>With destructuring and test in the same time:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Number {
+    odd: bool,
+    value: i32,
+}
+
+let one = Number { odd: true, value: 1 };
+let two = Number { odd: false, value: 2 };
+
+print_number(one); // =&gt; Odd number: 1
+0print_number(two); // =&gt; Even number: 2
+
+fn print_number(n: Number) {
+    if let Number { odd: true, value } = n {
+        println!(&quot;Odd number: {}&quot;, value);
+    } else if let Number { odd: false, value } = n {
+        println!(&quot;Even number: {}&quot;, value);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="match-pattern-1"><a class="header" href="#match-pattern-1">match pattern</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Number {
+    odd: bool,
+    value: i32,
+}
+
+let one = Number { odd: true, value: 1 };
+let two = Number { odd: false, value: 2 };
+
+print_number(one); // =&gt; Odd number: 1
+print_number(two); // =&gt; Even number: 2
+
+// Same as with the if pattern
+fn print_number(n: Number) {
+    match n {
+        Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
+        Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>A <code>match</code> has to be exhaustive. At least one arm needs to match.
+<code>_</code> can be used as a &quot;catch-all&quot; pattern.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn print_number(n: Number) {
+    match n.value {
+        1 =&gt; println!(&quot;One&quot;),
+        2 =&gt; println!(&quot;Two&quot;),
+        * =&gt; println!(&quot;{}&quot;, n.value),
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="particularities"><a class="header" href="#particularities">Particularities</a></h1>
 <p>Rust has some particularities and also tries to fix other languages known issues.</p>
 <h2 id="ownership-borrowing-and-lifetime"><a class="header" href="#ownership-borrowing-and-lifetime">Ownership, Borrowing and Lifetime</a></h2>

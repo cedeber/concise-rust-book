@@ -138,6 +138,85 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="patterns"><a class="header" href="#patterns">Patterns</a></h1>
+<h2 id="let-pattern"><a class="header" href="#let-pattern">let pattern</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = Some(40);
+let b = None;
+
+print_number(a); // =&gt; 40
+print_number(b); // =&gt; No output
+
+fn print_number(n: Option&lt;i32&gt;) {
+    if let Some(value) = n {
+        println!(&quot;{}&quot;, value)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>With destructuring and test in the same time:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Number {
+    odd: bool,
+    value: i32,
+}
+
+let one = Number { odd: true, value: 1 };
+let two = Number { odd: false, value: 2 };
+
+print_number(one); // =&gt; Odd number: 1
+0print_number(two); // =&gt; Even number: 2
+
+fn print_number(n: Number) {
+    if let Number { odd: true, value } = n {
+        println!(&quot;Odd number: {}&quot;, value);
+    } else if let Number { odd: false, value } = n {
+        println!(&quot;Even number: {}&quot;, value);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="match-pattern"><a class="header" href="#match-pattern">match pattern</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Number {
+    odd: bool,
+    value: i32,
+}
+
+let one = Number { odd: true, value: 1 };
+let two = Number { odd: false, value: 2 };
+
+print_number(one); // =&gt; Odd number: 1
+print_number(two); // =&gt; Even number: 2
+
+// Same as with the if pattern
+fn print_number(n: Number) {
+    match n {
+        Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
+        Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>A <code>match</code> has to be exhaustive. At least one arm needs to match.
+<code>_</code> can be used as a &quot;catch-all&quot; pattern.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn print_number(n: Number) {
+    match n.value {
+        1 =&gt; println!(&quot;One&quot;),
+        2 =&gt; println!(&quot;Two&quot;),
+        * =&gt; println!(&quot;{}&quot;, n.value),
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
 
                     </main>
 
