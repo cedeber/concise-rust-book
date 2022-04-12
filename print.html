@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-title-page.html">Concise Rust and WebAssembly</a></li><li class="chapter-item expanded affix "><a href="ch00-02-foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-03-rust.html">The Rust Programming Language</a></li><li class="chapter-item expanded "><a href="ch01-00-basics.html"><strong aria-hidden="true">1.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions.html"><strong aria-hidden="true">1.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="ch01-03-patterns.html"><strong aria-hidden="true">1.3.</strong> Patterns</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-particularities.html"><strong aria-hidden="true">2.</strong> Particularities</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Ownership, Borrowing and Lifetime</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Option and Result</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.3.</strong> Struct, Implementation and Traits</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Unsafe</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> WebAssembly</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> WASI &amp; Wasmtime</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Ecosystem</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> Cargo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> wasm-pack</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Useful Crates</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> General purpose</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> CLI</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.3.</strong> Web</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.4.</strong> Graphics, UI</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.</strong> Web</div></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-title-page.html">Concise Rust and WebAssembly</a></li><li class="chapter-item expanded affix "><a href="ch00-02-foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-03-rust.html">The Rust Programming Language</a></li><li class="chapter-item expanded "><a href="ch01-00-basics.html"><strong aria-hidden="true">1.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions.html"><strong aria-hidden="true">1.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="ch01-03-patterns.html"><strong aria-hidden="true">1.3.</strong> Patterns</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-particularities.html"><strong aria-hidden="true">2.</strong> Particularities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-ownership.html"><strong aria-hidden="true">2.1.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch02-02-option-result.html"><strong aria-hidden="true">2.2.</strong> Option and Result</a></li><li class="chapter-item expanded "><a href="ch02-03-struct-trait.html"><strong aria-hidden="true">2.3.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch02-04-unsafe.html"><strong aria-hidden="true">2.4.</strong> Unsafe</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> WebAssembly</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WASI &amp; Wasmtime</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Ecosystem</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Cargo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> wasm-pack</div></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-useful-crates.html"><strong aria-hidden="true">6.</strong> Useful Crates</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -577,40 +577,44 @@ fn print_number(n: Number) {
 </span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="particularities"><a class="header" href="#particularities">Particularities</a></h1>
 <p>Rust has some particularities and also tries to fix other languages known issues.</p>
-<h2 id="ownership-borrowing-and-lifetime"><a class="header" href="#ownership-borrowing-and-lifetime">Ownership, Borrowing and Lifetime</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-borrowing-and-lifetime"><a class="header" href="#ownership-borrowing-and-lifetime">Ownership, Borrowing and Lifetime</a></h1>
 <p>Probably the most known particularities of Rust.
 To sum it up very quickly: Every value is owned by one single variable, during a single lifetime.</p>
+<blockquote>
+<p>Don’t try to fight against the borrow checker.</p>
+</blockquote>
 <p>This first example will fail as name has been passed to <code>_p</code> and is not owned by <code>name</code> anymore.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person {
-    name: String,
+    first_name: String,
 }
 
 fn main() {
-    let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
-    //  ---- move occurs because `name` has type `String`
+    let name = String::from(&quot;Cédric&quot;);
+    //  ---- move occurs because `name` has type `String`,
     //       which does not implement the `Copy` trait
 
-    let _p = Person { name };
-    //                ---- value moved here
+    let _p = Person { first_name: name };
+    //                            ---- value moved here
 
     println!(&quot;{}&quot;, name);
     //             ^^^^ value borrowed here after move
 }
 </code></pre></pre>
-<p>It can be borrowed, though. For that you need to use <em>references</em> and <em>lifetime</em> tags.</p>
-<p>References passed to <code>Person&lt;'a&gt;</code> will now be alive as long as its usage, which is the <em>implicit lifetime</em> of <code>main()</code>.</p>
+<p>It can be borrowed, though. For that you need to use references and lifetime tags.</p>
+<p>The &amp; indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one piece of data without needing to copy that data into memory multiple times. References are a complex feature, one one of Rust’s major advantages is how safe and easy it is to use references.
+References passed to Person&lt;'a&gt; will now be alive as long as its usage, which is the implicit lifetime of main().</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person&lt;'a&gt; {
-    name: &amp;'a str,
+    first_name: &amp;'a str,
 }
 
 fn main() {
-    let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
-    let _p = Person { name: &amp;name };
+    let name = String::from(&quot;Cédric&quot;);
+    let _p = Person { first_name: &amp;name };
 
     println!(&quot;{}&quot;, name);
 }
 </code></pre></pre>
-<p>Or simply copy or clone the value. <code>Copy</code> is a shallow copy, while <code>Clone</code> is a deep clone.</p>
+<p>Or simply copy or clone the value. Copy is a shallow copy, while Clone is a deep clone.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person {
     name: String,
 }
@@ -622,9 +626,11 @@ fn main() {
     println!(&quot;{}&quot;, name);
 }
 </code></pre></pre>
+<p>implement Copy/Clone trait</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="option-and-result"><a class="header" href="#option-and-result">Option and Result</a></h1>
 <h2 id="the-billion-dollars-mistake"><a class="header" href="#the-billion-dollars-mistake">The billion dollars mistake</a></h2>
-<p>Rust does't have <code>null</code> or <code>nil</code>. It is replaced by the <code>Option</code> enum.
-Although some languages like <em>Kotlin</em> or <em>Swift</em> do enforce <em>strict null check</em>, as a code reader you never now if a value can be <code>null</code> or not. Again, in Rust, this is self-explanatory and explicit.</p>
+<p>Rust does't have <code>null</code> or <code>nil</code>. It is replaced by the <code>Option</code> enumeration. The variants of <code>Option</code> if <code>Some</code> and <code>None</code>. The <code>None</code> variant represents no value while <code>Some</code> can hold one piece of data of any type.</p>
+<p>Although some languages like <em>Kotlin</em> or <em>Swift</em> do enforce <em>strict null check</em>, as a code reader you never now if a value can be <code>null</code> or not. Again, in Rust, this is self-explanatory and explicit.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -645,8 +651,7 @@ println!(&quot;{:?}, {:?}&quot;, val1, val2);
 <span class="boring">}
 </span></code></pre></pre>
 <p>For instance in JavaScript (or TypeScript without the <code>strictNullCheck</code>)</p>
-<pre><code class="language-javascript">// JavaScript
-class Foo {
+<pre><code class="language-javascript">class Foo {
   name = &quot;foo&quot;;
 
   bar() {
@@ -658,13 +663,13 @@ const fb = Math.random() &lt; 0.5 ? new Foo() : null;
 
 fb.bar(); // =&gt; TypeError: null is not an object
 </code></pre>
-<p>As null doesn't exist in Rust, you need the <code>Option</code> type which forces you to check the nullity <code>None</code>;</p>
+<p>As <code>null</code> doesn't exist in Rust, you need the <code>Option</code> type which forces you to check the nullity <code>None</code>;</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span><span class="boring">use rand::prelude::*;
-</span><span class="boring">
-</span>struct Foo {
+</span>use rand::prelude::*;
+
+struct Foo {
 	name: String,
 }
 
@@ -689,16 +694,37 @@ fb.bar()
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="error-management"><a class="header" href="#error-management">Error management</a></h2>
-<p>There is no <code>try</code> / <code>catch</code>. A function returns a <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
-<p>In addition a function always returns a <em>unit</em> <code>()</code>, if nothing is specified.</p>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">use std::error::Error;
-</span>
+<p>There is no <code>try</code> / <code>catch</code>. <code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result</code>, the variants are <code>Ok</code> and <code>Err</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value. The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
+<p>The purpose of these <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
+<blockquote>
+<p>A function always returns a unit <code>()</code>, if nothing is specified.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">use std::error::Error;
+
 fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
 	Ok(())
 }
 </code></pre></pre>
-<h2 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h2>
-<p>There is no <code>class</code> and no <em>inheritance</em>. Rust has only <code>struct</code> , <code>impl</code> and <code>trait</code>.</p>
+<blockquote>
+<p>⚠️ Talk about <code>unwrap</code> and <code>?</code>
+If you don’t call <code>except</code>, the program will compile, but you will get a warning</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="struct-implementation-and-traits"><a class="header" href="#struct-implementation-and-traits">Struct, Implementation and Traits</a></h1>
+<p>There is no class and no inheritance. Rust has only struct , impl and trait.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Rectangle {
+	width: u32,
+    height: u32,
+}
+
+let rect = Rectangle { width: 3, height: 2 };
+rect.width; // =&gt; 3
+<span class="boring">}
+</span></code></pre></pre>
+<p><a href="https://cedeber.atlassian.net/wiki/spaces/RUSTO/pages/459128/The+Basics#Rest-and-Destructuring">The Basics | Rest-and-Destructuring</a></p>
+<h2 id="interface"><a class="header" href="#interface">Interface</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">// An &quot;interface&quot; to implement
 trait Geometry {
 	fn area(&amp;self) -&gt; u32;
@@ -745,7 +771,13 @@ fn main() {
 	);
 }
 </code></pre></pre>
-<h2 id="unsafe"><a class="header" href="#unsafe">Unsafe</a></h2>
+<p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a <em>static method</em>.</p>
+<blockquote>
+<p>You will find a new function on many types, even in the standard library, because it's a common name for a function that makes a new value of some kind.</p>
+</blockquote>
+<h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
+<p><code>&lt;T&gt;</code></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="unsafe"><a class="header" href="#unsafe">Unsafe</a></h1>
 <p>In order to write <code>unsafe</code> code, or, in other words, if you want to manage the memory yourself,
 you can put your code in an <code>unsafe</code> block.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -756,8 +788,96 @@ you can put your code in an <code>unsafe</code> block.</p>
 }
 <span class="boring">}
 </span></code></pre></pre>
-<p>At this level of usage, I don't think you need this documentation anymore.</p>
-<h2 id="modules-"><a class="header" href="#modules-">Modules ?</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="crates-and-modules"><a class="header" href="#crates-and-modules">Crates and Modules</a></h1>
+<p>Rust has a specific way of declaring things.</p>
+<p>By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is not in the prelude, you have to bring that type into scope explicitly with a <code>use</code> statement.</p>
+<h2 id="hierarchy"><a class="header" href="#hierarchy">Hierarchy</a></h2>
+<h3 id="crate"><a class="header" href="#crate">Crate</a></h3>
+<p>A crate may contains a lot of modules. A crate is a folder where, in its root, you have a <code>Cargo.toml</code> file.</p>
+<blockquote>
+<p>You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it with a single name, the node module name.</p>
+</blockquote>
+<h3 id="modules"><a class="header" href="#modules">Modules</a></h3>
+<ul>
+<li>A module is a file.</li>
+<li>Or a folder with a mod.rs file inside.</li>
+</ul>
+<blockquote>
+<p>In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead of a name.</p>
+</blockquote>
+<h3 id="functions-2"><a class="header" href="#functions-2">Functions</a></h3>
+<p>Every module exports functions.</p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::cmp::min(3, 8); // =&gt; 3
+use std::cmp::\*
+<span class="boring">}
+</span></code></pre></pre>
+<p>The JavaScript equivalent would be, considering that the folder <code>cmp</code> contains an <code>index.js</code> file.</p>
+<pre><code class="language-javascript">import { min } from &quot;std/cmp&quot;;
+import { * as cmp } from &quot;std/cmp&quot;;
+
+// or inside &quot;std&quot;
+import { min } from &quot;./cmp&quot;;
+</code></pre>
+<h3 id="types-are-namespace-too"><a class="header" href="#types-are-namespace-too">Types are namespace too</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x = &quot;rust&quot;.len(); // =&gt; 4
+let x = str::len(&quot;rust&quot;); // =&gt; 4
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="prelude"><a class="header" href="#prelude">Prelude</a></h2>
+<p>Rust inserts this at the beginning of every module.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::prelude::v1::\*;
+<span class="boring">}
+</span></code></pre></pre>
+<p>So that, instead of <code>std::vec::Vec::new()</code>, you can use <code>Vec::new()</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="useful-crates"><a class="header" href="#useful-crates">Useful Crates</a></h1>
+<p>This list is obviously very <strong>opiniated</strong> and <strong>not complete</strong>. It's a list a useful crates I discovered while using Rust. Some better-known crates are not displayed below, because I prefer the ones listed here.</p>
+<h2 id="general-purpose"><a class="header" href="#general-purpose">General purpose</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/itertools">itertools</a></td><td>Extra iterator adaptors, iterator methods, free functions, and macros.</td></tr>
+<tr><td><a href="https://crates.io/crates/tokio">tokio</a></td><td>An event-driven, non-blocking I/O platform for writing asynchronous I/O backed applications.</td></tr>
+<tr><td><a href="https://crates.io/crates/serde">serde</a></td><td>A generic serialization/deserialization framework.</td></tr>
+<tr><td><a href="https://crates.io/crates/rayon">rayon</a></td><td>Simple work-stealing parallelism for Rust.</td></tr>
+<tr><td><a href="https://crates.io/crates/futures">futures</a></td><td>Futures and streams featuring zero allocations, composability, and iterator-like interfaces.</td></tr>
+<tr><td><a href="https://crates.io/crates/lazy_static">lazy_static</a></td><td>A macro for declaring lazily evaluated statics in Rust.</td></tr>
+<tr><td><a href="https://crates.io/cratess/ron">ron</a></td><td>Rusty Object Notation</td></tr>
+<tr><td><a href="https://crates.io/crates/fluent">fluent</a></td><td>A localization system designed to unleash the entire expressive power of natural language translations.</td></tr>
+</tbody></table>
+<h2 id="data-types-1"><a class="header" href="#data-types-1">Data Types</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/regex">regex</a></td><td>An implementation of regular expressions for Rust.</td></tr>
+<tr><td><a href="https://crates.io/crates/num">num</a></td><td>A collection of numeric types and traits (bigint, complex, rational, range iterators, generic integers...)</td></tr>
+<tr><td><a href="https://crates.io/crates/uuid">uuid</a></td><td>A library to generate and parse UUIDs.</td></tr>
+</tbody></table>
+<h2 id="cli"><a class="header" href="#cli">CLI</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/rust-lang/log">log</a></td><td>A Rust library providing a lightweight logging facade.</td></tr>
+<tr><td><a href="https://github.com/clap-rs/clap">clap</a></td><td>Command Line Argument Parser for Rust.</td></tr>
+<tr><td><a href="https://github.com/mitsuhiko/console">console</a></td><td>A Rust console and terminal abstraction.</td></tr>
+</tbody></table>
+<h2 id="database"><a class="header" href="#database">Database</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/sqlx">sqlx</a></td><td>An async SQL crate. Supports PostgreSQL, MySQL, and SQLite.</td></tr>
+<tr><td><a href="https://crates.io/crates/slab">slab</a></td><td>Pre-allocated storage for a uniform data type.</td></tr>
+</tbody></table>
+<h2 id="web"><a class="header" href="#web">Web</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/hyper">hyper</a></td><td>A fast and correct HTTP library.</td></tr>
+<tr><td><a href="https://crates.io/crates/axum">axum</a></td><td>Web framework that focuses on ergonomics and modularity.</td></tr>
+<tr><td><a href="https://crates.io/crates/async-graphql">async-graphql</a></td><td>A GraphQL server library implemented in Rust.</td></tr>
+<tr><td><a href="https://crates.io/crates/lettre">lettre</a></td><td>Email client</td></tr>
+<tr><td><a href="https://crates.io/crates/reqwest">reqwest</a></td><td>Higher level HTTP client library.</td></tr>
+<tr><td><a href="https://crates.io/crates/async-tungstenite">tungstenite</a></td><td>Async binding for Tungstenite, the Lightweight stream-based WebSocket implementation.</td></tr>
+</tbody></table>
 
                     </main>
 

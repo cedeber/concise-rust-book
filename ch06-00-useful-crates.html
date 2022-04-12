@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>The Rust Programming Language - Concise Rust &amp; WebAssembly</title>
+        <title>Useful Crates - Concise Rust &amp; WebAssembly</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-title-page.html">Concise Rust and WebAssembly</a></li><li class="chapter-item expanded affix "><a href="ch00-02-foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-03-rust.html" class="active">The Rust Programming Language</a></li><li class="chapter-item expanded "><a href="ch01-00-basics.html"><strong aria-hidden="true">1.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions.html"><strong aria-hidden="true">1.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="ch01-03-patterns.html"><strong aria-hidden="true">1.3.</strong> Patterns</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-particularities.html"><strong aria-hidden="true">2.</strong> Particularities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-ownership.html"><strong aria-hidden="true">2.1.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch02-02-option-result.html"><strong aria-hidden="true">2.2.</strong> Option and Result</a></li><li class="chapter-item expanded "><a href="ch02-03-struct-trait.html"><strong aria-hidden="true">2.3.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch02-04-unsafe.html"><strong aria-hidden="true">2.4.</strong> Unsafe</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> WebAssembly</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WASI &amp; Wasmtime</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Ecosystem</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Cargo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> wasm-pack</div></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-useful-crates.html"><strong aria-hidden="true">6.</strong> Useful Crates</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-title-page.html">Concise Rust and WebAssembly</a></li><li class="chapter-item expanded affix "><a href="ch00-02-foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-03-rust.html">The Rust Programming Language</a></li><li class="chapter-item expanded "><a href="ch01-00-basics.html"><strong aria-hidden="true">1.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions.html"><strong aria-hidden="true">1.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="ch01-03-patterns.html"><strong aria-hidden="true">1.3.</strong> Patterns</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-particularities.html"><strong aria-hidden="true">2.</strong> Particularities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-ownership.html"><strong aria-hidden="true">2.1.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch02-02-option-result.html"><strong aria-hidden="true">2.2.</strong> Option and Result</a></li><li class="chapter-item expanded "><a href="ch02-03-struct-trait.html"><strong aria-hidden="true">2.3.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch02-04-unsafe.html"><strong aria-hidden="true">2.4.</strong> Unsafe</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> WebAssembly</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WASI &amp; Wasmtime</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Ecosystem</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Cargo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> wasm-pack</div></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-useful-crates.html" class="active"><strong aria-hidden="true">6.</strong> Useful Crates</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,56 +137,52 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="the-rust-programming-language"><a class="header" href="#the-rust-programming-language">The Rust Programming Language</a></h1>
-<h2 id="short-history-of-rust"><a class="header" href="#short-history-of-rust">Short history of Rust</a></h2>
-<p>Rust began, in 2006, as a side project of Graydon Hoare, an employee at Mozilla. Mozilla believed in the potential of this new language and began sponsoring it. It was revealed to the world in 2010.</p>
-<p>According to Hoare, the name of the language comes from the rust fungus. This has caused Rust programmers to adopt “Rustaceans” as their nickname of choice.</p>
-<p>In mid-2020, following the layoffs at Mozilla, the Rust core team said they were considering a new Rust foundation to boost Rust independence. It was officially announced in February 2021.</p>
-<h3 id="editions"><a class="header" href="#editions">Editions</a></h3>
-<ul>
-<li>Rust 2015: <code>1.0</code> (cargo’s <code>edition</code> has been introduced in 2017)</li>
-<li>Rust 2018: <code>1.31</code> or <code>edition=&quot;2018&quot;</code></li>
-<li>Rust 2021: <code>1.56</code> or <code>edition=&quot;2021&quot;</code></li>
-</ul>
-<h2 id="why-rust"><a class="header" href="#why-rust">Why Rust?</a></h2>
-<p>Rust is a very nice language. It has been designed to cover most of development areas, from an easy CLI application to system programming. And all of that with <strong>safety</strong>, <strong>control</strong> and <strong>productivity</strong> in mind.</p>
-<p>Regarding safety, you can think of Python, and for control, C. Rust is some kind of mix of the best of both of these worlds. While I do not think Rust is a good replacement for Python as such, it is for sure a perfect replacement for C or any low-level languages, with the safety and fun of Python, but without trading the <strong>performance</strong> of C-like languages at the same time.</p>
-<p>A more personal point of view, what I like too, is the fact that Rust is an <strong>explicit</strong> language. There is no magic. What you read if what it is going to happen. There are no tricks, like for instance in JavaScript, where Array and Object are passed by reference. If you don't know that, you will have weird side effects. In Rust you always know what happens, even with mutability. You will definitely code with <strong>confidence</strong>.</p>
-<blockquote>
-<p>The Rust programming language is fundamentally about empowerment: no matter what kind of code you are writing, Rust empowers you to reach further, to program with confidence in a wide variety of domains than you did before.</p>
-<p>— <em>Foreword from the Rust programming language book.</em></p>
-</blockquote>
-<p>In the other hand, it makes things a little bit more complex and <strong>noisy</strong>. Well, this is the reason of this book and why Rust is known to have a steep learning curve.</p>
-<h3 id="what-makes-it-different-to-most-of-common-programming-languages"><a class="header" href="#what-makes-it-different-to-most-of-common-programming-languages">What makes it different to most of common programming languages?</a></h3>
-<ul>
-<li>It does <strong>not have a garbage collector</strong>. But you can still choose how the memory is managed. And you do not have to free the memory yourself. It has a lot of smart pointers for <strong>memory efficienty</strong>.</li>
-<li>Because of how memory is managed - the <strong>ownership</strong> principle - it is <strong>memory and thread safe</strong>. There are no dangling pointers, no data race, no buffer overflow, no iterator invalidation.</li>
-<li>It keeps <strong>performance</strong>, very close to what C can offer. Even sometimes faster.</li>
-<li>No <code>null</code> pointer exceptions.</li>
-<li>No <code>class</code> and so, no <code>inheritance</code>.</li>
-<li>First-class <strong>WebAssembly</strong> support.</li>
-</ul>
-<h3 id="ecosystem"><a class="header" href="#ecosystem">Ecosystem</a></h3>
-<p>Last but not least, although not related to the Rust language itself, the whole ecosystem and tooling around Rust is just awesome. It is definitely feature-complete:</p>
-<ul>
-<li>A complete ecosystem (<code>rustup</code>, <code>cargo</code>, <code>crates</code>, <code>rustfmt</code>, <code>clippy</code>, ...)</li>
-<li>Good IDE support (IntelliJ-based and VSCode)</li>
-<li>Documentation directly in source code, from the comments</li>
-<li>Examples folder managed with <code>cargo</code></li>
-<li>Tests in source code and <code>cargo test</code></li>
-<li><code>cargo</code> can be expanded: <code>cargo-edit</code>, <code>cargo-watch</code>, ...</li>
-<li>Compiler giving hints thanks to <code>clippy</code></li>
-</ul>
+                        <h1 id="useful-crates"><a class="header" href="#useful-crates">Useful Crates</a></h1>
+<p>This list is obviously very <strong>opiniated</strong> and <strong>not complete</strong>. It's a list a useful crates I discovered while using Rust. Some better-known crates are not displayed below, because I prefer the ones listed here.</p>
+<h2 id="general-purpose"><a class="header" href="#general-purpose">General purpose</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/itertools">itertools</a></td><td>Extra iterator adaptors, iterator methods, free functions, and macros.</td></tr>
+<tr><td><a href="https://crates.io/crates/tokio">tokio</a></td><td>An event-driven, non-blocking I/O platform for writing asynchronous I/O backed applications.</td></tr>
+<tr><td><a href="https://crates.io/crates/serde">serde</a></td><td>A generic serialization/deserialization framework.</td></tr>
+<tr><td><a href="https://crates.io/crates/rayon">rayon</a></td><td>Simple work-stealing parallelism for Rust.</td></tr>
+<tr><td><a href="https://crates.io/crates/futures">futures</a></td><td>Futures and streams featuring zero allocations, composability, and iterator-like interfaces.</td></tr>
+<tr><td><a href="https://crates.io/crates/lazy_static">lazy_static</a></td><td>A macro for declaring lazily evaluated statics in Rust.</td></tr>
+<tr><td><a href="https://crates.io/cratess/ron">ron</a></td><td>Rusty Object Notation</td></tr>
+<tr><td><a href="https://crates.io/crates/fluent">fluent</a></td><td>A localization system designed to unleash the entire expressive power of natural language translations.</td></tr>
+</tbody></table>
+<h2 id="data-types"><a class="header" href="#data-types">Data Types</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/regex">regex</a></td><td>An implementation of regular expressions for Rust.</td></tr>
+<tr><td><a href="https://crates.io/crates/num">num</a></td><td>A collection of numeric types and traits (bigint, complex, rational, range iterators, generic integers...)</td></tr>
+<tr><td><a href="https://crates.io/crates/uuid">uuid</a></td><td>A library to generate and parse UUIDs.</td></tr>
+</tbody></table>
+<h2 id="cli"><a class="header" href="#cli">CLI</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/rust-lang/log">log</a></td><td>A Rust library providing a lightweight logging facade.</td></tr>
+<tr><td><a href="https://github.com/clap-rs/clap">clap</a></td><td>Command Line Argument Parser for Rust.</td></tr>
+<tr><td><a href="https://github.com/mitsuhiko/console">console</a></td><td>A Rust console and terminal abstraction.</td></tr>
+</tbody></table>
+<h2 id="database"><a class="header" href="#database">Database</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/sqlx">sqlx</a></td><td>An async SQL crate. Supports PostgreSQL, MySQL, and SQLite.</td></tr>
+<tr><td><a href="https://crates.io/crates/slab">slab</a></td><td>Pre-allocated storage for a uniform data type.</td></tr>
+</tbody></table>
+<h2 id="web"><a class="header" href="#web">Web</a></h2>
+<table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/hyper">hyper</a></td><td>A fast and correct HTTP library.</td></tr>
+<tr><td><a href="https://crates.io/crates/axum">axum</a></td><td>Web framework that focuses on ergonomics and modularity.</td></tr>
+<tr><td><a href="https://crates.io/crates/async-graphql">async-graphql</a></td><td>A GraphQL server library implemented in Rust.</td></tr>
+<tr><td><a href="https://crates.io/crates/lettre">lettre</a></td><td>Email client</td></tr>
+<tr><td><a href="https://crates.io/crates/reqwest">reqwest</a></td><td>Higher level HTTP client library.</td></tr>
+<tr><td><a href="https://crates.io/crates/async-tungstenite">tungstenite</a></td><td>Async binding for Tungstenite, the Lightweight stream-based WebSocket implementation.</td></tr>
+</tbody></table>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ch00-02-foreword.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch03-00-crates-modules.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a rel="next" href="ch01-00-basics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -194,11 +190,8 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ch00-02-foreword.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch03-00-crates-modules.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a rel="next" href="ch01-00-basics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 

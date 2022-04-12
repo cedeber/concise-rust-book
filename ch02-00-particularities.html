@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-title-page.html">Concise Rust and WebAssembly</a></li><li class="chapter-item expanded affix "><a href="ch00-02-foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-03-rust.html">The Rust Programming Language</a></li><li class="chapter-item expanded "><a href="ch01-00-basics.html"><strong aria-hidden="true">1.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions.html"><strong aria-hidden="true">1.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="ch01-03-patterns.html"><strong aria-hidden="true">1.3.</strong> Patterns</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-particularities.html" class="active"><strong aria-hidden="true">2.</strong> Particularities</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Ownership, Borrowing and Lifetime</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Option and Result</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.3.</strong> Struct, Implementation and Traits</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Unsafe</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> WebAssembly</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> WASI &amp; Wasmtime</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Ecosystem</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> Cargo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> wasm-pack</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Useful Crates</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> General purpose</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> CLI</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.3.</strong> Web</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.4.</strong> Graphics, UI</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.5.</strong> Web</div></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-title-page.html">Concise Rust and WebAssembly</a></li><li class="chapter-item expanded affix "><a href="ch00-02-foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-03-rust.html">The Rust Programming Language</a></li><li class="chapter-item expanded "><a href="ch01-00-basics.html"><strong aria-hidden="true">1.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions.html"><strong aria-hidden="true">1.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="ch01-03-patterns.html"><strong aria-hidden="true">1.3.</strong> Patterns</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-particularities.html" class="active"><strong aria-hidden="true">2.</strong> Particularities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-ownership.html"><strong aria-hidden="true">2.1.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch02-02-option-result.html"><strong aria-hidden="true">2.2.</strong> Option and Result</a></li><li class="chapter-item expanded "><a href="ch02-03-struct-trait.html"><strong aria-hidden="true">2.3.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch02-04-unsafe.html"><strong aria-hidden="true">2.4.</strong> Unsafe</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> WebAssembly</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WASI &amp; Wasmtime</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Ecosystem</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Cargo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> wasm-pack</div></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-useful-crates.html"><strong aria-hidden="true">6.</strong> Useful Crates</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -139,187 +139,6 @@
                     <main>
                         <h1 id="particularities"><a class="header" href="#particularities">Particularities</a></h1>
 <p>Rust has some particularities and also tries to fix other languages known issues.</p>
-<h2 id="ownership-borrowing-and-lifetime"><a class="header" href="#ownership-borrowing-and-lifetime">Ownership, Borrowing and Lifetime</a></h2>
-<p>Probably the most known particularities of Rust.
-To sum it up very quickly: Every value is owned by one single variable, during a single lifetime.</p>
-<p>This first example will fail as name has been passed to <code>_p</code> and is not owned by <code>name</code> anymore.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">struct Person {
-    name: String,
-}
-
-fn main() {
-    let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
-    //  ---- move occurs because `name` has type `String`
-    //       which does not implement the `Copy` trait
-
-    let _p = Person { name };
-    //                ---- value moved here
-
-    println!(&quot;{}&quot;, name);
-    //             ^^^^ value borrowed here after move
-}
-</code></pre></pre>
-<p>It can be borrowed, though. For that you need to use <em>references</em> and <em>lifetime</em> tags.</p>
-<p>References passed to <code>Person&lt;'a&gt;</code> will now be alive as long as its usage, which is the <em>implicit lifetime</em> of <code>main()</code>.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">struct Person&lt;'a&gt; {
-    name: &amp;'a str,
-}
-
-fn main() {
-    let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
-    let _p = Person { name: &amp;name };
-
-    println!(&quot;{}&quot;, name);
-}
-</code></pre></pre>
-<p>Or simply copy or clone the value. <code>Copy</code> is a shallow copy, while <code>Clone</code> is a deep clone.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">struct Person {
-    name: String,
-}
-
-fn main() {
-    let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
-    let _p = Person { name: name.clone() };
-
-    println!(&quot;{}&quot;, name);
-}
-</code></pre></pre>
-<h2 id="the-billion-dollars-mistake"><a class="header" href="#the-billion-dollars-mistake">The billion dollars mistake</a></h2>
-<p>Rust does't have <code>null</code> or <code>nil</code>. It is replaced by the <code>Option</code> enum.
-Although some languages like <em>Kotlin</em> or <em>Swift</em> do enforce <em>strict null check</em>, as a code reader you never now if a value can be <code>null</code> or not. Again, in Rust, this is self-explanatory and explicit.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// As defined in Rust
-enum Option&lt;T&gt; {
-	None,
-	Some(T),
-}
-<span class="boring">}
-</span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let val1: Option&lt;i32&gt; = None;
-let val2: Option&lt;i32&gt; = Some(32);
-
-println!(&quot;{:?}, {:?}&quot;, val1, val2);
-<span class="boring">}
-</span></code></pre></pre>
-<p>For instance in JavaScript (or TypeScript without the <code>strictNullCheck</code>)</p>
-<pre><code class="language-javascript">// JavaScript
-class Foo {
-  name = &quot;foo&quot;;
-
-  bar() {
-    console.log(this.name, &quot;bar&quot;);
-  }
-}
-
-const fb = Math.random() &lt; 0.5 ? new Foo() : null;
-
-fb.bar(); // =&gt; TypeError: null is not an object
-</code></pre>
-<p>As null doesn't exist in Rust, you need the <code>Option</code> type which forces you to check the nullity <code>None</code>;</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">use rand::prelude::*;
-</span><span class="boring">
-</span>struct Foo {
-	name: String,
-}
-
-impl Foo {
-	fn new() -&gt; Self {
-		Foo { name: &quot;foo&quot;.to_string() }
-	}
-
-	fn bar(&amp;self) {
-		println!(&quot;{} bar&quot;, self.name);
-	}
-}
-
-let fb: Option&lt;Foo&gt; = if rand::random() {
-	Some(Foo::new())
-} else {
-	None
-};
-
-fb.bar()
-// ^^^ method not found in `Option&lt;Foo&gt;`
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="error-management"><a class="header" href="#error-management">Error management</a></h2>
-<p>There is no <code>try</code> / <code>catch</code>. A function returns a <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
-<p>In addition a function always returns a <em>unit</em> <code>()</code>, if nothing is specified.</p>
-<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">use std::error::Error;
-</span>
-fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
-	Ok(())
-}
-</code></pre></pre>
-<h2 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h2>
-<p>There is no <code>class</code> and no <em>inheritance</em>. Rust has only <code>struct</code> , <code>impl</code> and <code>trait</code>.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">// An &quot;interface&quot; to implement
-trait Geometry {
-	fn area(&amp;self) -&gt; u32;
-}
-
-struct Rectangle {
-	width: u32,
-	height: u32,
-}
-
-// How to add functionality to a struct
-impl Rectangle {
-// Common Rust way to do a &quot;constructor&quot;
-	fn new(width: u32, height: u32) -&gt; Self {
-		Self { width, height }
-	}
-}
-
-// Implement a trait
-impl Geometry for Rectangle {
-	fn area(&amp;self) -&gt; u32 {
-		self.width * self.height
-	}
-}
-
-fn main() {
-	// Init a struct
-	let rect1 = Rectangle {
-		width: 30,
-		height: 50,
-	};
-
-	// Use the constructor instead
-	let rect2 = Rectangle::new(20, 30);
-
-	println!(
-		&quot;The area of the rectangle 1 is {} square pixels.&quot;,
-		rect1.area()
-	);
-
-	println!(
-		&quot;The area of the rectangle 2 is {} square pixels.&quot;,
-		rect2.area()
-	);
-}
-</code></pre></pre>
-<h2 id="unsafe"><a class="header" href="#unsafe">Unsafe</a></h2>
-<p>In order to write <code>unsafe</code> code, or, in other words, if you want to manage the memory yourself,
-you can put your code in an <code>unsafe</code> block.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>unsafe {
-    // Your unsafe code
-}
-<span class="boring">}
-</span></code></pre></pre>
-<p>At this level of usage, I don't think you need this documentation anymore.</p>
-<h2 id="modules-"><a class="header" href="#modules-">Modules ?</a></h2>
 
                     </main>
 
@@ -327,6 +146,9 @@ you can put your code in an <code>unsafe</code> block.</p>
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="ch01-03-patterns.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="ch02-01-ownership.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -336,6 +158,9 @@ you can put your code in an <code>unsafe</code> block.</p>
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="ch01-03-patterns.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="ch02-01-ownership.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
