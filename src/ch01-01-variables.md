@@ -42,14 +42,29 @@ let x: i32 = 45;
 
 A _scalar_ type represents a single value. Rust has four primary scalar types: **integers**, **floating point numbers**, **booleans** and **characters**.
 
-Regarding integer overflow, if you want to wrap explicitly, you can use the standard library type `Wrapping`.
-
 ```rust
 let num: isize = 98_222;
 let byt = b'A' // u8 only
 let x = 2.0 // f64
 
 let t: bool = true
+```
+
+When you're compiling in release mode, Rust does not checks for intergers overflow. If you want to wrap explicitly, you can use the standard library type `Wrapping`.
+
+```rust
+let zero = 0u8;
+
+println!("{}", zero - 1_u8);
+//             ^^^^^^^^^^^ attempt to compute `0_u8 - 1_u8`, which would overflow
+```
+
+```rust
+# use std::num::Wrapping;
+let zero = Wrapping(0u8);
+let one = Wrapping(1u8);
+
+println!("{}", (zero - one).0); // -> 255
 ```
 
 Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII. Accented letters; Chinese, Japanese and Korean characters; emoji; and zero-width spaces are all valid char values in Rust.
@@ -62,17 +77,38 @@ let heart_eyed_cat = '😻';
 
 Rust has two primitive compound types: **tuples** and **arrays**.
 
-#### Tuples
+#### The Tuple Type
 
 This is a fixed length collections of values of different types.
+We can access a tuple element directly bu using a `.` followed by the index of the value we want to access. The first index in a tuple is `0`.
 
 ```rust
 let tupl = ('x', 32); // => (char, i32)
-tupl.0; // => 'x'
-tupl.1; // => 32
+let x = tupl.0; // => 'x'
+let thirty_two = tupl.1; // => 32
 ```
 
-## Underscores
+As we will see in the "pattern" chapter, you can use _pattern matching_ to desctructure a tuple value.
+
+```rust
+let tup = (500, 6.4, 1);
+let (x, y, z) = tup;
+```
+
+#### The Array Type
+
+Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather than the heap.
+You can access elements of an arrayusing indexing. As for tuple, the first index is `0`. If the index is greater than or equal to the length, Rust will panic because of Rust's safety principle.
+
+```rust
+let a: [i32; 5] = [1, 2, 3, 4, 5];
+
+let first = a[0];
+```
+
+> An array is not as flexible as the vector type. A vector (`Vec`) is a similar collection type provided by the standard library that is allowed to grow or shrink in size.
+
+## Underscores usage in Rust
 
 There is a lot to say about the usage of underscores. Here are just few examples with variables.
 
@@ -158,7 +194,7 @@ Constants are like immutable variables, but there are some differences:
 const MAX_POINTS: u32 = 100_000;
 ```
 
-## Shadowing: Variable names are reusable
+## Shadowing
 
 Shadowing is different from marking a variable as `mut`, because we will get a compile-time error if we accidentally try to reassign to this variable without using the `let` keyword. By using let, we can perform a few transformations on a value but have the variable be immutable after those transformations have been completed.
 
