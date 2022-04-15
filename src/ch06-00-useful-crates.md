@@ -1,6 +1,7 @@
 # Useful Crates
 
-This list is obviously very **opiniated** and **not complete**. It's a list a useful crates I discovered while using Rust. Some better-known crates are not displayed below, because I prefer the ones listed here.
+This list is obviously very **opiniated** and **not complete**. It's a list a useful crates I discovered while using
+Rust. Some better-known crates are not displayed below, because I prefer the ones listed here.
 
 ## General purpose
 

@@ -2,9 +2,11 @@
 
 ## The billion dollars mistake
 
-Rust does't have `null` or `nil`. It is replaced by the `Option` enumeration. The variants of `Option` if `Some` and `None`. The `None` variant represents no value while `Some` can hold one piece of data of any type.
+Rust does not have `null` or `nil`. It is replaced by the `Option` enumeration. The variants of `Option` if `Some`
+and `None`. The `None` variant represents no value while `Some` can hold one piece of data of any type.
 
-Although some languages like _Kotlin_ or _Swift_ do enforce _strict null check_, as a code reader you never now if a value can be `null` or not. Again, in Rust, this is self-explanatory and explicit.
+Although some languages like _Kotlin_ or _Swift_ do enforce _strict null check_, as a code reader you never now if a
+value can be `null` or not. Again, in Rust, this is self-explanatory and explicit.
 
 ```rust
 // As defined in Rust
@@ -57,9 +59,9 @@ impl Foo {
 }
 
 let fb: Option<Foo> = if rand::random() {
-	Some(Foo::new())
+    Some(Foo::new())
 } else {
-	None
+    None
 };
 
 fb.bar()
@@ -68,7 +70,9 @@ fb.bar()
 
 ## Error management
 
-There is no `try` / `catch`. `Result` is, like `Option`, also an enumeration. For `Result`, the variants are `Ok` and `Err`. The `Ok` variant indicates the operation was successful, and inside `Ok` is the successfully generated value. The `Err` variant means the operation failed, and `Err` contains information about how or why the operation failed.
+There is no `try` / `catch`. `Result` is, like `Option`, also an enumeration. For `Result`, the variants are `Ok`
+and `Err`. The `Ok` variant indicates the operation was successful, and inside `Ok` is the successfully generated value.
+The `Err` variant means the operation failed, and `Err` contains information about how or why the operation failed.
 
 The purpose of these `Result` which is `Ok(_)` or `Err(_)`.
 

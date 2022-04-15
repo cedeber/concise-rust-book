@@ -5,7 +5,7 @@ There is no class and no inheritance. Rust has only struct , impl and trait.
 ```rust
 struct Rectangle {
 	width: u32,
-    height: u32,
+	height: u32,
 }
 
 let rect = Rectangle { width: 3, height: 2 };
@@ -29,7 +29,7 @@ struct Rectangle {
 
 // How to add functionality to a struct
 impl Rectangle {
-// Common Rust way to do a "constructor"
+	// Common Rust way to do a "constructor"
 	fn new(width: u32, height: u32) -> Self {
 		Self { width, height }
 	}
@@ -64,9 +64,12 @@ fn main() {
 }
 ```
 
-The `::` syntax in the `::new` line indicates that new is an associated function of the `Rectangle` type. An associated function is implemented on a type, rather than on a particular instance of a `Rectangle`. Some language call this a _static method_.
+The `::` syntax in the `::new` line indicates that new is an associated function of the `Rectangle` type. An associated
+function is implemented on a type, rather than on a particular instance of a `Rectangle`. Some language call this a _
+static method_.
 
-> You will find a new function on many types, even in the standard library, because it's a common name for a function that makes a new value of some kind.
+> You will find a new function on many types, even in the standard library, because it's a common name for a function
+> that makes a new value of some kind.
 
 ## Generics
 

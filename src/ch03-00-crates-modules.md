@@ -2,7 +2,8 @@
 
 Rust has a specific way of declaring things.
 
-By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is not in the prelude, you have to bring that type into scope explicitly with a `use` statement.
+By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is
+not in the prelude, you have to bring that type into scope explicitly with a `use` statement.
 
 ## Hierarchy
 
@@ -10,14 +11,16 @@ By default, Rust brings only a few types into the scope of every program in the 
 
 A crate may contains a lot of modules. A crate is a folder where, in its root, you have a `Cargo.toml` file.
 
-> You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it with a single name, the node module name.
+> You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it
+> with a single name, the node module name.
 
 ### Modules
 
 - A module is a file.
 - Or a folder with a mod.rs file inside.
 
-> In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead of a name.
+> In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead
+> of a name.
 
 ### Functions
 
@@ -27,7 +30,7 @@ Every module exports functions.
 
 ```rust
 use std::cmp::min(3, 8); // => 3
-use std::cmp::\*
+use std::cmp::*
 ```
 
 The JavaScript equivalent would be, considering that the folder `cmp` contains an `index.js` file.
@@ -52,7 +55,7 @@ let x = str::len("rust"); // => 4
 Rust inserts this at the beginning of every module.
 
 ```rust
-use std::prelude::v1::\*;
+use std::prelude::v1::*;
 ```
 
 So that, instead of `std::vec::Vec::new()`, you can use `Vec::new()`.
