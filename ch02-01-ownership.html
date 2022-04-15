@@ -138,52 +138,54 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="ownership-borrowing-and-lifetime"><a class="header" href="#ownership-borrowing-and-lifetime">Ownership, Borrowing and Lifetime</a></h1>
-<p>Probably the most known particularities of Rust.
-To sum it up very quickly: Every value is owned by one single variable, during a single lifetime.</p>
+<p>Probably the most known particularities of Rust. To sum it up very quickly: Every value is owned by one single variable,
+during a single lifetime.</p>
 <blockquote>
 <p>Don’t try to fight against the borrow checker.</p>
 </blockquote>
 <p>This first example will fail as name has been passed to <code>_p</code> and is not owned by <code>name</code> anymore.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person {
-    first_name: String,
+	first_name: String,
 }
 
 fn main() {
-    let name = String::from(&quot;Cédric&quot;);
-    //  ---- move occurs because `name` has type `String`,
-    //       which does not implement the `Copy` trait
+	let name = String::from(&quot;Cédric&quot;);
+	//  ---- move occurs because `name` has type `String`,
+	//       which does not implement the `Copy` trait
 
-    let _p = Person { first_name: name };
-    //                            ---- value moved here
+	let _p = Person { first_name: name };
+	//                            ---- value moved here
 
-    println!(&quot;{}&quot;, name);
-    //             ^^^^ value borrowed here after move
+	println!(&quot;{}&quot;, name);
+	//             ^^^^ value borrowed here after move
 }
 </code></pre></pre>
 <p>It can be borrowed, though. For that you need to use references and lifetime tags.</p>
-<p>The &amp; indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one piece of data without needing to copy that data into memory multiple times. References are a complex feature, one one of Rust’s major advantages is how safe and easy it is to use references.
-References passed to Person&lt;'a&gt; will now be alive as long as its usage, which is the implicit lifetime of main().</p>
+<p>The &amp; indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
+piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of
+Rust’s major advantages is how safe and easy it is to use references. References passed to Person&lt;'a&gt; will now be alive
+as long as its usage, which is the implicit lifetime of main().</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person&lt;'a&gt; {
-    first_name: &amp;'a str,
+	first_name: &amp;'a str,
 }
 
 fn main() {
-    let name = String::from(&quot;Cédric&quot;);
-    let _p = Person { first_name: &amp;name };
+	let name = String::from(&quot;Cédric&quot;);
+	let _p = Person { first_name: &amp;name };
 
-    println!(&quot;{}&quot;, name);
+	println!(&quot;{}&quot;, name);
 }
 </code></pre></pre>
 <p>Or simply copy or clone the value. Copy is a shallow copy, while Clone is a deep clone.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person {
-    name: String,
+	name: String,
 }
 
 fn main() {
-    let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
-    let _p = Person { name: name.clone() };
+	let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
+	let _p = Person { name: name.clone() };
 
-    println!(&quot;{}&quot;, name);
+	println!(&quot;{}&quot;, name);
 }
 </code></pre></pre>
 <p>implement Copy/Clone trait</p>

@@ -144,7 +144,7 @@
 </span><span class="boring">fn main() {
 </span>struct Rectangle {
 	width: u32,
-    height: u32,
+	height: u32,
 }
 
 let rect = Rectangle { width: 3, height: 2 };
@@ -165,7 +165,7 @@ struct Rectangle {
 
 // How to add functionality to a struct
 impl Rectangle {
-// Common Rust way to do a &quot;constructor&quot;
+	// Common Rust way to do a &quot;constructor&quot;
 	fn new(width: u32, height: u32) -&gt; Self {
 		Self { width, height }
 	}
@@ -199,9 +199,12 @@ fn main() {
 	);
 }
 </code></pre></pre>
-<p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a <em>static method</em>.</p>
+<p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
+function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
+static method_.</p>
 <blockquote>
-<p>You will find a new function on many types, even in the standard library, because it's a common name for a function that makes a new value of some kind.</p>
+<p>You will find a new function on many types, even in the standard library, because it's a common name for a function
+that makes a new value of some kind.</p>
 </blockquote>
 <h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
 <p><code>&lt;T&gt;</code></p>

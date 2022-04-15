@@ -149,9 +149,9 @@ print_number(a); // =&gt; 40
 print_number(b); // =&gt; No output
 
 fn print_number(n: Option&lt;i32&gt;) {
-    if let Some(value) = n {
-        println!(&quot;{}&quot;, value)
-    }
+	if let Some(value) = n {
+		println!(&quot;{}&quot;, value)
+	}
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -160,8 +160,8 @@ fn print_number(n: Option&lt;i32&gt;) {
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Number {
-    odd: bool,
-    value: i32,
+	odd: bool,
+	value: i32,
 }
 
 let one = Number { odd: true, value: 1 };
@@ -171,11 +171,11 @@ print_number(one); // =&gt; Odd number: 1
 0print_number(two); // =&gt; Even number: 2
 
 fn print_number(n: Number) {
-    if let Number { odd: true, value } = n {
-        println!(&quot;Odd number: {}&quot;, value);
-    } else if let Number { odd: false, value } = n {
-        println!(&quot;Even number: {}&quot;, value);
-    }
+	if let Number { odd: true, value } = n {
+		println!(&quot;Odd number: {}&quot;, value);
+	} else if let Number { odd: false, value } = n {
+		println!(&quot;Even number: {}&quot;, value);
+	}
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -184,8 +184,8 @@ fn print_number(n: Number) {
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Number {
-    odd: bool,
-    value: i32,
+	odd: bool,
+	value: i32,
 }
 
 let one = Number { odd: true, value: 1 };
@@ -196,10 +196,10 @@ print_number(two); // =&gt; Even number: 2
 
 // Same as with the if pattern
 fn print_number(n: Number) {
-    match n {
-        Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
-        Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
-    }
+	match n {
+		Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
+		Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
+	}
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -209,11 +209,11 @@ fn print_number(n: Number) {
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn print_number(n: Number) {
-    match n.value {
-        1 =&gt; println!(&quot;One&quot;),
-        2 =&gt; println!(&quot;Two&quot;),
-        * =&gt; println!(&quot;{}&quot;, n.value),
-    }
+	match n.value {
+		1 =&gt; println!(&quot;One&quot;),
+		2 =&gt; println!(&quot;Two&quot;),
+		_ =&gt; println!(&quot;{}&quot;, n.value),
+	}
 }
 <span class="boring">}
 </span></code></pre></pre>

@@ -139,12 +139,14 @@
                     <main>
                         <h1 id="crates-and-modules"><a class="header" href="#crates-and-modules">Crates and Modules</a></h1>
 <p>Rust has a specific way of declaring things.</p>
-<p>By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is not in the prelude, you have to bring that type into scope explicitly with a <code>use</code> statement.</p>
+<p>By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is
+not in the prelude, you have to bring that type into scope explicitly with a <code>use</code> statement.</p>
 <h2 id="hierarchy"><a class="header" href="#hierarchy">Hierarchy</a></h2>
 <h3 id="crate"><a class="header" href="#crate">Crate</a></h3>
 <p>A crate may contains a lot of modules. A crate is a folder where, in its root, you have a <code>Cargo.toml</code> file.</p>
 <blockquote>
-<p>You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it with a single name, the node module name.</p>
+<p>You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it
+with a single name, the node module name.</p>
 </blockquote>
 <h3 id="modules"><a class="header" href="#modules">Modules</a></h3>
 <ul>
@@ -152,7 +154,8 @@
 <li>Or a folder with a mod.rs file inside.</li>
 </ul>
 <blockquote>
-<p>In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead of a name.</p>
+<p>In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead
+of a name.</p>
 </blockquote>
 <h3 id="functions"><a class="header" href="#functions">Functions</a></h3>
 <p>Every module exports functions.</p>
@@ -161,7 +164,7 @@
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use std::cmp::min(3, 8); // =&gt; 3
-use std::cmp::\*
+use std::cmp::*
 <span class="boring">}
 </span></code></pre></pre>
 <p>The JavaScript equivalent would be, considering that the folder <code>cmp</code> contains an <code>index.js</code> file.</p>
@@ -184,7 +187,7 @@ let x = str::len(&quot;rust&quot;); // =&gt; 4
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>use std::prelude::v1::\*;
+</span>use std::prelude::v1::*;
 <span class="boring">}
 </span></code></pre></pre>
 <p>So that, instead of <code>std::vec::Vec::new()</code>, you can use <code>Vec::new()</code>.</p>

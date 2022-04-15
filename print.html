@@ -142,23 +142,35 @@
 <p>This book is currently being written.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="foreword"><a class="header" href="#foreword">Foreword</a></h1>
 <p>Hello. I hope this book finds you well.</p>
-<p>As a non-daily rustacean - I am a daily TypeScript developer and UI designer -, coming back to Rust only from time to time is sometimes painful. I tend to forget how to code with Rust. Although it is a very nice language, it is also a complex and explicit language. There is a lot to keep in mind.</p>
-<p>This little book is the book I want to always have with me when I code with Rust. Unfortunately, it will not cover everything about Rust but, for sure, enough to let you code any kind of high-level application. If you want to go unsafe and manage the memory yourself, this book will certainely not cover what you need. To be fair, at this level of understanding of the language, you probably do not need this book anyways. I will assume, though, that you have already coded before, at least with another C-like language. I hope this book will help you as much as I had fun writing it.</p>
+<p>As a non-daily rustacean - I am a daily TypeScript developer and UI designer -, coming back to Rust only from time to
+time is sometimes painful. I tend to forget how to code with Rust. Although it is a very nice language, it is also a
+complex and explicit language. There is a lot to keep in mind.</p>
+<p>This little book is the book I want to always have with me when I code with Rust. Unfortunately, it will not cover
+everything about Rust but, for sure, enough to let you code any kind of high-level application. If you want to go unsafe
+and manage the memory yourself, this book will certainly not cover what you need. To be fair, at this level of
+understanding of the language, you probably do not need this book anyway. I will assume, though, that you have already
+coded before, at least with another C-like language. I hope this book will help you as much as I had fun writing it.</p>
 <p><em>— <a href="https://www.cedeber.fr">Cédric Eberhardt</a></em>.</p>
 <blockquote>
-<p>Don't hesitate to <a href="https://github.com/cedeber/concise-rust-book">contribute</a> if you are missing something or if I did a mistake, which is to expect, as I still consider myself as a Rust beginner. Thank you in advance for the help.</p>
+<p>Don't hesitate to <a href="https://github.com/cedeber/concise-rust-book">contribute</a> if you are missing something or if I did
+a mistake, which is to expect, as I still consider myself as a Rust beginner. Thank you in advance for the help.</p>
 </blockquote>
-<p>If you want to play a bit with Rust without installing it, there is a <a href="https://play.rust-lang.org">Rust Playground</a> for that.</p>
+<p>If you want to play a bit with Rust without installing it, there is a <a href="https://play.rust-lang.org">Rust Playground</a> for
+that.</p>
 <h2 id="inspiration-and-references"><a class="header" href="#inspiration-and-references">Inspiration and references</a></h2>
 <ul>
-<li><a href="https://fasterthanli.me/articles/a-half-hour-to-learn-rust">A half-hour to learn Rust</a> from <a href="https://fasterthanli.me">amos</a></li>
+<li><a href="https://fasterthanli.me/articles/a-half-hour-to-learn-rust">A half-hour to learn Rust</a>
+from <a href="https://fasterthanli.me">amos</a></li>
 <li>...</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-rust-programming-language"><a class="header" href="#the-rust-programming-language">The Rust Programming Language</a></h1>
 <h2 id="short-history-of-rust"><a class="header" href="#short-history-of-rust">Short history of Rust</a></h2>
-<p>Rust began, in 2006, as a side project of Graydon Hoare, an employee at Mozilla. Mozilla believed in the potential of this new language and began sponsoring it. It was revealed to the world in 2010.</p>
-<p>According to Hoare, the name of the language comes from the rust fungus. This has caused Rust programmers to adopt “Rustaceans” as their nickname of choice.</p>
-<p>In mid-2020, following the layoffs at Mozilla, the Rust core team said they were considering a new Rust foundation to boost Rust independence. It was officially announced in February 2021.</p>
+<p>Rust began, in 2006, as a side project of Graydon Hoare, an employee at Mozilla. Mozilla believed in the potential of
+this new language and began sponsoring it. It was revealed to the world in 2010.</p>
+<p>According to Hoare, the name of the language comes from the rust fungus. This has caused Rust programmers to adopt
+“Rustaceans” as their nickname of choice.</p>
+<p>In mid-2020, following the layoffs at Mozilla, the Rust core team said they were considering a new Rust foundation to
+boost Rust independence. It was officially announced in February 2021.</p>
 <h3 id="editions"><a class="header" href="#editions">Editions</a></h3>
 <ul>
 <li>Rust 2015: <code>1.0</code> (cargo’s <code>edition</code> has been introduced in 2017)</li>
@@ -166,25 +178,37 @@
 <li>Rust 2021: <code>1.56</code> or <code>edition=&quot;2021&quot;</code></li>
 </ul>
 <h2 id="why-rust"><a class="header" href="#why-rust">Why Rust?</a></h2>
-<p>Rust is a very nice language. It has been designed to cover most of development areas, from an easy CLI application to system programming. And all of that with <strong>safety</strong>, <strong>control</strong> and <strong>productivity</strong> in mind.</p>
-<p>Regarding safety, you can think of Python, and for control, C. Rust is some kind of mix of the best of both of these worlds. While I do not think Rust is a good replacement for Python as such, it is for sure a perfect replacement for C or any low-level languages, with the safety and fun of Python, but without trading the <strong>performance</strong> of C-like languages at the same time.</p>
-<p>A more personal point of view, what I like too, is the fact that Rust is an <strong>explicit</strong> language. There is no magic. What you read if what it is going to happen. There are no tricks, like for instance in JavaScript, where Array and Object are passed by reference. If you don't know that, you will have weird side effects. In Rust you always know what happens, even with mutability. You will definitely code with <strong>confidence</strong>.</p>
+<p>Rust is a very nice language. It has been designed to cover most development areas, from an easy CLI application to
+system programming. And all of that with <strong>safety</strong>, <strong>control</strong> and <strong>productivity</strong> in mind.</p>
+<p>Regarding safety, you can think of Python, and for control, C. Rust is some kind of mix of the best of both of these
+worlds. While I do not think Rust is a good replacement for Python as such, it is for sure a perfect replacement for C
+or any low-level languages, with the safety and fun of Python, but without trading the <strong>performance</strong> of C-like
+languages at the same time.</p>
+<p>A more personal point of view, what I like too, is the fact that Rust is an <strong>explicit</strong> language. There is no magic.
+What you read if what it is going to happen. There are no tricks, like for instance in JavaScript, where Array and
+Object are passed by reference. If you don't know that, you will have weird side effects. In Rust you always know what
+happens, even with mutability. You will definitely code with <strong>confidence</strong>.</p>
 <blockquote>
-<p>The Rust programming language is fundamentally about empowerment: no matter what kind of code you are writing, Rust empowers you to reach further, to program with confidence in a wide variety of domains than you did before.</p>
+<p>The Rust programming language is fundamentally about empowerment: no matter what kind of code you are writing, Rust
+empowers you to reach further, to program with confidence in a wide variety of domains than you did before.</p>
 <p>— <em>Foreword from the Rust programming language book.</em></p>
 </blockquote>
-<p>In the other hand, it makes things a little bit more complex and <strong>noisy</strong>. Well, this is the reason of this book and why Rust is known to have a steep learning curve.</p>
+<p>In the other hand, it makes things a little bit more complex and <strong>noisy</strong>.
+Well, this is the reason of this book and why Rust is known to have a steep learning curve.</p>
 <h3 id="what-makes-it-different-to-most-of-common-programming-languages"><a class="header" href="#what-makes-it-different-to-most-of-common-programming-languages">What makes it different to most of common programming languages?</a></h3>
 <ul>
-<li>It does <strong>not have a garbage collector</strong>. But you can still choose how the memory is managed. And you do not have to free the memory yourself. It has a lot of smart pointers for <strong>memory efficienty</strong>.</li>
-<li>Because of how memory is managed - the <strong>ownership</strong> principle - it is <strong>memory and thread safe</strong>. There are no dangling pointers, no data race, no buffer overflow, no iterator invalidation.</li>
+<li>It does <strong>not have a garbage collector</strong>. But you can still choose how the memory is managed. And you do not have to
+free the memory yourself. It has a lot of smart pointers for <strong>memory efficiency</strong>.</li>
+<li>Because of how memory is managed - the <strong>ownership</strong> principle - it is <strong>memory and thread safe</strong>. There are no
+dangling pointers, no data race, no buffer overflow, no iterator invalidation.</li>
 <li>It keeps <strong>performance</strong>, very close to what C can offer. Even sometimes faster.</li>
 <li>No <code>null</code> pointer exceptions.</li>
 <li>No <code>class</code> and so, no <code>inheritance</code>.</li>
 <li>First-class <strong>WebAssembly</strong> support.</li>
 </ul>
 <h3 id="ecosystem"><a class="header" href="#ecosystem">Ecosystem</a></h3>
-<p>Last but not least, although not related to the Rust language itself, the whole ecosystem and tooling around Rust is just awesome. It is definitely feature-complete:</p>
+<p>Last but not least, although not related to the Rust language itself, the whole ecosystem and tooling around Rust is
+just awesome. It is definitely feature-complete:</p>
 <ul>
 <li>A complete ecosystem (<code>rustup</code>, <code>cargo</code>, <code>crates</code>, <code>rustfmt</code>, <code>clippy</code>, ...)</li>
 <li>Good IDE support (IntelliJ-based and VSCode)</li>
@@ -195,8 +219,8 @@
 <li>Compiler giving hints thanks to <code>clippy</code></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-basics"><a class="header" href="#the-basics">The Basics</a></h1>
-<p>A quick introduction with concepts you may have seen on other programming languages.
-At least they are very easy concepts to understand as for now.</p>
+<p>A quick introduction with concepts you may have seen on other programming languages. At least they are very easy
+concepts to understand as for now.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="variables-and-data-types"><a class="header" href="#variables-and-data-types">Variables and Data types</a></h1>
 <h2 id="variable-binding-and-type-inference"><a class="header" href="#variable-binding-and-type-inference">Variable binding and Type inference</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -206,7 +230,8 @@ At least they are very easy concepts to understand as for now.</p>
 <span class="boring">}
 </span></code></pre></pre>
 <p>This line creates a new variable named <code>foo</code> and binds it to the value of the <code>bar</code> variable.</p>
-<p>You don't need to define the type on assignment. But you must assign a value before usage. The compiler can usually infer what type we want to use based on the value and how we use it.</p>
+<p>You don't need to define the type on assignment. But you must assign a value before usage. The compiler can usually
+infer what type we want to use based on the value and how we use it.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -239,7 +264,8 @@ a = 42;
 </span></code></pre></pre>
 <h2 id="data-types"><a class="header" href="#data-types">Data types</a></h2>
 <h3 id="scalar-types"><a class="header" href="#scalar-types">Scalar Types</a></h3>
-<p>A <em>scalar</em> type represents a single value. Rust has four primary scalar types: <strong>integers</strong>, <strong>floating point numbers</strong>, <strong>booleans</strong> and <strong>characters</strong>.</p>
+<p>A <em>scalar</em> type represents a single value. Rust has four primary scalar types: <strong>integers</strong>, <strong>floating point numbers</strong>
+, <strong>booleans</strong> and <strong>characters</strong>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -250,7 +276,8 @@ let x = 2.0 // f64
 let t: bool = true
 <span class="boring">}
 </span></code></pre></pre>
-<p>When you're compiling in release mode, Rust does not checks for intergers overflow. If you want to wrap explicitly, you can use the standard library type <code>Wrapping</code>.</p>
+<p>When you're compiling in release mode, Rust does not checks for intergers overflow. If you want to wrap explicitly, you
+can use the standard library type <code>Wrapping</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -270,7 +297,9 @@ let one = Wrapping(1u8);
 println!(&quot;{}&quot;, (zero - one).0); // -&gt; 255
 <span class="boring">}
 </span></code></pre></pre>
-<p>Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII. Accented letters; Chinese, Japanese and Korean characters; emoji; and zero-width spaces are all valid char values in Rust.</p>
+<p>Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more
+than just ASCII. Accented letters; Chinese, Japanese and Korean characters; emoji; and zero-width spaces are all valid
+char values in Rust.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -281,7 +310,8 @@ println!(&quot;{}&quot;, (zero - one).0); // -&gt; 255
 <p>Rust has two primitive compound types: <strong>tuples</strong> and <strong>arrays</strong>.</p>
 <h4 id="the-tuple-type"><a class="header" href="#the-tuple-type">The Tuple Type</a></h4>
 <p>This is a fixed length collections of values of different types.
-We can access a tuple element directly bu using a <code>.</code> followed by the index of the value we want to access. The first index in a tuple is <code>0</code>.</p>
+We can access a tuple element directly bu using a <code>.</code> followed by the index of the value we want to access. The first
+index in a tuple is <code>0</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -299,8 +329,10 @@ let (x, y, z) = tup;
 <span class="boring">}
 </span></code></pre></pre>
 <h4 id="the-array-type"><a class="header" href="#the-array-type">The Array Type</a></h4>
-<p>Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather than the heap.
-You can access elements of an arrayusing indexing. As for tuple, the first index is <code>0</code>. If the index is greater than or equal to the length, Rust will panic because of Rust's safety principle.</p>
+<p>Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather
+than the heap.
+You can access elements of an arrayusing indexing. As for tuple, the first index is <code>0</code>. If the index is greater than or
+equal to the length, Rust will panic because of Rust's safety principle.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -310,7 +342,8 @@ let first = a[0];
 <span class="boring">}
 </span></code></pre></pre>
 <blockquote>
-<p>An array is not as flexible as the vector type. A vector (<code>Vec</code>) is a similar collection type provided by the standard library that is allowed to grow or shrink in size.</p>
+<p>An array is not as flexible as the vector type. A vector (<code>Vec</code>) is a similar collection type provided by the standard
+library that is allowed to grow or shrink in size.</p>
 </blockquote>
 <h2 id="underscores-usage-in-rust"><a class="header" href="#underscores-usage-in-rust">Underscores usage in Rust</a></h2>
 <p>There is a lot to say about the usage of underscores. Here are just few examples with variables.</p>
@@ -336,7 +369,8 @@ let (width, _) = get_size();
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="immutable-by-default"><a class="header" href="#immutable-by-default">Immutable by default</a></h2>
-<p>Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the value.</p>
+<p>Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the
+value.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -370,7 +404,8 @@ n = Number { value: 5 } // Yep
 </span></code></pre></pre>
 <h3 id="mutable-reference"><a class="header" href="#mutable-reference">Mutable reference</a></h3>
 <blockquote>
-<p>Of course this in not a good practice and a function should avoid to have side effect like this. But sometimes this is needed, like when you want to update a graphical context for example.</p>
+<p>Of course this in not a good practice and a function should avoid to have side effect like this. But sometimes this is
+needed, like when you want to update a graphical context for example.</p>
 </blockquote>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -392,7 +427,8 @@ println!(&quot;{}&quot;, a); // =&gt; 5
 <li>Declared using the const keyword.</li>
 <li>The type must be annotated. You can not infer it.</li>
 <li>You are not allowed to use mut with constants.</li>
-<li>Set only to a constant expression, not to the result of a function call or any other value that could only be computed at runtime.</li>
+<li>Set only to a constant expression, not to the result of a function call or any other value that could only be computed
+at runtime.</li>
 </ul>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -401,7 +437,9 @@ println!(&quot;{}&quot;, a); // =&gt; 5
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="shadowing"><a class="header" href="#shadowing">Shadowing</a></h2>
-<p>Shadowing is different from marking a variable as <code>mut</code>, because we will get a compile-time error if we accidentally try to reassign to this variable without using the <code>let</code> keyword. By using let, we can perform a few transformations on a value but have the variable be immutable after those transformations have been completed.</p>
+<p>Shadowing is different from marking a variable as <code>mut</code>, because we will get a compile-time error if we accidentally try
+to reassign to this variable without using the <code>let</code> keyword. By using let, we can perform a few transformations on a
+value but have the variable be immutable after those transformations have been completed.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -422,14 +460,43 @@ println!(&quot;{x}&quot;); // =&gt; &quot;Hey&quot;
 <span class="boring">}
 </span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
+<p>Functions are pervasive in Rust code. The <code>main</code> function is the most important function in the language. It's the entry
+point of many programs.</p>
 <h2 id="functions-1"><a class="header" href="#functions-1">Functions</a></h2>
-<p>Every function returns, if not specified, a <strong>unit</strong> type, written <code>()</code>. No need to specify it or return it, it is implicit.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">fn main() -&gt; () {
-    // empty
+<p>The <code>fn</code> keyword allows you to declare new functions. Rust code uses <em>snake case</em> as the conventional style for
+functions and variables names. Every function returns by default a <strong>unit</strong> type, written <code>()</code>. It's an empty tuple. No
+need to specify it or return
+it, it is implicit.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+	// empty
 }
 </code></pre></pre>
-<h3 id="semi-colon"><a class="header" href="#semi-colon">Semi colon</a></h3>
-<p>A semi-colon is mandatory at the end of each expressions. If it is <em>omitted</em>, it means a <code>return</code>.</p>
+<blockquote>
+<p>Rust does not care where you define your functions, only that they are defined somewhere.</p>
+</blockquote>
+<h3 id="parameters"><a class="header" href="#parameters">Parameters</a></h3>
+<p>In function signatures, you <em>must</em> declare the type of each parameter</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn another_function(x: i32, y: i32) {
+	println!(&quot;x: {}&quot;, x);
+	println!(&quot;y: {}&quot;, y);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="return-value"><a class="header" href="#return-value">Return value</a></h3>
+<p>We do declare their type after an arrow <code>-&gt;</code>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn add(x: i32, y: i32) -&gt; i32 {
+	return x + y;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="statements-and-expressions-in-function-bodies"><a class="header" href="#statements-and-expressions-in-function-bodies">Statements and Expressions in Function Bodies</a></h3>
+<p>A semicolon is mandatory at the end of each expression. If it is <em>omitted</em>, it means a <code>return</code>.</p>
 <blockquote>
 <p>Take care of this one!</p>
 </blockquote>
@@ -437,7 +504,7 @@ println!(&quot;{x}&quot;); // =&gt; &quot;Hey&quot;
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn add_2(a: i32) -&gt; i32 {
-    a + 2
+	a + 2
 }
 
 println!(&quot;{}&quot;, add_2(5)); // =&gt; 7
@@ -458,13 +525,13 @@ let closure_inferred = |i | i + 1 ;
 <h2 id="blocks-and-scope"><a class="header" href="#blocks-and-scope">Blocks and Scope</a></h2>
 <p>A pair of brackets declares a block, which has its own scope.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
-    let x = &quot;out&quot;;
-    {
-        // this is a different `x`
-        let x = &quot;in&quot;;
-        println!(&quot;{x}&quot;); // =&gt; in
-    }
-    println!(&quot;{x}&quot;); // =&gt; out
+	let x = &quot;out&quot;;
+	{
+		// this is a different `x`
+		let x = &quot;in&quot;;
+		println!(&quot;{x}&quot;); // =&gt; in
+	}
+	println!(&quot;{x}&quot;); // =&gt; out
 }
 </code></pre></pre>
 <h3 id="blocks-are-also-expressions"><a class="header" href="#blocks-are-also-expressions">Blocks are also expressions</a></h3>
@@ -486,11 +553,11 @@ println!(&quot;{x}&quot;); // =&gt; 3
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn eight() -&gt; i32 {
-    if true {
-        8
-    } else {
-        4
-    }
+	if true {
+		8
+	} else {
+		4
+	}
 }
 
 println!(&quot;{}&quot;, eight()); // =&gt; 8
@@ -500,28 +567,30 @@ println!(&quot;{}&quot;, eight()); // =&gt; 8
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>use rand::prelude::\*;
+</span>use rand::prelude::\ *;
 
 fn dice(cheat: bool) -&gt; i32 {
-    match cheat {
-        true =&gt; 6,
-        false =&gt; thread_rng().gen_range(0..=6),
-    }
+	match cheat {
+		true =&gt; 6,
+		false =&gt; thread_rng().gen_range(0..=6),
+	}
 }
 
 println!(&quot;{}&quot;, dice(true)); // =&gt; 6
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h2>
-<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing ones</strong>.</p>
+<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest
+operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing
+ones</strong>.</p>
 <p>The rest must be the last and not be followed by a comma.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug)]
 struct Vec2 {
-    x: f32,
-    y: f32
+	x: f32,
+	y: f32
 }
 
 // Rest
@@ -532,9 +601,9 @@ let v2 = Vec2 { y: 2.0, ..v1 };
 let (a, b) = (3, 7);
 
 // Destructuring with Rest
-let Vec2 { x, .. } = v2;
+let Vec2 { x,..} = v2;
 
-println!{&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
+println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
 <span class="boring">}
 </span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="patterns"><a class="header" href="#patterns">Patterns</a></h1>
@@ -549,9 +618,9 @@ print_number(a); // =&gt; 40
 print_number(b); // =&gt; No output
 
 fn print_number(n: Option&lt;i32&gt;) {
-    if let Some(value) = n {
-        println!(&quot;{}&quot;, value)
-    }
+	if let Some(value) = n {
+		println!(&quot;{}&quot;, value)
+	}
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -560,8 +629,8 @@ fn print_number(n: Option&lt;i32&gt;) {
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Number {
-    odd: bool,
-    value: i32,
+	odd: bool,
+	value: i32,
 }
 
 let one = Number { odd: true, value: 1 };
@@ -571,11 +640,11 @@ print_number(one); // =&gt; Odd number: 1
 0print_number(two); // =&gt; Even number: 2
 
 fn print_number(n: Number) {
-    if let Number { odd: true, value } = n {
-        println!(&quot;Odd number: {}&quot;, value);
-    } else if let Number { odd: false, value } = n {
-        println!(&quot;Even number: {}&quot;, value);
-    }
+	if let Number { odd: true, value } = n {
+		println!(&quot;Odd number: {}&quot;, value);
+	} else if let Number { odd: false, value } = n {
+		println!(&quot;Even number: {}&quot;, value);
+	}
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -584,8 +653,8 @@ fn print_number(n: Number) {
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Number {
-    odd: bool,
-    value: i32,
+	odd: bool,
+	value: i32,
 }
 
 let one = Number { odd: true, value: 1 };
@@ -596,10 +665,10 @@ print_number(two); // =&gt; Even number: 2
 
 // Same as with the if pattern
 fn print_number(n: Number) {
-    match n {
-        Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
-        Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
-    }
+	match n {
+		Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
+		Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
+	}
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -609,70 +678,74 @@ fn print_number(n: Number) {
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn print_number(n: Number) {
-    match n.value {
-        1 =&gt; println!(&quot;One&quot;),
-        2 =&gt; println!(&quot;Two&quot;),
-        * =&gt; println!(&quot;{}&quot;, n.value),
-    }
+	match n.value {
+		1 =&gt; println!(&quot;One&quot;),
+		2 =&gt; println!(&quot;Two&quot;),
+		_ =&gt; println!(&quot;{}&quot;, n.value),
+	}
 }
 <span class="boring">}
 </span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="particularities"><a class="header" href="#particularities">Particularities</a></h1>
 <p>Rust has some particularities and also tries to fix other languages known issues.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-borrowing-and-lifetime"><a class="header" href="#ownership-borrowing-and-lifetime">Ownership, Borrowing and Lifetime</a></h1>
-<p>Probably the most known particularities of Rust.
-To sum it up very quickly: Every value is owned by one single variable, during a single lifetime.</p>
+<p>Probably the most known particularities of Rust. To sum it up very quickly: Every value is owned by one single variable,
+during a single lifetime.</p>
 <blockquote>
 <p>Don’t try to fight against the borrow checker.</p>
 </blockquote>
 <p>This first example will fail as name has been passed to <code>_p</code> and is not owned by <code>name</code> anymore.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person {
-    first_name: String,
+	first_name: String,
 }
 
 fn main() {
-    let name = String::from(&quot;Cédric&quot;);
-    //  ---- move occurs because `name` has type `String`,
-    //       which does not implement the `Copy` trait
+	let name = String::from(&quot;Cédric&quot;);
+	//  ---- move occurs because `name` has type `String`,
+	//       which does not implement the `Copy` trait
 
-    let _p = Person { first_name: name };
-    //                            ---- value moved here
+	let _p = Person { first_name: name };
+	//                            ---- value moved here
 
-    println!(&quot;{}&quot;, name);
-    //             ^^^^ value borrowed here after move
+	println!(&quot;{}&quot;, name);
+	//             ^^^^ value borrowed here after move
 }
 </code></pre></pre>
 <p>It can be borrowed, though. For that you need to use references and lifetime tags.</p>
-<p>The &amp; indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one piece of data without needing to copy that data into memory multiple times. References are a complex feature, one one of Rust’s major advantages is how safe and easy it is to use references.
-References passed to Person&lt;'a&gt; will now be alive as long as its usage, which is the implicit lifetime of main().</p>
+<p>The &amp; indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
+piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of
+Rust’s major advantages is how safe and easy it is to use references. References passed to Person&lt;'a&gt; will now be alive
+as long as its usage, which is the implicit lifetime of main().</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person&lt;'a&gt; {
-    first_name: &amp;'a str,
+	first_name: &amp;'a str,
 }
 
 fn main() {
-    let name = String::from(&quot;Cédric&quot;);
-    let _p = Person { first_name: &amp;name };
+	let name = String::from(&quot;Cédric&quot;);
+	let _p = Person { first_name: &amp;name };
 
-    println!(&quot;{}&quot;, name);
+	println!(&quot;{}&quot;, name);
 }
 </code></pre></pre>
 <p>Or simply copy or clone the value. Copy is a shallow copy, while Clone is a deep clone.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person {
-    name: String,
+	name: String,
 }
 
 fn main() {
-    let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
-    let _p = Person { name: name.clone() };
+	let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
+	let _p = Person { name: name.clone() };
 
-    println!(&quot;{}&quot;, name);
+	println!(&quot;{}&quot;, name);
 }
 </code></pre></pre>
 <p>implement Copy/Clone trait</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="option-and-result"><a class="header" href="#option-and-result">Option and Result</a></h1>
 <h2 id="the-billion-dollars-mistake"><a class="header" href="#the-billion-dollars-mistake">The billion dollars mistake</a></h2>
-<p>Rust does't have <code>null</code> or <code>nil</code>. It is replaced by the <code>Option</code> enumeration. The variants of <code>Option</code> if <code>Some</code> and <code>None</code>. The <code>None</code> variant represents no value while <code>Some</code> can hold one piece of data of any type.</p>
-<p>Although some languages like <em>Kotlin</em> or <em>Swift</em> do enforce <em>strict null check</em>, as a code reader you never now if a value can be <code>null</code> or not. Again, in Rust, this is self-explanatory and explicit.</p>
+<p>Rust does not have <code>null</code> or <code>nil</code>. It is replaced by the <code>Option</code> enumeration. The variants of <code>Option</code> if <code>Some</code>
+and <code>None</code>. The <code>None</code> variant represents no value while <code>Some</code> can hold one piece of data of any type.</p>
+<p>Although some languages like <em>Kotlin</em> or <em>Swift</em> do enforce <em>strict null check</em>, as a code reader you never now if a
+value can be <code>null</code> or not. Again, in Rust, this is self-explanatory and explicit.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -726,9 +799,9 @@ impl Foo {
 }
 
 let fb: Option&lt;Foo&gt; = if rand::random() {
-	Some(Foo::new())
+    Some(Foo::new())
 } else {
-	None
+    None
 };
 
 fb.bar()
@@ -736,7 +809,9 @@ fb.bar()
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="error-management"><a class="header" href="#error-management">Error management</a></h2>
-<p>There is no <code>try</code> / <code>catch</code>. <code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result</code>, the variants are <code>Ok</code> and <code>Err</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value. The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
+<p>There is no <code>try</code> / <code>catch</code>. <code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result</code>, the variants are <code>Ok</code>
+and <code>Err</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value.
+The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
 <p>The purpose of these <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
 <blockquote>
 <p>A function always returns a unit <code>()</code>, if nothing is specified.</p>
@@ -758,7 +833,7 @@ If you don’t call <code>except</code>, the program will compile, but you will 
 </span><span class="boring">fn main() {
 </span>struct Rectangle {
 	width: u32,
-    height: u32,
+	height: u32,
 }
 
 let rect = Rectangle { width: 3, height: 2 };
@@ -779,7 +854,7 @@ struct Rectangle {
 
 // How to add functionality to a struct
 impl Rectangle {
-// Common Rust way to do a &quot;constructor&quot;
+	// Common Rust way to do a &quot;constructor&quot;
 	fn new(width: u32, height: u32) -&gt; Self {
 		Self { width, height }
 	}
@@ -813,15 +888,18 @@ fn main() {
 	);
 }
 </code></pre></pre>
-<p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a <em>static method</em>.</p>
+<p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
+function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
+static method_.</p>
 <blockquote>
-<p>You will find a new function on many types, even in the standard library, because it's a common name for a function that makes a new value of some kind.</p>
+<p>You will find a new function on many types, even in the standard library, because it's a common name for a function
+that makes a new value of some kind.</p>
 </blockquote>
 <h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
 <p><code>&lt;T&gt;</code></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="unsafe"><a class="header" href="#unsafe">Unsafe</a></h1>
-<p>In order to write <code>unsafe</code> code, or, in other words, if you want to manage the memory yourself,
-you can put your code in an <code>unsafe</code> block.</p>
+<p>In order to write <code>unsafe</code> code, or, in other words, if you want to manage the memory yourself, you can put your code in
+an <code>unsafe</code> block.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -832,12 +910,14 @@ you can put your code in an <code>unsafe</code> block.</p>
 </span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="crates-and-modules"><a class="header" href="#crates-and-modules">Crates and Modules</a></h1>
 <p>Rust has a specific way of declaring things.</p>
-<p>By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is not in the prelude, you have to bring that type into scope explicitly with a <code>use</code> statement.</p>
+<p>By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is
+not in the prelude, you have to bring that type into scope explicitly with a <code>use</code> statement.</p>
 <h2 id="hierarchy"><a class="header" href="#hierarchy">Hierarchy</a></h2>
 <h3 id="crate"><a class="header" href="#crate">Crate</a></h3>
 <p>A crate may contains a lot of modules. A crate is a folder where, in its root, you have a <code>Cargo.toml</code> file.</p>
 <blockquote>
-<p>You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it with a single name, the node module name.</p>
+<p>You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it
+with a single name, the node module name.</p>
 </blockquote>
 <h3 id="modules"><a class="header" href="#modules">Modules</a></h3>
 <ul>
@@ -845,7 +925,8 @@ you can put your code in an <code>unsafe</code> block.</p>
 <li>Or a folder with a mod.rs file inside.</li>
 </ul>
 <blockquote>
-<p>In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead of a name.</p>
+<p>In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead
+of a name.</p>
 </blockquote>
 <h3 id="functions-2"><a class="header" href="#functions-2">Functions</a></h3>
 <p>Every module exports functions.</p>
@@ -854,7 +935,7 @@ you can put your code in an <code>unsafe</code> block.</p>
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use std::cmp::min(3, 8); // =&gt; 3
-use std::cmp::\*
+use std::cmp::*
 <span class="boring">}
 </span></code></pre></pre>
 <p>The JavaScript equivalent would be, considering that the folder <code>cmp</code> contains an <code>index.js</code> file.</p>
@@ -877,12 +958,13 @@ let x = str::len(&quot;rust&quot;); // =&gt; 4
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>use std::prelude::v1::\*;
+</span>use std::prelude::v1::*;
 <span class="boring">}
 </span></code></pre></pre>
 <p>So that, instead of <code>std::vec::Vec::new()</code>, you can use <code>Vec::new()</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="useful-crates"><a class="header" href="#useful-crates">Useful Crates</a></h1>
-<p>This list is obviously very <strong>opiniated</strong> and <strong>not complete</strong>. It's a list a useful crates I discovered while using Rust. Some better-known crates are not displayed below, because I prefer the ones listed here.</p>
+<p>This list is obviously very <strong>opiniated</strong> and <strong>not complete</strong>. It's a list a useful crates I discovered while using
+Rust. Some better-known crates are not displayed below, because I prefer the ones listed here.</p>
 <h2 id="general-purpose"><a class="header" href="#general-purpose">General purpose</a></h2>
 <table><thead><tr><th>Crate Name</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://crates.io/crates/futures">futures</a></td><td>Futures and streams featuring zero allocations, composability, and iterator-like interfaces.</td></tr>

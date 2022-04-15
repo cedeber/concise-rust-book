@@ -138,14 +138,43 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
+<p>Functions are pervasive in Rust code. The <code>main</code> function is the most important function in the language. It's the entry
+point of many programs.</p>
 <h2 id="functions-1"><a class="header" href="#functions-1">Functions</a></h2>
-<p>Every function returns, if not specified, a <strong>unit</strong> type, written <code>()</code>. No need to specify it or return it, it is implicit.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">fn main() -&gt; () {
-    // empty
+<p>The <code>fn</code> keyword allows you to declare new functions. Rust code uses <em>snake case</em> as the conventional style for
+functions and variables names. Every function returns by default a <strong>unit</strong> type, written <code>()</code>. It's an empty tuple. No
+need to specify it or return
+it, it is implicit.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+	// empty
 }
 </code></pre></pre>
-<h3 id="semi-colon"><a class="header" href="#semi-colon">Semi colon</a></h3>
-<p>A semi-colon is mandatory at the end of each expressions. If it is <em>omitted</em>, it means a <code>return</code>.</p>
+<blockquote>
+<p>Rust does not care where you define your functions, only that they are defined somewhere.</p>
+</blockquote>
+<h3 id="parameters"><a class="header" href="#parameters">Parameters</a></h3>
+<p>In function signatures, you <em>must</em> declare the type of each parameter</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn another_function(x: i32, y: i32) {
+	println!(&quot;x: {}&quot;, x);
+	println!(&quot;y: {}&quot;, y);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="return-value"><a class="header" href="#return-value">Return value</a></h3>
+<p>We do declare their type after an arrow <code>-&gt;</code>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn add(x: i32, y: i32) -&gt; i32 {
+	return x + y;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="statements-and-expressions-in-function-bodies"><a class="header" href="#statements-and-expressions-in-function-bodies">Statements and Expressions in Function Bodies</a></h3>
+<p>A semicolon is mandatory at the end of each expression. If it is <em>omitted</em>, it means a <code>return</code>.</p>
 <blockquote>
 <p>Take care of this one!</p>
 </blockquote>
@@ -153,7 +182,7 @@
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn add_2(a: i32) -&gt; i32 {
-    a + 2
+	a + 2
 }
 
 println!(&quot;{}&quot;, add_2(5)); // =&gt; 7
@@ -174,13 +203,13 @@ let closure_inferred = |i | i + 1 ;
 <h2 id="blocks-and-scope"><a class="header" href="#blocks-and-scope">Blocks and Scope</a></h2>
 <p>A pair of brackets declares a block, which has its own scope.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
-    let x = &quot;out&quot;;
-    {
-        // this is a different `x`
-        let x = &quot;in&quot;;
-        println!(&quot;{x}&quot;); // =&gt; in
-    }
-    println!(&quot;{x}&quot;); // =&gt; out
+	let x = &quot;out&quot;;
+	{
+		// this is a different `x`
+		let x = &quot;in&quot;;
+		println!(&quot;{x}&quot;); // =&gt; in
+	}
+	println!(&quot;{x}&quot;); // =&gt; out
 }
 </code></pre></pre>
 <h3 id="blocks-are-also-expressions"><a class="header" href="#blocks-are-also-expressions">Blocks are also expressions</a></h3>
@@ -202,11 +231,11 @@ println!(&quot;{x}&quot;); // =&gt; 3
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn eight() -&gt; i32 {
-    if true {
-        8
-    } else {
-        4
-    }
+	if true {
+		8
+	} else {
+		4
+	}
 }
 
 println!(&quot;{}&quot;, eight()); // =&gt; 8
@@ -216,28 +245,30 @@ println!(&quot;{}&quot;, eight()); // =&gt; 8
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>use rand::prelude::\*;
+</span>use rand::prelude::\ *;
 
 fn dice(cheat: bool) -&gt; i32 {
-    match cheat {
-        true =&gt; 6,
-        false =&gt; thread_rng().gen_range(0..=6),
-    }
+	match cheat {
+		true =&gt; 6,
+		false =&gt; thread_rng().gen_range(0..=6),
+	}
 }
 
 println!(&quot;{}&quot;, dice(true)); // =&gt; 6
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h2>
-<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing ones</strong>.</p>
+<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest
+operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing
+ones</strong>.</p>
 <p>The rest must be the last and not be followed by a comma.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[derive(Debug)]
 struct Vec2 {
-    x: f32,
-    y: f32
+	x: f32,
+	y: f32
 }
 
 // Rest
@@ -248,9 +279,9 @@ let v2 = Vec2 { y: 2.0, ..v1 };
 let (a, b) = (3, 7);
 
 // Destructuring with Rest
-let Vec2 { x, .. } = v2;
+let Vec2 { x,..} = v2;
 
-println!{&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
+println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
 <span class="boring">}
 </span></code></pre></pre>
 
