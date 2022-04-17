@@ -8,7 +8,7 @@
 
 - [The Basics](ch01-00-basics.md)
   - [Variables and Data types](ch01-01-variables.md)
-  - [Functions](ch01-02-functions.md)
+  - [Functions, Blocks and Scope](ch01-02-block-scope.md)
   - [Patterns](ch01-03-patterns.md)
 - [Particularities](ch02-00-particularities.md)
   - [Ownership, Borrowing and Lifetime](ch02-01-ownership.md)

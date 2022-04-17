@@ -74,3 +74,31 @@ fn print_number(n: Number) {
 	}
 }
 ```
+
+## Rest and Destructuring
+
+The rest operator `..` allows to fill the _holes_. Unlike the spread operator `...` in JavaScript, the rest
+operator `..` comes at the end. In other words you are _not overwriting the values_, but you are **filling the missing
+ones**.
+
+The rest must be the last and not be followed by a comma.
+
+```rust
+#[derive(Debug)]
+struct Vec2 {
+	x: f32,
+	y: f32
+}
+
+// Rest
+let v1 = Vec2 { x: 1.0, y: 3.0 };
+let v2 = Vec2 { y: 2.0, ..v1 };
+
+// Destructuring
+let (a, b) = (3, 7);
+
+// Destructuring with Rest
+let Vec2 { x,..} = v2;
+
+println! {"{:?}, {:?}, {:?}", v2, b, x} // => Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
+```
