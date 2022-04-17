@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-title-page.html">Concise Rust and WebAssembly</a></li><li class="chapter-item expanded affix "><a href="ch00-02-foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-03-rust.html">The Rust Programming Language</a></li><li class="chapter-item expanded "><a href="ch01-00-basics.html"><strong aria-hidden="true">1.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions.html"><strong aria-hidden="true">1.2.</strong> Functions</a></li><li class="chapter-item expanded "><a href="ch01-03-patterns.html"><strong aria-hidden="true">1.3.</strong> Patterns</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-particularities.html"><strong aria-hidden="true">2.</strong> Particularities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-ownership.html"><strong aria-hidden="true">2.1.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch02-02-option-result.html"><strong aria-hidden="true">2.2.</strong> Option and Result</a></li><li class="chapter-item expanded "><a href="ch02-03-struct-trait.html"><strong aria-hidden="true">2.3.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch02-04-unsafe.html"><strong aria-hidden="true">2.4.</strong> Unsafe</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> WebAssembly</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WASI &amp; Wasmtime</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Ecosystem</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Cargo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> wasm-pack</div></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-useful-crates.html"><strong aria-hidden="true">6.</strong> Useful Crates</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-title-page.html">Concise Rust and WebAssembly</a></li><li class="chapter-item expanded affix "><a href="ch00-02-foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-03-rust.html">The Rust Programming Language</a></li><li class="chapter-item expanded "><a href="ch01-00-basics.html"><strong aria-hidden="true">1.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-patterns.html"><strong aria-hidden="true">1.3.</strong> Patterns</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-particularities.html"><strong aria-hidden="true">2.</strong> Particularities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-ownership.html"><strong aria-hidden="true">2.1.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch02-02-option-result.html"><strong aria-hidden="true">2.2.</strong> Option and Result</a></li><li class="chapter-item expanded "><a href="ch02-03-struct-trait.html"><strong aria-hidden="true">2.3.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch02-04-unsafe.html"><strong aria-hidden="true">2.4.</strong> Unsafe</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> WebAssembly</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WASI &amp; Wasmtime</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Ecosystem</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Cargo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> wasm-pack</div></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-useful-crates.html"><strong aria-hidden="true">6.</strong> Useful Crates</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -459,10 +459,21 @@ let x = &quot;Hey&quot;;
 println!(&quot;{x}&quot;); // =&gt; &quot;Hey&quot;
 <span class="boring">}
 </span></code></pre></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="blocks-and-scope"><a class="header" href="#blocks-and-scope">Blocks and Scope</a></h1>
+<p>A pair of brackets declares a block, which has its own scope. It can evaluate to a value and can contain multiple statements.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+	let x = &quot;out&quot;;
+	{
+		// this is a different `x`
+		let x = &quot;in&quot;;
+		println!(&quot;{x}&quot;); // =&gt; in
+	}
+	println!(&quot;{x}&quot;); // =&gt; out
+}
+</code></pre></pre>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <p>Functions are pervasive in Rust code. The <code>main</code> function is the most important function in the language. It's the entry
 point of many programs.</p>
-<h2 id="functions-1"><a class="header" href="#functions-1">Functions</a></h2>
 <p>The <code>fn</code> keyword allows you to declare new functions. Rust code uses <em>snake case</em> as the conventional style for
 functions and variables names. Every function returns by default a <strong>unit</strong> type, written <code>()</code>. It's an empty tuple. No
 need to specify it or return
@@ -496,9 +507,9 @@ it, it is implicit.</p>
 <span class="boring">}
 </span></code></pre></pre>
 <h3 id="statements-and-expressions-in-function-bodies"><a class="header" href="#statements-and-expressions-in-function-bodies">Statements and Expressions in Function Bodies</a></h3>
-<p>A semicolon is mandatory at the end of each expression. If it is <em>omitted</em>, it means a <code>return</code>.</p>
+<p>Rust is an expression-based languag. <em>Statements</em> are instructions that perform some action and do not return a value. For instance, the <code>let y = 6</code> statement does not return a value. <em>Expressions</em> evaluate to a resulting value. Calling a function is an expression. Calling a macro is an expression. The block that we use to create new scopes, <code>{}</code>, is an expression.</p>
 <blockquote>
-<p>Take care of this one!</p>
+<p>Expressions do not include ending semicolons. If you add a semicolon to the end of an expression, you turn it into a statement, which will then not return a value.</p>
 </blockquote>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -522,33 +533,9 @@ let closure_annotated = |i: i32| -&gt; i32 { i + 1 };
 let closure_inferred = |i | i + 1 ;
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="blocks-and-scope"><a class="header" href="#blocks-and-scope">Blocks and Scope</a></h2>
-<p>A pair of brackets declares a block, which has its own scope.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
-	let x = &quot;out&quot;;
-	{
-		// this is a different `x`
-		let x = &quot;in&quot;;
-		println!(&quot;{x}&quot;); // =&gt; in
-	}
-	println!(&quot;{x}&quot;); // =&gt; out
-}
-</code></pre></pre>
-<h3 id="blocks-are-also-expressions"><a class="header" href="#blocks-are-also-expressions">Blocks are also expressions</a></h3>
-<p>They can evaluate to a value and can contain multiple statements.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let x = {
-    let y = 1;
-    let z = 2;
-    y + z
-};
-
-println!(&quot;{x}&quot;); // =&gt; 3
-<span class="boring">}
-</span></code></pre></pre>
-<h4 id="if-conditionals"><a class="header" href="#if-conditionals">if conditionals</a></h4>
+<h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
+<h3 id="if-expressions"><a class="header" href="#if-expressions"><code>if</code> Expressions</a></h3>
+<p>Blocks of code associated with the conditions in <code>if</code> expressions are sometimes called <em>arms</em>, just like the arm in <code>match</code> expressions. Optionally, we can also include an <code>else</code> expression (or <code>else if</code>). It's also worth noting that the condition <em>must</em> be a <code>bool</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -563,49 +550,72 @@ println!(&quot;{x}&quot;); // =&gt; 3
 println!(&quot;{}&quot;, eight()); // =&gt; 8
 <span class="boring">}
 </span></code></pre></pre>
-<h4 id="match-pattern"><a class="header" href="#match-pattern">match pattern</a></h4>
+<h4 id="using-if-in-a-let-statement"><a class="header" href="#using-if-in-a-let-statement">Using <code>if</code> in a <code>let</code> statement</a></h4>
+<p>Because <code>if</code> is an expression, we can use it on the right side of a <code>let</code> statement. Remember that blocks of code evaluate to the last expression in them. This means the values that have the potential to be results from each arm of the <code>if</code> must be the <strong>same type</strong>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>use rand::prelude::\ *;
+</span>let condition = true;
+let number = if condition {
+	5
+} else {
+	6
+};
 
-fn dice(cheat: bool) -&gt; i32 {
-	match cheat {
-		true =&gt; 6,
-		false =&gt; thread_rng().gen_range(0..=6),
+println!(number is &quot;{}&quot;, number);
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="repetitions"><a class="header" href="#repetitions">Repetitions</a></h3>
+<p>Rust has thre kinds of loops: <code>loop</code>, <code>while</code> and <code>for</code>.</p>
+<h4 id="loops"><a class="header" href="#loops">Loops</a></h4>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>loop {
+	println!(&quot;again!&quot;);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>You might need to pass the result of a <code>loop</code>. To do this, add the value you want returned after the <code>break</code> expression, you use to stop the loop.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut counter = 0;
+
+let result = loop {
+	counter += 1;
+
+	if counter == 10 {
+		break counter * 2;
 	}
-}
-
-println!(&quot;{}&quot;, dice(true)); // =&gt; 6
+};
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h2>
-<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest
-operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing
-ones</strong>.</p>
-<p>The rest must be the last and not be followed by a comma.</p>
+<h4 id="conditional-loops-with-while"><a class="header" href="#conditional-loops-with-while">Conditional Loops with <code>while</code></a></h4>
+<p>It's often useful for a program to evaluate a condition within a loop. While the condition is true, le loop runs.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>#[derive(Debug)]
-struct Vec2 {
-	x: f32,
-	y: f32
+</span>let mut number = 3;
+
+while number != 0 {
+	number = number - 1;
 }
-
-// Rest
-let v1 = Vec2 { x: 1.0, y: 3.0 };
-let v2 = Vec2 { y: 2.0, ..v1 };
-
-// Destructuring
-let (a, b) = (3, 7);
-
-// Destructuring with Rest
-let Vec2 { x,..} = v2;
-
-println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
 <span class="boring">}
 </span></code></pre></pre>
+<h3 id="looping-through-a-collection-with-for"><a class="header" href="#looping-through-a-collection-with-for">Looping Through a Collection with <code>for</code></a></h3>
+<p>You can use a <code>for</code> loop and execute some code for each item in a collection. The safety and consiness of <code>for</code> loops make them the most commonly used loop construct in Rust.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>for number in (1..4).rev() {
+	println(&quot;{}!&quot;, number);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p><code>.rev()</code> reverses the range</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="patterns"><a class="header" href="#patterns">Patterns</a></h1>
 <h2 id="let-pattern"><a class="header" href="#let-pattern">let pattern</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -648,7 +658,7 @@ fn print_number(n: Number) {
 }
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="match-pattern-1"><a class="header" href="#match-pattern-1">match pattern</a></h2>
+<h2 id="match-pattern"><a class="header" href="#match-pattern">match pattern</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -684,6 +694,33 @@ fn print_number(n: Number) {
 		_ =&gt; println!(&quot;{}&quot;, n.value),
 	}
 }
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h2>
+<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest
+operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing
+ones</strong>.</p>
+<p>The rest must be the last and not be followed by a comma.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug)]
+struct Vec2 {
+	x: f32,
+	y: f32
+}
+
+// Rest
+let v1 = Vec2 { x: 1.0, y: 3.0 };
+let v2 = Vec2 { y: 2.0, ..v1 };
+
+// Destructuring
+let (a, b) = (3, 7);
+
+// Destructuring with Rest
+let Vec2 { x,..} = v2;
+
+println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
 <span class="boring">}
 </span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="particularities"><a class="header" href="#particularities">Particularities</a></h1>
@@ -928,7 +965,7 @@ with a single name, the node module name.</p>
 <p>In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead
 of a name.</p>
 </blockquote>
-<h3 id="functions-2"><a class="header" href="#functions-2">Functions</a></h3>
+<h3 id="functions-1"><a class="header" href="#functions-1">Functions</a></h3>
 <p>Every module exports functions.</p>
 <h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">
