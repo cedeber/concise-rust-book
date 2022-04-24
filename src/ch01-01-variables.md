@@ -39,6 +39,8 @@ let x: i32 = 45;
 
 ## Data types
 
+The types covered here are all stored on the stack.
+
 ### Scalar Types
 
 A _scalar_ type represents a single value. Rust has four primary scalar types: **integers**, **floating point numbers**

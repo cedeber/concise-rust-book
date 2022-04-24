@@ -7,6 +7,12 @@ not in the prelude, you have to bring that type into scope explicitly with a `us
 
 ## Hierarchy
 
+The double colon `::` is an operator that allows us to namespace this particular `from` function under the `String` type.
+
+````rust
+String::from("Hey");
+```
+
 ### Crate
 
 A crate may contains a lot of modules. A crate is a folder where, in its root, you have a `Cargo.toml` file.
@@ -31,7 +37,7 @@ Every module exports functions.
 ```rust
 use std::cmp::min(3, 8); // => 3
 use std::cmp::*
-```
+````
 
 The JavaScript equivalent would be, considering that the folder `cmp` contains an `index.js` file.
 

@@ -34,7 +34,7 @@ fn main() {
 
 ### Parameters
 
-In function signatures, you _must_ declare the type of each parameter
+In function signatures, you _must_ declare the type of each parameter.
 
 ```rust
 fn another_function(x: i32, y: i32) {
@@ -55,7 +55,7 @@ fn add(x: i32, y: i32) -> i32 {
 
 ### Statements and Expressions in Function Bodies
 
-Rust is an expression-based languag. _Statements_ are instructions that perform some action and do not return a value. For instance, the `let y = 6` statement does not return a value. _Expressions_ evaluate to a resulting value. Calling a function is an expression. Calling a macro is an expression. The block that we use to create new scopes, `{}`, is an expression.
+Rust is an expression-based language. _Statements_ are instructions that perform some action and do not return a value. For instance, the `let y = 6` statement does not return a value. _Expressions_ evaluate to a resulting value. Calling a function is an expression. Calling a macro is an expression. The block that we use to create new scopes, `{}`, is an expression.
 
 > Expressions do not include ending semicolons. If you add a semicolon to the end of an expression, you turn it into a statement, which will then not return a value.
 
@@ -139,7 +139,7 @@ let result = loop {
 
 #### Conditional Loops with `while`
 
-It's often useful for a program to evaluate a condition within a loop. While the condition is true, le loop runs.
+It's often useful for a program to evaluate a condition within a loop. While the condition is true, the loop runs.
 
 ```rust
 let mut number = 3;
