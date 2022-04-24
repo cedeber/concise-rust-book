@@ -142,28 +142,36 @@
 <p>By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is
 not in the prelude, you have to bring that type into scope explicitly with a <code>use</code> statement.</p>
 <h2 id="hierarchy"><a class="header" href="#hierarchy">Hierarchy</a></h2>
-<h3 id="crate"><a class="header" href="#crate">Crate</a></h3>
-<p>A crate may contains a lot of modules. A crate is a folder where, in its root, you have a <code>Cargo.toml</code> file.</p>
-<blockquote>
-<p>You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it
-with a single name, the node module name.</p>
-</blockquote>
-<h3 id="modules"><a class="header" href="#modules">Modules</a></h3>
-<ul>
-<li>A module is a file.</li>
-<li>Or a folder with a mod.rs file inside.</li>
-</ul>
-<blockquote>
-<p>In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead
-of a name.</p>
-</blockquote>
-<h3 id="functions"><a class="header" href="#functions">Functions</a></h3>
-<p>Every module exports functions.</p>
-<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<p>The double colon <code>::</code> is an operator that allows us to namespace this particular <code>from</code> function under the <code>String</code> type.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>use std::cmp::min(3, 8); // =&gt; 3
+</span>String::from(&quot;Hey&quot;);
+```
+
+## Crate
+
+A crate may contains a lot of modules. A crate is a folder where, in its root, you have a `Cargo.toml` file.
+
+&gt; You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it
+&gt; with a single name, the node module name.
+
+## Modules
+
+- A module is a file.
+- Or a folder with a mod.rs file inside.
+
+&gt; In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead
+&gt; of a name.
+
+## Functions
+
+Every module exports functions.
+
+# Usage
+
+```rust
+use std::cmp::min(3, 8); // =&gt; 3
 use std::cmp::*
 <span class="boring">}
 </span></code></pre></pre>
