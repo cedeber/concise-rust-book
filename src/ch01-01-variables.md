@@ -162,7 +162,7 @@ n.value = 5; // Nope
 n = Number { value: 5 } // Nope
 ```
 
-Let's make it **mutable**.
+Let's make it **mutable**. The entire instance must be mutable; Rust does not allow us to mark only certain fields as mutable.
 
 ```rust
 struct Number { value: i32 }
