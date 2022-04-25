@@ -700,8 +700,10 @@ fn print_number(n: Number) {
 <h2 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h2>
 <p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest
 operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing
-ones</strong>.</p>
+ones</strong>. It is called the <em>struct update syntax</em>.</p>
+<blockquote>
 <p>The rest must be the last and not be followed by a comma.</p>
+</blockquote>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
