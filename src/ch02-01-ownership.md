@@ -246,7 +246,7 @@ Because `s` is created inside `dangle`, when the code of `dangle` is finished, `
 
 ### The Slice Type
 
-Another data type that does not have ownership is the _silce_. Slices let you reference a continuous sequence of elements in a collection rather than the whole collection.
+Another data type that does not have ownership is the _slice_. Slices let you reference a continuous sequence of elements in a collection rather than the whole collection.
 
 A _string slice_, for instance, is a reference to part of a `String`.
 
@@ -257,6 +257,7 @@ let world = &s[6..11];
 ```
 
 With Rust's `..` range syntax,
+
 - if you want to start at the first index (zero), you can drop the trailing number: `[..5]`
 - if your slice includes the last byte of the `String`, you can drop the trailing number: `[6..]`
 - you can also drop both values to take a slice of the entire `String`: `[..]`
