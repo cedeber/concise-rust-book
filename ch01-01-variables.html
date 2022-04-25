@@ -303,7 +303,7 @@ n.value = 5; // Nope
 n = Number { value: 5 } // Nope
 <span class="boring">}
 </span></code></pre></pre>
-<p>Let's make it <strong>mutable</strong>.</p>
+<p>Let's make it <strong>mutable</strong>. The entire instance must be mutable; Rust does not allow us to mark only certain fields as mutable.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
