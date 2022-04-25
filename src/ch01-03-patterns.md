@@ -79,9 +79,9 @@ fn print_number(n: Number) {
 
 The rest operator `..` allows to fill the _holes_. Unlike the spread operator `...` in JavaScript, the rest
 operator `..` comes at the end. In other words you are _not overwriting the values_, but you are **filling the missing
-ones**.
+ones**. It is called the _struct update syntax_.
 
-The rest must be the last and not be followed by a comma.
+> The rest must be the last and not be followed by a comma.
 
 ```rust
 #[derive(Debug)]
