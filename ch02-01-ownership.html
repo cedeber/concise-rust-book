@@ -346,6 +346,40 @@ fn dangle() -&gt; &amp;String {
 }
 </code></pre></pre>
 <p>Because <code>s</code> is created inside <code>dangle</code>, when the code of <code>dangle</code> is finished, <code>s</code> will be deallocated. But we tried to return a reference to it. That means this reference would be pointing to an invalid <code>String</code>.</p>
+<h3 id="the-slice-type"><a class="header" href="#the-slice-type">The Slice Type</a></h3>
+<p>Another data type that does not have ownership is the <em>silce</em>. Slices let you reference a continuous sequence of elements in a collection rather than the whole collection.</p>
+<p>A <em>string slice</em>, for instance, is a reference to part of a <code>String</code>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s = String::from(&quot;hello world&quot;);
+let hello = &amp;s[0..5];
+let world = &amp;s[6..11];
+<span class="boring">}
+</span></code></pre></pre>
+<p>With Rust's <code>..</code> range syntax,</p>
+<ul>
+<li>if you want to start at the first index (zero), you can drop the trailing number: <code>[..5]</code></li>
+<li>if your slice includes the last byte of the <code>String</code>, you can drop the trailing number: <code>[6..]</code></li>
+<li>you can also drop both values to take a slice of the entire <code>String</code>: <code>[..]</code></li>
+</ul>
+<p>Recall from the borrowing rules that if we have an immutable reference to something, we cannot also take a mutable reference. In the example bellow, because <code>clear</code> needs to truncate the <code>String</code>, it tries to take a mutable reference, which fails.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let word = first_word(&amp;s)
+//                    -- immutable borrow occurs here
+s.clear();
+//^^^^^^^ mutable borrow occurs here
+println!(&quot;the first word is: {}&quot;, word);
+//                                ---- immutable borrow later used here
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="other-slices"><a class="header" href="#other-slices">Other Slices</a></h4>
+<ul>
+<li>String literals are slices</li>
+<li>Arrays are a general slice type, like <code>&amp;[i32]</code></li>
+</ul>
 <h3 id="the-rules-of-references"><a class="header" href="#the-rules-of-references">The Rules of References</a></h3>
 <ul>
 <li>At any given time, you can have <em>either</em> one mutable reference <em>or</em> any number of immutable references.</li>
