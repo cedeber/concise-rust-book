@@ -1,6 +1,10 @@
 # Struct, Implementation and Traits
 
-There is no class and no inheritance. Rust has only struct , impl and trait.
+There is no `class` and no inheritance. Rust has only `struct`, `impl` and `trait`.
+
+## Struct
+
+A `struct`is like an object's data attibute.
 
 ```rust
 struct Rectangle {
