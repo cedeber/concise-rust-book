@@ -938,7 +938,7 @@ fn dangle() -&gt; &amp;String {
 </code></pre></pre>
 <p>Because <code>s</code> is created inside <code>dangle</code>, when the code of <code>dangle</code> is finished, <code>s</code> will be deallocated. But we tried to return a reference to it. That means this reference would be pointing to an invalid <code>String</code>.</p>
 <h3 id="the-slice-type"><a class="header" href="#the-slice-type">The Slice Type</a></h3>
-<p>Another data type that does not have ownership is the <em>silce</em>. Slices let you reference a continuous sequence of elements in a collection rather than the whole collection.</p>
+<p>Another data type that does not have ownership is the <em>slice</em>. Slices let you reference a continuous sequence of elements in a collection rather than the whole collection.</p>
 <p>A <em>string slice</em>, for instance, is a reference to part of a <code>String</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -1065,7 +1065,7 @@ If you don’t call <code>except</code>, the program will compile, but you will 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="struct-implementation-and-traits"><a class="header" href="#struct-implementation-and-traits">Struct, Implementation and Traits</a></h1>
 <p>There is no <code>class</code> and no inheritance. Rust has only <code>struct</code>, <code>impl</code> and <code>trait</code>.</p>
 <h2 id="struct"><a class="header" href="#struct">Struct</a></h2>
-<p>A <code>struct</code>is like an object's data attibute.</p>
+<p>A <code>struct</code> is like an object's data attribute.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
