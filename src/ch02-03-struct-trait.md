@@ -4,7 +4,7 @@ There is no `class` and no inheritance. Rust has only `struct`, `impl` and `trai
 
 ## Struct
 
-A `struct`is like an object's data attibute.
+A `struct` is like an object's data attribute.
 
 ```rust
 struct Rectangle {
