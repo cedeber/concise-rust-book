@@ -244,6 +244,39 @@ fn dangle() -> &String {
 
 Because `s` is created inside `dangle`, when the code of `dangle` is finished, `s` will be deallocated. But we tried to return a reference to it. That means this reference would be pointing to an invalid `String`.
 
+### The Slice Type
+
+Another data type that does not have ownership is the _silce_. Slices let you reference a continuous sequence of elements in a collection rather than the whole collection.
+
+A _string slice_, for instance, is a reference to part of a `String`.
+
+```rust
+let s = String::from("hello world");
+let hello = &s[0..5];
+let world = &s[6..11];
+```
+
+With Rust's `..` range syntax,
+- if you want to start at the first index (zero), you can drop the trailing number: `[..5]`
+- if your slice includes the last byte of the `String`, you can drop the trailing number: `[6..]`
+- you can also drop both values to take a slice of the entire `String`: `[..]`
+
+Recall from the borrowing rules that if we have an immutable reference to something, we cannot also take a mutable reference. In the example bellow, because `clear` needs to truncate the `String`, it tries to take a mutable reference, which fails.
+
+```rust
+let word = first_word(&s)
+//                    -- immutable borrow occurs here
+s.clear();
+//^^^^^^^ mutable borrow occurs here
+println!("the first word is: {}", word);
+//                                ---- immutable borrow later used here
+```
+
+#### Other Slices
+
+- String literals are slices
+- Arrays are a general slice type, like `&[i32]`
+
 ### The Rules of References
 
 - At any given time, you can have _either_ one mutable reference _or_ any number of immutable references.
