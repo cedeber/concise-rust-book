@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-title-page.html">Concise Rust and WebAssembly</a></li><li class="chapter-item expanded affix "><a href="ch00-02-foreword.html">Foreword</a></li><li class="chapter-item expanded affix "><a href="ch00-03-rust.html">The Rust Programming Language</a></li><li class="chapter-item expanded "><a href="ch01-00-basics.html"><strong aria-hidden="true">1.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-patterns.html"><strong aria-hidden="true">1.3.</strong> Patterns</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-particularities.html"><strong aria-hidden="true">2.</strong> Particularities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-ownership.html"><strong aria-hidden="true">2.1.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch02-02-option-result.html"><strong aria-hidden="true">2.2.</strong> Option and Result</a></li><li class="chapter-item expanded "><a href="ch02-03-struct-trait.html"><strong aria-hidden="true">2.3.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch02-04-unsafe.html"><strong aria-hidden="true">2.4.</strong> Unsafe</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> WebAssembly</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WASI &amp; Wasmtime</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Ecosystem</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Cargo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> wasm-pack</div></li></ol></li><li class="chapter-item expanded "><a href="ch06-00-useful-crates.html"><strong aria-hidden="true">6.</strong> Useful Crates</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch01-04-struct-trait.html"><strong aria-hidden="true">1.4.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch01-05-patterns.html"><strong aria-hidden="true">1.5.</strong> Enums and Patterns Matching</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -138,9 +138,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="concise-rust-and-webassembly"><a class="header" href="#concise-rust-and-webassembly">Concise Rust and WebAssembly</a></h1>
-<p>This book is currently being written.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="foreword"><a class="header" href="#foreword">Foreword</a></h1>
+                        <h1 id="foreword"><a class="header" href="#foreword">Foreword</a></h1>
 <p>Hello. I hope this book finds you well.</p>
 <p>As a non-daily rustacean - I am a daily TypeScript developer and UI designer -, coming back to Rust only from time to
 time is sometimes painful. I tend to forget how to code with Rust. Although it is a very nice language, it is also a
@@ -163,7 +161,7 @@ that.</p>
 from <a href="https://fasterthanli.me">amos</a></li>
 <li>...</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-rust-programming-language"><a class="header" href="#the-rust-programming-language">The Rust Programming Language</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="concise-rust"><a class="header" href="#concise-rust">Concise Rust</a></h1>
 <h2 id="short-history-of-rust"><a class="header" href="#short-history-of-rust">Short history of Rust</a></h2>
 <p>Rust began, in 2006, as a side project of Graydon Hoare, an employee at Mozilla. Mozilla believed in the potential of
 this new language and began sponsoring it. It was revealed to the world in 2010.</p>
@@ -218,9 +216,6 @@ just awesome. It is definitely feature-complete:</p>
 <li><code>cargo</code> can be expanded: <code>cargo-edit</code>, <code>cargo-watch</code>, ...</li>
 <li>Compiler giving hints thanks to <code>clippy</code></li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-basics"><a class="header" href="#the-basics">The Basics</a></h1>
-<p>A quick introduction with concepts you may have seen on other programming languages. At least they are very easy
-concepts to understand as for now.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="variables-and-data-types"><a class="header" href="#variables-and-data-types">Variables and Data types</a></h1>
 <h2 id="variable-binding-and-type-inference"><a class="header" href="#variable-binding-and-type-inference">Variable binding and Type inference</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -617,117 +612,6 @@ while number != 0 {
 <blockquote>
 <p><code>.rev()</code> reverses the range</p>
 </blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="patterns"><a class="header" href="#patterns">Patterns</a></h1>
-<h2 id="let-pattern"><a class="header" href="#let-pattern">let pattern</a></h2>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let a = Some(40);
-let b = None;
-
-print_number(a); // =&gt; 40
-print_number(b); // =&gt; No output
-
-fn print_number(n: Option&lt;i32&gt;) {
-	if let Some(value) = n {
-		println!(&quot;{}&quot;, value)
-	}
-}
-<span class="boring">}
-</span></code></pre></pre>
-<p>With destructuring and test in the same time:</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>struct Number {
-	odd: bool,
-	value: i32,
-}
-
-let one = Number { odd: true, value: 1 };
-let two = Number { odd: false, value: 2 };
-
-print_number(one); // =&gt; Odd number: 1
-0print_number(two); // =&gt; Even number: 2
-
-fn print_number(n: Number) {
-	if let Number { odd: true, value } = n {
-		println!(&quot;Odd number: {}&quot;, value);
-	} else if let Number { odd: false, value } = n {
-		println!(&quot;Even number: {}&quot;, value);
-	}
-}
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="match-pattern"><a class="header" href="#match-pattern">match pattern</a></h2>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>struct Number {
-	odd: bool,
-	value: i32,
-}
-
-let one = Number { odd: true, value: 1 };
-let two = Number { odd: false, value: 2 };
-
-print_number(one); // =&gt; Odd number: 1
-print_number(two); // =&gt; Even number: 2
-
-// Same as with the if pattern
-fn print_number(n: Number) {
-	match n {
-		Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
-		Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
-	}
-}
-<span class="boring">}
-</span></code></pre></pre>
-<p>A <code>match</code> has to be exhaustive. At least one arm needs to match.
-<code>_</code> can be used as a &quot;catch-all&quot; pattern.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn print_number(n: Number) {
-	match n.value {
-		1 =&gt; println!(&quot;One&quot;),
-		2 =&gt; println!(&quot;Two&quot;),
-		_ =&gt; println!(&quot;{}&quot;, n.value),
-	}
-}
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h2>
-<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest
-operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing
-ones</strong>. It is called the <em>struct update syntax</em>.</p>
-<blockquote>
-<p>The rest must be the last and not be followed by a comma.</p>
-</blockquote>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>#[derive(Debug)]
-struct Vec2 {
-	x: f32,
-	y: f32
-}
-
-// Rest
-let v1 = Vec2 { x: 1.0, y: 3.0 };
-let v2 = Vec2 { y: 2.0, ..v1 };
-
-// Destructuring
-let (a, b) = (3, 7);
-
-// Destructuring with Rest
-let Vec2 { x,..} = v2;
-
-println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
-<span class="boring">}
-</span></code></pre></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="particularities"><a class="header" href="#particularities">Particularities</a></h1>
-<p>Rust has some particularities and also tries to fix other languages known issues.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-borrowing-and-lifetime"><a class="header" href="#ownership-borrowing-and-lifetime">Ownership, Borrowing and Lifetime</a></h1>
 <p>Ownership is the most unique feature of Rust, and it enables Rust to make memory safety guarantees without needing a garbage collector.</p>
 <blockquote>
@@ -976,96 +860,13 @@ println!(&quot;the first word is: {}&quot;, word);
 <li>At any given time, you can have <em>either</em> one mutable reference <em>or</em> any number of immutable references.</li>
 <li>References must always be valid.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="option-and-result"><a class="header" href="#option-and-result">Option and Result</a></h1>
-<h2 id="the-billion-dollars-mistake"><a class="header" href="#the-billion-dollars-mistake">The billion dollars mistake</a></h2>
-<p>Rust does not have <code>null</code> or <code>nil</code>. It is replaced by the <code>Option</code> enumeration. The variants of <code>Option</code> if <code>Some</code>
-and <code>None</code>. The <code>None</code> variant represents no value while <code>Some</code> can hold one piece of data of any type.</p>
-<p>Although some languages like <em>Kotlin</em> or <em>Swift</em> do enforce <em>strict null check</em>, as a code reader you never now if a
-value can be <code>null</code> or not. Again, in Rust, this is self-explanatory and explicit.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>// As defined in Rust
-enum Option&lt;T&gt; {
-	None,
-	Some(T),
-}
-<span class="boring">}
-</span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let val1: Option&lt;i32&gt; = None;
-let val2: Option&lt;i32&gt; = Some(32);
-
-println!(&quot;{:?}, {:?}&quot;, val1, val2);
-<span class="boring">}
-</span></code></pre></pre>
-<p>For instance in JavaScript (or TypeScript without the <code>strictNullCheck</code>)</p>
-<pre><code class="language-javascript">class Foo {
-  name = &quot;foo&quot;;
-
-  bar() {
-    console.log(this.name, &quot;bar&quot;);
-  }
-}
-
-const fb = Math.random() &lt; 0.5 ? new Foo() : null;
-
-fb.bar(); // =&gt; TypeError: null is not an object
-</code></pre>
-<p>As <code>null</code> doesn't exist in Rust, you need the <code>Option</code> type which forces you to check the nullity <code>None</code>;</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>use rand::prelude::*;
-
-struct Foo {
-	name: String,
-}
-
-impl Foo {
-	fn new() -&gt; Self {
-		Foo { name: &quot;foo&quot;.to_string() }
-	}
-
-	fn bar(&amp;self) {
-		println!(&quot;{} bar&quot;, self.name);
-	}
-}
-
-let fb: Option&lt;Foo&gt; = if rand::random() {
-    Some(Foo::new())
-} else {
-    None
-};
-
-fb.bar()
-// ^^^ method not found in `Option&lt;Foo&gt;`
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="error-management"><a class="header" href="#error-management">Error management</a></h2>
-<p>There is no <code>try</code> / <code>catch</code>. <code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result</code>, the variants are <code>Ok</code>
-and <code>Err</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value.
-The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
-<p>The purpose of these <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
-<blockquote>
-<p>A function always returns a unit <code>()</code>, if nothing is specified.</p>
-</blockquote>
-<pre><pre class="playground"><code class="language-rust edition2021">use std::error::Error;
-
-fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
-	Ok(())
-}
-</code></pre></pre>
-<blockquote>
-<p>⚠️ Talk about <code>unwrap</code> and <code>?</code>
-If you don’t call <code>except</code>, the program will compile, but you will get a warning</p>
-</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="struct-implementation-and-traits"><a class="header" href="#struct-implementation-and-traits">Struct, Implementation and Traits</a></h1>
 <p>There is no <code>class</code> and no inheritance. Rust has only <code>struct</code>, <code>impl</code> and <code>trait</code>.</p>
 <h2 id="struct"><a class="header" href="#struct">Struct</a></h2>
 <p>A <code>struct</code> is like an object's data attribute.</p>
+<blockquote>
+<p>It's possible for structs to store references to data owned by something else, but to do so requires the use of <em>lifetimes</em>.</p>
+</blockquote>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -1078,7 +879,58 @@ let rect = Rectangle { width: 3, height: 2 };
 rect.width; // =&gt; 3
 <span class="boring">}
 </span></code></pre></pre>
-<p><a href="https://cedeber.atlassian.net/wiki/spaces/RUSTO/pages/459128/The+Basics#Rest-and-Destructuring">The Basics | Rest-and-Destructuring</a></p>
+<h3 id="tuple-structs"><a class="header" href="#tuple-structs">Tuple Structs</a></h3>
+<p>Tuple structs are useful when you want to give the whole tuple a name and make the tuple be a different type from other tuples, and naming each field as in a regular struct would be verbose or redundant.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Color(i32, i32, i32);
+let black = Color(0, 0, 0);
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="unit-like-structs"><a class="header" href="#unit-like-structs">Unit-Like Structs</a></h3>
+<p>You can also define structs that don't have any fields! These are called <em>unit-like structs</em> because they behave similarly to <code>()</code>, the unit type. Unit-like structs can be useful in situations in which you need to implement a trait on some type but don't have any data that you want to store in the type itself.</p>
+<h2 id="method-syntax-implementation"><a class="header" href="#method-syntax-implementation">Method Syntax: Implementation</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Rectangle {
+	width: u32,
+	height: u32,
+}
+
+impl Rectangle {
+	fn area(&amp;self) -&gt; u32 {
+		self.width * self.height
+	}
+}
+
+let rect = Rectangle { width: 30, height: 50 };
+println!(&quot;The are is {} square pixels.&quot;, rect.area());
+<span class="boring">}
+</span></code></pre></pre>
+<p>Methods are similar to functions. To define the function within the context of <code>Rectangle</code>, we start an <code>impl</code> block. Then we move the <code>area</code> function within the <code>impl</code> curly brackets.</p>
+<p>We can use the <em>method syntax</em> to call the area method on our <code>Rectangle</code> instance.</p>
+<p>In the signature for <code>area</code> we use <code>&amp;self</code> instead of <code>rectangle: &amp;Rectangle</code> because Rust knows the type of <code>self</code> is <code>Rectangle</code> due to this method's being inside the <code>impl Rectangle</code> context. Methods can take multiple parameters that we add to the signature after the <code>self</code> parameter, and those parameters work just like parameters in functions.</p>
+<blockquote>
+<p>Each struct is allowed to have multiple <code>impl</code> blocks.</p>
+</blockquote>
+<h3 id="associated-functions"><a class="header" href="#associated-functions">Associated functions</a></h3>
+<p>Another useful feature of <code>impl</code> blocks is that we are allowed to define functions within <code>impl</code> blocks that <em>do not</em> take <code>self</code> as a parameter. These are called <em>associated functions</em> because they are associated with the struct.</p>
+<blockquote>
+<p>They're still functions, not methods, because they don't have an instance of the struct to work with, like <code>String::from</code>.</p>
+</blockquote>
+<p>Associated functions are often used for constructors that will return a new instance of the struct. A common usage in the standard library and in the community is to define a <code>new</code> function. You can use the <em>field init shorthand</em> syntax to initialize a struct with variables.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl Rectangle {
+	fn new(width: u32, height: u32) -&gt; Self {
+		Rectangle { width, height };
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
 <h2 id="interface"><a class="header" href="#interface">Interface</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">// An &quot;interface&quot; to implement
 trait Geometry {
@@ -1135,15 +987,113 @@ that makes a new value of some kind.</p>
 </blockquote>
 <h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
 <p><code>&lt;T&gt;</code></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="unsafe"><a class="header" href="#unsafe">Unsafe</a></h1>
-<p>In order to write <code>unsafe</code> code, or, in other words, if you want to manage the memory yourself, you can put your code in
-an <code>unsafe</code> block.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="patterns"><a class="header" href="#patterns">Patterns</a></h1>
+<h2 id="let-pattern"><a class="header" href="#let-pattern">let pattern</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>unsafe {
-    // Your unsafe code
+</span>let a = Some(40);
+let b = None;
+
+print_number(a); // =&gt; 40
+print_number(b); // =&gt; No output
+
+fn print_number(n: Option&lt;i32&gt;) {
+	if let Some(value) = n {
+		println!(&quot;{}&quot;, value)
+	}
 }
+<span class="boring">}
+</span></code></pre></pre>
+<p>With destructuring and test in the same time:</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Number {
+	odd: bool,
+	value: i32,
+}
+
+let one = Number { odd: true, value: 1 };
+let two = Number { odd: false, value: 2 };
+
+print_number(one); // =&gt; Odd number: 1
+0print_number(two); // =&gt; Even number: 2
+
+fn print_number(n: Number) {
+	if let Number { odd: true, value } = n {
+		println!(&quot;Odd number: {}&quot;, value);
+	} else if let Number { odd: false, value } = n {
+		println!(&quot;Even number: {}&quot;, value);
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="match-pattern"><a class="header" href="#match-pattern">match pattern</a></h2>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Number {
+	odd: bool,
+	value: i32,
+}
+
+let one = Number { odd: true, value: 1 };
+let two = Number { odd: false, value: 2 };
+
+print_number(one); // =&gt; Odd number: 1
+print_number(two); // =&gt; Even number: 2
+
+// Same as with the if pattern
+fn print_number(n: Number) {
+	match n {
+		Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
+		Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>A <code>match</code> has to be exhaustive. At least one arm needs to match.
+<code>_</code> can be used as a &quot;catch-all&quot; pattern.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn print_number(n: Number) {
+	match n.value {
+		1 =&gt; println!(&quot;One&quot;),
+		2 =&gt; println!(&quot;Two&quot;),
+		_ =&gt; println!(&quot;{}&quot;, n.value),
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h2>
+<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest
+operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing
+ones</strong>. It is called the <em>struct update syntax</em>.</p>
+<blockquote>
+<p>The rest must be the last and not be followed by a comma.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug)]
+struct Vec2 {
+	x: f32,
+	y: f32
+}
+
+// Rest
+let v1 = Vec2 { x: 1.0, y: 3.0 };
+let v2 = Vec2 { y: 2.0, ..v1 };
+
+// Destructuring
+let (a, b) = (3, 7);
+
+// Destructuring with Rest
+let Vec2 { x,..} = v2;
+
+println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
 <span class="boring">}
 </span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="crates-and-modules"><a class="header" href="#crates-and-modules">Crates and Modules</a></h1>
