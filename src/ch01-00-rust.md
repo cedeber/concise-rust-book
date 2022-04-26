@@ -1,4 +1,4 @@
-# The Rust Programming Language
+# Concise Rust
 
 ## Short history of Rust
 

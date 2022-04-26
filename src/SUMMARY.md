@@ -1,24 +1,15 @@
 # Concise Rust & WebAssembly
 
-[Concise Rust and WebAssembly](ch00-01-title-page.md)
-[Foreword](ch00-02-foreword.md)
-[The Rust Programming Language](ch00-03-rust.md)
+[Foreword](ch00-01-foreword.md)
 
 ## Book
 
-- [The Basics](ch01-00-basics.md)
+- [Concise Rust](ch01-00-rust.md)
   - [Variables and Data types](ch01-01-variables.md)
   - [Functions, Blocks and Scope](ch01-02-block-scope.md)
-  - [Patterns](ch01-03-patterns.md)
-- [Particularities](ch02-00-particularities.md)
-  - [Ownership, Borrowing and Lifetime](ch02-01-ownership.md)
-  - [Option and Result](ch02-02-option-result.md)
-  - [Struct, Implementation and Traits](ch02-03-struct-trait.md)
-  - [Unsafe](ch02-04-unsafe.md)
+  - [Ownership, Borrowing and Lifetime](ch01-03-ownership.md)
+  - [Struct, Implementation and Traits](ch01-04-struct-trait.md)
+  - [Enums and Patterns Matching](ch01-05-patterns.md)
+- [Concise WebAssembly]()
 - [Crates and Modules](ch03-00-crates-modules.md)
-- [WebAssembly]()
-  - [WASI & Wasmtime]()
-- [Ecosystem]()
-  - [Cargo]()
-  - [wasm-pack]()
-- [Useful Crates](ch06-00-useful-crates.md)
+  - [Useful Crates](ch03-xx-useful-crates.md)
