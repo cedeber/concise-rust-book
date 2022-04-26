@@ -1,4 +1,59 @@
-# Patterns
+# Enums and Pattern Matching
+
+## Enums
+
+Rust's enums are most similar to _algebraic data types_ in functional languages.
+Note that the variants of the enum are namespaced (`::`) under its identifier.
+
+We can put data directly into each enum variant. Each variant can have different types and amount of associated data.
+
+```rust
+enum IpAddr {
+	V4(u8, u8, u8, u8),
+	V6(String),
+}
+
+let home = IpAddr::V4(127, 0, 0, 1);
+let loopback = IpAddr::V6(String::from("::1"));
+```
+
+You can put any kind of data inside an enum variant: strings, numeric types, or struct, for example. You can even include another enum.
+
+### The billion dollars mistake
+
+The problem with `null` values is that if you try to use a `null` value as a not-null value, you will get an error of some kind.
+As such, Rust does not have nulls, but it does have an enum that can encode the concept of a value being present or absent.
+
+It is replaced by the `Option<T>` enumeration. The variants of `Option` are `Some`
+and `None`. The `None` variant represents no value while `Some` can hold one piece of data of any type.
+
+```rust
+enum Option<T> {
+	Some(T),
+	None,
+}
+```
+
+If we use `None` rather that `Some`, we need to tell Rust what type of `Option<T>` we have.
+
+```rust
+let val1: Option<i32> = None;
+let val2: Option<_> = Some(32);
+
+println!("{:?}, {:?}", val1, val2);
+```
+
+Because `Option<T>` and `T` (where `T` can be any type) are different types, the compiler won't let us use an `Option<T>` value as if it were definitely a valid value.
+
+```rust
+let x: i8 = 5;
+let y: Option<i8> = Some(5);
+
+let sum = x + y;
+//          ^ no implementation for `i8 + Option<i8>`
+```
+
+> Everywhere that a value has a type that is not an `Option<T>`, you _can_ safely assume that the value is not null.
 
 ## let pattern
 
@@ -104,74 +159,6 @@ println! {"{:?}, {:?}, {:?}", v2, b, x} // => Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
 ```
 
 # Option and Result
-
-## The billion dollars mistake
-
-Rust does not have `null` or `nil`. It is replaced by the `Option` enumeration. The variants of `Option` if `Some`
-and `None`. The `None` variant represents no value while `Some` can hold one piece of data of any type.
-
-Although some languages like _Kotlin_ or _Swift_ do enforce _strict null check_, as a code reader you never now if a
-value can be `null` or not. Again, in Rust, this is self-explanatory and explicit.
-
-```rust
-// As defined in Rust
-enum Option<T> {
-	None,
-	Some(T),
-}
-```
-
-```rust
-let val1: Option<i32> = None;
-let val2: Option<i32> = Some(32);
-
-println!("{:?}, {:?}", val1, val2);
-```
-
-For instance in JavaScript (or TypeScript without the `strictNullCheck`)
-
-```javascript
-class Foo {
-  name = "foo";
-
-  bar() {
-    console.log(this.name, "bar");
-  }
-}
-
-const fb = Math.random() < 0.5 ? new Foo() : null;
-
-fb.bar(); // => TypeError: null is not an object
-```
-
-As `null` doesn't exist in Rust, you need the `Option` type which forces you to check the nullity `None`;
-
-```rust
-use rand::prelude::*;
-
-struct Foo {
-	name: String,
-}
-
-impl Foo {
-	fn new() -> Self {
-		Foo { name: "foo".to_string() }
-	}
-
-	fn bar(&self) {
-		println!("{} bar", self.name);
-	}
-}
-
-let fb: Option<Foo> = if rand::random() {
-    Some(Foo::new())
-} else {
-    None
-};
-
-fb.bar()
-// ^^^ method not found in `Option<Foo>`
-```
 
 ## Error management
 
