@@ -37,6 +37,27 @@ Of course, you can still specify the type manually.
 let x: i32 = 45;
 ```
 
+### Unused variables
+
+While you are coding, you can say the compiler to not complain about a variable not being used.
+
+```rust
+let _unused_variable = 42;
+```
+
+### Throw away a value
+
+During destructuring, if you don't want to deal with all values you can omit some with an underscore.
+In use with the rest operator `..` it's very easy to just export what you need.
+
+```rust
+let _ = get_stuff(); // throws away the returned value
+
+// The value 3 and the rest will not be assigned to a variable
+let (_, b, ..) = (3, 7, 14, 45);
+let (width, _) = get_size();
+```
+
 ## Data types
 
 The types covered here are all stored on the stack.
@@ -118,31 +139,6 @@ let first = a[0];
 
 > An array is not as flexible as the vector type. A vector (`Vec`) is a similar collection type provided by the standard
 > library that is allowed to grow or shrink in size.
-
-## Underscores usage in Rust
-
-There is a lot to say about the usage of underscores. Here are just few examples with variables.
-
-### Throw away a value
-
-During destructuring, if you don't want to deal with all values you can omit some with an underscore.
-In use with the rest operator `..` it's very easy to just export what you need.
-
-```rust
-let _ = get_stuff(); // throws away the returned value
-
-// The value 3 and the rest will not be assigned to a variable
-let (_, b, ..) = (3, 7, 14, 45);
-let (width, _) = get_size();
-```
-
-### Unused variables
-
-While you are coding, you can say the compiler to not complain about a variable not being used.
-
-```rust
-let _unused_variable = 42;
-```
 
 ## Immutable by default
 
