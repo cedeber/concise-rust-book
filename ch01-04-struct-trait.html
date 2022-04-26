@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch01-04-struct-trait.html" class="active"><strong aria-hidden="true">1.4.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch01-05-patterns.html"><strong aria-hidden="true">1.5.</strong> Enums and Patterns Matching</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch01-04-struct-trait.html" class="active"><strong aria-hidden="true">1.4.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch01-05-control-flow.html"><strong aria-hidden="true">1.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -208,7 +208,108 @@ println!(&quot;The are is {} square pixels.&quot;, rect.area());
 }
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="interface"><a class="header" href="#interface">Interface</a></h2>
+<h3 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h3>
+<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. It is called the <em>struct update syntax</em>.</p>
+<blockquote>
+<p>The rest must be the last and not be followed by a comma.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug)]
+struct Vec2 {
+	x: f32,
+	y: f32
+}
+
+// Rest
+let v1 = Vec2 { x: 1.0, y: 3.0 };
+let v2 = Vec2 { y: 2.0, ..v1 };
+
+// Destructuring
+let (a, b) = (3, 7);
+
+// Destructuring with Rest
+let Vec2 { x,..} = v2;
+
+println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="enums"><a class="header" href="#enums">Enums</a></h2>
+<p>Rust's enums are most similar to <em>algebraic data types</em> in functional languages.
+Note that the variants of the enum are namespaced (<code>::</code>) under its identifier.</p>
+<p>We can put data directly into each enum variant. Each variant can have different types and amount of associated data.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum IpAddr {
+	V4(u8, u8, u8, u8),
+	V6(String),
+}
+
+let home = IpAddr::V4(127, 0, 0, 1);
+let loopback = IpAddr::V6(String::from(&quot;::1&quot;));
+<span class="boring">}
+</span></code></pre></pre>
+<p>You can put any kind of data inside an enum variant: strings, numeric types, or struct, for example. You can even include another enum.</p>
+<h3 id="the-billion-dollars-mistake"><a class="header" href="#the-billion-dollars-mistake">The billion dollars mistake</a></h3>
+<p>The problem with <code>null</code> values is that if you try to use a <code>null</code> value as a not-null value, you will get an error of some kind.
+As such, Rust does not have nulls, but it does have an enum that can encode the concept of a value being present or absent.</p>
+<p>It is replaced by the <code>Option&lt;T&gt;</code> enumeration. The variants of <code>Option</code> are <code>Some</code>
+and <code>None</code>. The <code>None</code> variant represents no value while <code>Some</code> can hold one piece of data of any type.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum Option&lt;T&gt; {
+	Some(T),
+	None,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>If we use <code>None</code> rather that <code>Some</code>, we need to tell Rust what type of <code>Option&lt;T&gt;</code> we have.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let val1: Option&lt;i32&gt; = None;
+let val2: Option&lt;_&gt; = Some(32);
+
+println!(&quot;{:?}, {:?}&quot;, val1, val2);
+<span class="boring">}
+</span></code></pre></pre>
+<p>Because <code>Option&lt;T&gt;</code> and <code>T</code> (where <code>T</code> can be any type) are different types, the compiler won't let us use an <code>Option&lt;T&gt;</code> value as if it were definitely a valid value.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let x: i8 = 5;
+let y: Option&lt;i8&gt; = Some(5);
+
+let sum = x + y;
+//          ^ no implementation for `i8 + Option&lt;i8&gt;`
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Everywhere that a value has a type that is not an <code>Option&lt;T&gt;</code>, you <em>can</em> safely assume that the value is not null.</p>
+</blockquote>
+<h3 id="error-management"><a class="header" href="#error-management">Error management</a></h3>
+<p>There is no <code>try</code> / <code>catch</code>. <code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result</code>, the variants are <code>Ok</code>
+and <code>Err</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value.
+The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
+<p>The purpose of these <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
+<blockquote>
+<p>A function always returns a unit <code>()</code>, if nothing is specified.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">use std::error::Error;
+
+fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+	Ok(())
+}
+</code></pre></pre>
+<blockquote>
+<p>⚠️ Talk about <code>unwrap</code> and <code>?</code>
+If you don’t call <code>except</code>, the program will compile, but you will get a warning</p>
+</blockquote>
+<h2 id="traits"><a class="header" href="#traits">Traits</a></h2>
+<p>Traits are like interfaces.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">// An &quot;interface&quot; to implement
 trait Geometry {
 	fn area(&amp;self) -&gt; u32;
@@ -272,7 +373,7 @@ that makes a new value of some kind.</p>
                             <a rel="prev" href="ch01-03-ownership.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="ch01-05-patterns.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch01-05-control-flow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -284,7 +385,7 @@ that makes a new value of some kind.</p>
                     <a rel="prev" href="ch01-03-ownership.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="ch01-05-patterns.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch01-05-control-flow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

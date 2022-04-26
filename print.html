@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch01-04-struct-trait.html"><strong aria-hidden="true">1.4.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch01-05-patterns.html"><strong aria-hidden="true">1.5.</strong> Enums and Patterns Matching</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch01-04-struct-trait.html"><strong aria-hidden="true">1.4.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch01-05-control-flow.html"><strong aria-hidden="true">1.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -257,6 +257,27 @@ a = 42;
 </span>let x: i32 = 45;
 <span class="boring">}
 </span></code></pre></pre>
+<h3 id="unused-variables"><a class="header" href="#unused-variables">Unused variables</a></h3>
+<p>While you are coding, you can say the compiler to not complain about a variable not being used.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let _unused_variable = 42;
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="throw-away-a-value"><a class="header" href="#throw-away-a-value">Throw away a value</a></h3>
+<p>During destructuring, if you don't want to deal with all values you can omit some with an underscore.
+In use with the rest operator <code>..</code> it's very easy to just export what you need.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let _ = get_stuff(); // throws away the returned value
+
+// The value 3 and the rest will not be assigned to a variable
+let (_, b, ..) = (3, 7, 14, 45);
+let (width, _) = get_size();
+<span class="boring">}
+</span></code></pre></pre>
 <h2 id="data-types"><a class="header" href="#data-types">Data types</a></h2>
 <p>The types covered here are all stored on the stack.</p>
 <h3 id="scalar-types"><a class="header" href="#scalar-types">Scalar Types</a></h3>
@@ -341,29 +362,6 @@ let first = a[0];
 <p>An array is not as flexible as the vector type. A vector (<code>Vec</code>) is a similar collection type provided by the standard
 library that is allowed to grow or shrink in size.</p>
 </blockquote>
-<h2 id="underscores-usage-in-rust"><a class="header" href="#underscores-usage-in-rust">Underscores usage in Rust</a></h2>
-<p>There is a lot to say about the usage of underscores. Here are just few examples with variables.</p>
-<h3 id="throw-away-a-value"><a class="header" href="#throw-away-a-value">Throw away a value</a></h3>
-<p>During destructuring, if you don't want to deal with all values you can omit some with an underscore.
-In use with the rest operator <code>..</code> it's very easy to just export what you need.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let _ = get_stuff(); // throws away the returned value
-
-// The value 3 and the rest will not be assigned to a variable
-let (_, b, ..) = (3, 7, 14, 45);
-let (width, _) = get_size();
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="unused-variables"><a class="header" href="#unused-variables">Unused variables</a></h3>
-<p>While you are coding, you can say the compiler to not complain about a variable not being used.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let _unused_variable = 42;
-<span class="boring">}
-</span></code></pre></pre>
 <h2 id="immutable-by-default"><a class="header" href="#immutable-by-default">Immutable by default</a></h2>
 <p>Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the
 value.</p>
@@ -529,89 +527,6 @@ let closure_annotated = |i: i32| -&gt; i32 { i + 1 };
 let closure_inferred = |i | i + 1 ;
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
-<h3 id="if-expressions"><a class="header" href="#if-expressions"><code>if</code> Expressions</a></h3>
-<p>Blocks of code associated with the conditions in <code>if</code> expressions are sometimes called <em>arms</em>, just like the arm in <code>match</code> expressions. Optionally, we can also include an <code>else</code> expression (or <code>else if</code>). It's also worth noting that the condition <em>must</em> be a <code>bool</code>.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>fn eight() -&gt; i32 {
-	if true {
-		8
-	} else {
-		4
-	}
-}
-
-println!(&quot;{}&quot;, eight()); // =&gt; 8
-<span class="boring">}
-</span></code></pre></pre>
-<h4 id="using-if-in-a-let-statement"><a class="header" href="#using-if-in-a-let-statement">Using <code>if</code> in a <code>let</code> statement</a></h4>
-<p>Because <code>if</code> is an expression, we can use it on the right side of a <code>let</code> statement. Remember that blocks of code evaluate to the last expression in them. This means the values that have the potential to be results from each arm of the <code>if</code> must be the <strong>same type</strong>.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let condition = true;
-let number = if condition {
-	5
-} else {
-	6
-};
-
-println!(number is &quot;{}&quot;, number);
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="repetitions"><a class="header" href="#repetitions">Repetitions</a></h3>
-<p>Rust has thre kinds of loops: <code>loop</code>, <code>while</code> and <code>for</code>.</p>
-<h4 id="loops"><a class="header" href="#loops">Loops</a></h4>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>loop {
-	println!(&quot;again!&quot;);
-}
-<span class="boring">}
-</span></code></pre></pre>
-<p>You might need to pass the result of a <code>loop</code>. To do this, add the value you want returned after the <code>break</code> expression, you use to stop the loop.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut counter = 0;
-
-let result = loop {
-	counter += 1;
-
-	if counter == 10 {
-		break counter * 2;
-	}
-};
-<span class="boring">}
-</span></code></pre></pre>
-<h4 id="conditional-loops-with-while"><a class="header" href="#conditional-loops-with-while">Conditional Loops with <code>while</code></a></h4>
-<p>It's often useful for a program to evaluate a condition within a loop. While the condition is true, the loop runs.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut number = 3;
-
-while number != 0 {
-	number = number - 1;
-}
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="looping-through-a-collection-with-for"><a class="header" href="#looping-through-a-collection-with-for">Looping Through a Collection with <code>for</code></a></h3>
-<p>You can use a <code>for</code> loop and execute some code for each item in a collection. The safety and consiness of <code>for</code> loops make them the most commonly used loop construct in Rust.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>for number in (1..4).rev() {
-	println(&quot;{}!&quot;, number);
-}
-<span class="boring">}
-</span></code></pre></pre>
-<blockquote>
-<p><code>.rev()</code> reverses the range</p>
-</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-borrowing-and-lifetime"><a class="header" href="#ownership-borrowing-and-lifetime">Ownership, Borrowing and Lifetime</a></h1>
 <p>Ownership is the most unique feature of Rust, and it enables Rust to make memory safety guarantees without needing a garbage collector.</p>
 <blockquote>
@@ -931,63 +846,33 @@ println!(&quot;The are is {} square pixels.&quot;, rect.area());
 }
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="interface"><a class="header" href="#interface">Interface</a></h2>
-<pre><pre class="playground"><code class="language-rust edition2021">// An &quot;interface&quot; to implement
-trait Geometry {
-	fn area(&amp;self) -&gt; u32;
-}
-
-struct Rectangle {
-	width: u32,
-	height: u32,
-}
-
-// How to add functionality to a struct
-impl Rectangle {
-	// Common Rust way to do a &quot;constructor&quot;
-	fn new(width: u32, height: u32) -&gt; Self {
-		Self { width, height }
-	}
-}
-
-// Implement a trait
-impl Geometry for Rectangle {
-	fn area(&amp;self) -&gt; u32 {
-		self.width * self.height
-	}
-}
-
-fn main() {
-	// Init a struct
-	let rect1 = Rectangle {
-		width: 30,
-		height: 50,
-	};
-
-	// Use the constructor instead
-	let rect2 = Rectangle::new(20, 30);
-
-	println!(
-		&quot;The area of the rectangle 1 is {} square pixels.&quot;,
-		rect1.area()
-	);
-
-	println!(
-		&quot;The area of the rectangle 2 is {} square pixels.&quot;,
-		rect2.area()
-	);
-}
-</code></pre></pre>
-<p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
-function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
-static method_.</p>
+<h3 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h3>
+<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. It is called the <em>struct update syntax</em>.</p>
 <blockquote>
-<p>You will find a new function on many types, even in the standard library, because it's a common name for a function
-that makes a new value of some kind.</p>
+<p>The rest must be the last and not be followed by a comma.</p>
 </blockquote>
-<h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
-<p><code>&lt;T&gt;</code></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="enums-and-pattern-matching"><a class="header" href="#enums-and-pattern-matching">Enums and Pattern Matching</a></h1>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug)]
+struct Vec2 {
+	x: f32,
+	y: f32
+}
+
+// Rest
+let v1 = Vec2 { x: 1.0, y: 3.0 };
+let v2 = Vec2 { y: 2.0, ..v1 };
+
+// Destructuring
+let (a, b) = (3, 7);
+
+// Destructuring with Rest
+let Vec2 { x,..} = v2;
+
+println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
+<span class="boring">}
+</span></code></pre></pre>
 <h2 id="enums"><a class="header" href="#enums">Enums</a></h2>
 <p>Rust's enums are most similar to <em>algebraic data types</em> in functional languages.
 Note that the variants of the enum are namespaced (<code>::</code>) under its identifier.</p>
@@ -1043,48 +928,175 @@ let sum = x + y;
 <blockquote>
 <p>Everywhere that a value has a type that is not an <code>Option&lt;T&gt;</code>, you <em>can</em> safely assume that the value is not null.</p>
 </blockquote>
-<h2 id="let-pattern"><a class="header" href="#let-pattern">let pattern</a></h2>
+<h3 id="error-management"><a class="header" href="#error-management">Error management</a></h3>
+<p>There is no <code>try</code> / <code>catch</code>. <code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result</code>, the variants are <code>Ok</code>
+and <code>Err</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value.
+The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
+<p>The purpose of these <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
+<blockquote>
+<p>A function always returns a unit <code>()</code>, if nothing is specified.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">use std::error::Error;
+
+fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+	Ok(())
+}
+</code></pre></pre>
+<blockquote>
+<p>⚠️ Talk about <code>unwrap</code> and <code>?</code>
+If you don’t call <code>except</code>, the program will compile, but you will get a warning</p>
+</blockquote>
+<h2 id="traits"><a class="header" href="#traits">Traits</a></h2>
+<p>Traits are like interfaces.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">// An &quot;interface&quot; to implement
+trait Geometry {
+	fn area(&amp;self) -&gt; u32;
+}
+
+struct Rectangle {
+	width: u32,
+	height: u32,
+}
+
+// How to add functionality to a struct
+impl Rectangle {
+	// Common Rust way to do a &quot;constructor&quot;
+	fn new(width: u32, height: u32) -&gt; Self {
+		Self { width, height }
+	}
+}
+
+// Implement a trait
+impl Geometry for Rectangle {
+	fn area(&amp;self) -&gt; u32 {
+		self.width * self.height
+	}
+}
+
+fn main() {
+	// Init a struct
+	let rect1 = Rectangle {
+		width: 30,
+		height: 50,
+	};
+
+	// Use the constructor instead
+	let rect2 = Rectangle::new(20, 30);
+
+	println!(
+		&quot;The area of the rectangle 1 is {} square pixels.&quot;,
+		rect1.area()
+	);
+
+	println!(
+		&quot;The area of the rectangle 2 is {} square pixels.&quot;,
+		rect2.area()
+	);
+}
+</code></pre></pre>
+<p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
+function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
+static method_.</p>
+<blockquote>
+<p>You will find a new function on many types, even in the standard library, because it's a common name for a function
+that makes a new value of some kind.</p>
+</blockquote>
+<h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
+<p><code>&lt;T&gt;</code></p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
+<h3 id="if-expressions"><a class="header" href="#if-expressions"><code>if</code> Expressions</a></h3>
+<p>Blocks of code associated with the conditions in <code>if</code> expressions are sometimes called <em>arms</em>, just like the arm in <code>match</code> expressions. Optionally, we can also include an <code>else</code> expression (or <code>else if</code>). It's also worth noting that the condition <em>must</em> be a <code>bool</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let a = Some(40);
-let b = None;
-
-print_number(a); // =&gt; 40
-print_number(b); // =&gt; No output
-
-fn print_number(n: Option&lt;i32&gt;) {
-	if let Some(value) = n {
-		println!(&quot;{}&quot;, value)
+</span>fn eight() -&gt; i32 {
+	if true {
+		8
+	} else {
+		4
 	}
 }
+
+println!(&quot;{}&quot;, eight()); // =&gt; 8
 <span class="boring">}
 </span></code></pre></pre>
-<p>With destructuring and test in the same time:</p>
+<h4 id="using-if-in-a-let-statement"><a class="header" href="#using-if-in-a-let-statement">Using <code>if</code> in a <code>let</code> statement</a></h4>
+<p>Because <code>if</code> is an expression, we can use it on the right side of a <code>let</code> statement. Remember that blocks of code evaluate to the last expression in them. This means the values that have the potential to be results from each arm of the <code>if</code> must be the <strong>same type</strong>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>struct Number {
-	odd: bool,
-	value: i32,
-}
+</span>let condition = true;
+let number = if condition {
+	5
+} else {
+	6
+};
 
-let one = Number { odd: true, value: 1 };
-let two = Number { odd: false, value: 2 };
-
-print_number(one); // =&gt; Odd number: 1
-0print_number(two); // =&gt; Even number: 2
-
-fn print_number(n: Number) {
-	if let Number { odd: true, value } = n {
-		println!(&quot;Odd number: {}&quot;, value);
-	} else if let Number { odd: false, value } = n {
-		println!(&quot;Even number: {}&quot;, value);
-	}
+println!(number is &quot;{}&quot;, number);
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="repetitions"><a class="header" href="#repetitions">Repetitions</a></h3>
+<p>Rust has thre kinds of loops: <code>loop</code>, <code>while</code> and <code>for</code>.</p>
+<h4 id="loops"><a class="header" href="#loops">Loops</a></h4>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>loop {
+	println!(&quot;again!&quot;);
 }
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="match-pattern"><a class="header" href="#match-pattern">match pattern</a></h2>
+<p>You might need to pass the result of a <code>loop</code>. To do this, add the value you want returned after the <code>break</code> expression, you use to stop the loop.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut counter = 0;
+
+let result = loop {
+	counter += 1;
+
+	if counter == 10 {
+		break counter * 2;
+	}
+};
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="conditional-loops-with-while"><a class="header" href="#conditional-loops-with-while">Conditional Loops with <code>while</code></a></h4>
+<p>It's often useful for a program to evaluate a condition within a loop. While the condition is true, the loop runs.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut number = 3;
+
+while number != 0 {
+	number = number - 1;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="looping-through-a-collection-with-for"><a class="header" href="#looping-through-a-collection-with-for">Looping Through a Collection with <code>for</code></a></h3>
+<p>You can use a <code>for</code> loop and execute some code for each item in a collection. The safety and consiness of <code>for</code> loops make them the most commonly used loop construct in Rust.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>for number in (1..4).rev() {
+	println(&quot;{}!&quot;, number);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p><code>.rev()</code> reverses the range</p>
+</blockquote>
+<h2 id="the-match-control-flow-operator"><a class="header" href="#the-match-control-flow-operator">The match Control Flow Operator</a></h2>
+<p>Rust has an extremely powerful control flow operator called <code>match</code> that allows you to compare a value against a series of patterns and then execute code based on which pattern matches. The power of <code>match</code> comes from the expressiveness of the patterns and the fact that the compiler confirms that all possible cases are handled.</p>
+<blockquote>
+<p>When the <code>match</code> expression executes, it compares the resulting value against the pattern of each arm, in order.</p>
+</blockquote>
+<p>The code associated with each arm is an expression, and the resulting value of the expression in the matching arm is the value that gets returned for the entire <code>match</code> expression.</p>
+<blockquote>
+<p>Curly brackets typically are not used if the match arm code is short.</p>
+</blockquote>
+<p>Another useful feature of match arms is that they can bind to the parts of the values that match the pattern. This is how we can extract values out of enum variants.</p>
+<p>Combining <code>match</code> and enums is useful in many situation. You will see this pattern a lot in Rust code: match against an enum, bind a variable to the data inside, and then execute code based on it.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -1109,7 +1121,7 @@ fn print_number(n: Number) {
 <span class="boring">}
 </span></code></pre></pre>
 <p>A <code>match</code> has to be exhaustive. At least one arm needs to match.
-<code>_</code> can be used as a &quot;catch-all&quot; pattern.</p>
+<code>_</code> can be used as a &quot;catch-all&quot; special pattern that will match any value if we do not want to list all possible values.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -1117,59 +1129,32 @@ fn print_number(n: Number) {
 	match n.value {
 		1 =&gt; println!(&quot;One&quot;),
 		2 =&gt; println!(&quot;Two&quot;),
-		_ =&gt; println!(&quot;{}&quot;, n.value),
+		_ =&gt; (),
 	}
 }
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h2>
-<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. Unlike the spread operator <code>...</code> in JavaScript, the rest
-operator <code>..</code> comes at the end. In other words you are <em>not overwriting the values</em>, but you are <strong>filling the missing
-ones</strong>. It is called the <em>struct update syntax</em>.</p>
 <blockquote>
-<p>The rest must be the last and not be followed by a comma.</p>
+<p>The <code>()</code> is just the unit value, so nothing will happen in the <code>_</code> case here.</p>
 </blockquote>
+<h2 id="concise-control-flow-with-if-let"><a class="header" href="#concise-control-flow-with-if-let">Concise Control Flow with if let</a></h2>
+<p>The <code>if let</code> syntax lets you combine <code>if</code> and <code>let</code> into a less verbose way to handle values that match one pattern while ignoring the rest.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>#[derive(Debug)]
-struct Vec2 {
-	x: f32,
-	y: f32
+</span>let a = Some(40);
+let b = None;
+
+print_number(a); // =&gt; 40
+print_number(b); // =&gt; No output
+
+fn print_number(n: Option&lt;i32&gt;) {
+	if let Some(value) = n {
+		println!(&quot;{}&quot;, value)
+	}
 }
-
-// Rest
-let v1 = Vec2 { x: 1.0, y: 3.0 };
-let v2 = Vec2 { y: 2.0, ..v1 };
-
-// Destructuring
-let (a, b) = (3, 7);
-
-// Destructuring with Rest
-let Vec2 { x,..} = v2;
-
-println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
 <span class="boring">}
 </span></code></pre></pre>
-<h1 id="option-and-result"><a class="header" href="#option-and-result">Option and Result</a></h1>
-<h2 id="error-management"><a class="header" href="#error-management">Error management</a></h2>
-<p>There is no <code>try</code> / <code>catch</code>. <code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result</code>, the variants are <code>Ok</code>
-and <code>Err</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value.
-The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
-<p>The purpose of these <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
-<blockquote>
-<p>A function always returns a unit <code>()</code>, if nothing is specified.</p>
-</blockquote>
-<pre><pre class="playground"><code class="language-rust edition2021">use std::error::Error;
-
-fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
-	Ok(())
-}
-</code></pre></pre>
-<blockquote>
-<p>⚠️ Talk about <code>unwrap</code> and <code>?</code>
-If you don’t call <code>except</code>, the program will compile, but you will get a warning</p>
-</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="crates-and-modules"><a class="header" href="#crates-and-modules">Crates and Modules</a></h1>
 <p>Rust has a specific way of declaring things.</p>
 <p>By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is
