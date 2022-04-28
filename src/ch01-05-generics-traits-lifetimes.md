@@ -118,7 +118,59 @@ fn main() {
 }
 ```
 
-The difference is that after `impl`, we put the trait name that we want to implement, then use the `for`keyword, and then specify the name of the type we want to implement the trait for. Within the `impl` block, we put the method signatures that the trait definition has defined.
+The difference is that after `impl`, we put the trait name that we want to implement, then use the `for` keyword, and then specify the name of the type we want to implement the trait for. Within the `impl` block, we put the method signatures that the trait definition has defined.
+
+One restriction to note with trait implementations is that we can implement a trait on a type only if at least one of the trait or the type is local to our crate. But we can’t implement external traits on external types. This restriction is part of a property of programs called _coherence_, and more specifically the _orphan rule_, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust wouldn’t know which implementation to use.
+
+### Default Implementations
+
+Sometimes it’s useful to have default behavior for some or all of the methods in a trait instead of requiring implementations for all methods on every type.
+
+```rust
+pub trait Summary {
+    fn summarize(&self) -> String {
+        String::from("(Read more...)")
+    }
+}
+```
+
+> To use a default implementation we specify an empty `impl` block. Default implementations can call other methods in the same trait, even if those other methods don’t have a default implementation.
+
+### Traits as Parameters
+
+We can define a function that calls the method on its parameter, which is of some type that implements the trait. To do this we can use the `impl Trait` syntax.
+
+```rust
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+```
+
+The `impl Trait` syntax works for straightforward cases but is actually syntax sugar for a longer form, which is called a _trait bound_.
+
+```rust
+pub fn notify<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+```
+
+We can also specify more than one trait bound.
+
+```rust
+pub fn notify(item: &(impl Summary + Display)) {}
+pub fn notify<T: Summary + Display>(item: &T) {}
+```
+
+Rust has alternate syntax for specifying trait bounds inside a `where` clause after the function signature.
+
+```rust
+fn some_function<T, U>(t: &T, u: &U) -> i32
+    where T: Display + Clone,
+          U: Clone + Debug
+{}
+```
+
+### Returning Types that Implement Traits
 
 ---
 
