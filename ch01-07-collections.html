@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Collections - Concise Rust &amp; WebAssembly</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust-history.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables-data-types.html"><strong aria-hidden="true">1.1.</strong> Variables and Data Types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership-borrowing-slices.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Slices</a></li><li class="chapter-item expanded "><a href="ch01-04-structs-enums-implementation.html"><strong aria-hidden="true">1.4.</strong> Struct, Enums and Implementation</a></li><li class="chapter-item expanded "><a href="ch01-05-generics-traits-lifetimes.html"><strong aria-hidden="true">1.5.</strong> Generics, Traits and Lifetimes</a></li><li class="chapter-item expanded "><a href="ch01-06-control-flow.html"><strong aria-hidden="true">1.6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="ch01-07-collections.html" class="active"><strong aria-hidden="true">1.7.</strong> Collections</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Concise Rust &amp; WebAssembly</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/cedeber/concise-rust-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="collections"><a class="header" href="#collections">Collections</a></h1>
+<p>Unlike the built-in array and tuple types, the data these collections point to is stored on the heap, which means the amount of data does not need to be known at compile time.</p>
+<h2 id="vectors"><a class="header" href="#vectors">Vectors</a></h2>
+<p>Vectors <code>Vec&lt;T&gt;</code> allow you to store more than on value in a single data structure that puts all the values next to each other in memory. Vectors can only store values of the same type <code>T</code>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v: Vec&lt;i32&gt; = Vec::new();
+v.push(1);
+// ...
+// or
+let v = vec![1, 2, 3];
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Rust provides the <code>vec!</code>macro for convenience.</p>
+</blockquote>
+<h3 id="reading-elements-of-vectors"><a class="header" href="#reading-elements-of-vectors">Reading Elements of Vectors</a></h3>
+<p>There are two ways to reference a value stored in a vector.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![1, 2, 3, 4, 5];
+
+let third: &amp;i32 = &amp;v[2];
+
+match v.get(2) {
+    Some(third) =&gt; println!(&quot;The third element is: {}.&quot;, third);
+    None =&gt; println!(&quot;There is no third element.&quot;);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>The first <code>[]</code> method may cause the program to panic if it references a nonexistent element, like <code>&amp;v[100]</code>.
+When the <code>get</code> method is passed an index that is outside the vector, it returns <code>None</code> without panicking.</p>
+</blockquote>
+<p>When the program has a valid reference, the borrow checker enforces the ownership and borrowing rules to ensure this reference and any other references to the contents of the vector remain valid.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let first = &amp;v[0];
+//           - immutable borrow occurs here
+v.push(6);
+//^^^^^^^ mutable borrow occurs here
+println!(&quot;The first element is: {}&quot;, first);
+//                                   ----- immutable borrow later used here
+<span class="boring">}
+</span></code></pre></pre>
+<p>This error is due to the way vectors work: adding a new element onto the end of the vector might require allocating new memory and copying the old elements to the new space. In that case, the reference to the first element would be pointing to deallocated memory.</p>
+<h3 id="iterating-over-the-values-in-a-vector"><a class="header" href="#iterating-over-the-values-in-a-vector">Iterating over the Values in a Vector</a></h3>
+<p>If we want to access each element in a vector in turn, we can iterate through all of the elements rather than use indices to access one at a time.</p>
+<p>We can also iterate over mutable references to each element in a mutable vector in order to make changes to all the elements.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut v = vec![100, 32, 57];
+for i in &amp;mut v {
+    *i += 50;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>To change the value that the mutable reference refers to, we have to use the dereference operator <code>*</code> to get to the value in <code>i</code> before we can use the <code>+=</code> operator.</p>
+</blockquote>
+<h3 id="using-an-enum-to-store-multiple-types"><a class="header" href="#using-an-enum-to-store-multiple-types">Using an Enum to Store Multiple Types</a></h3>
+<p>We said that vectors can only store values that are the same type. Fortunately, the variant of an enum are defined under the same enum type, so when we need to store elements of a different type in vector, we can defined and use an enum.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum SpreadsheetCell {
+    Int(i32),
+    Float(f64),
+    Text(String),
+}
+
+let row = vec![
+    SpreadsheetCell::Int(3),
+    SpreadsheetCell::Text(String::from(&quot;blue&quot;)),
+    SpreadsheetCell:: Float(10.12),
+];
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="storing-utf-8-encoded-text-with-strings"><a class="header" href="#storing-utf-8-encoded-text-with-strings">Storing UTF-8 Encoded Text with Strings</a></h2>
+<p>Rust has only one string type in the core language, which is the string slice <code>str</code> that is usually seen in its borrowed form <code>&amp;str</code>.</p>
+<p>The <code>String</code> type, which is provided by Rust`s standard library rather than coded into the core language, is a growable, mutable, owned, UTF-8 encoded string type.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut s = String::new();
+s.push_str(&quot;hello&quot;);
+let h = s[0];
+<span class="boring">}
+</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s1 = String::from(&quot;tic&quot;);
+let s1 = String::from(&quot;tac&quot;);
+let s1 = String::from(&quot;toe&quot;);
+
+let s = s1 + &quot;-&quot; + &amp;s2 + &quot;-&quot; + &amp;s3; // note s1 has been moved here
+let s = format!(&quot;{}-{}-{}&quot;, s1, s2, s3);
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>A <code>String</code> is a wrapper over a <code>Vec&lt;u8&gt;</code>.</p>
+</blockquote>
+<p>In UTF-8, each Unicode scalar value may takes more than one byte of storage. Think of Cyrillic, Japanese or Hindi signs. Therefore, an index into the string's bytes will not always correlate to a valid Unicode scalar value.</p>
+<p>Another point about UTF-8 is that there are actually three relevant ways to look at strings from Rust's perspective: as bytes, scalar values, and grapheme clusters (the closest thing to what we would call <em>letters</em>).</p>
+<p>Sometimes when you extract chars from a string, you will have diacritics that do not make sense on their own. So, indexing into a string is often a bad idea because it is not clear what the return type of the string-indexing operation should be: a byte value, a character, a grapheme cluster, or a string slice.</p>
+<p>Getting grapheme clusters from strings is complex, so this functionality is not provided by the standard library. You can check the <a href="https://crates.io/crates/unicode-segmentation"><code>unicode-segmentation</code></a> crate.</p>
+<blockquote>
+<p>Rust has chosen to make the correct handling of <code>String</code> data the default behavior for all Rust programs, which means programmers have to put more thought into handling UTF-8 data up front. This trade-off exposes more of the complexity of strings than is apparent in other programming languages, but it prevents you from having to handle errors involving non-ASCII characters later in your development life cycle</p>
+</blockquote>
+<h2 id="hash-maps"><a class="header" href="#hash-maps">Hash Maps</a></h2>
+<p>The type <code>HashMap&lt;K, V&gt;</code> stores a mapping of keys of type <code>K</code> to values of type <code>V</code>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+
+scores.insert(String::from(&quot;Blue&quot;), 10);
+scores.insert(String::from(&quot;Yellow&quot;), 50);
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Of our three common collections, this one is the least often used, so it is not included in the features brought into scope automatically in the prelude.</p>
+</blockquote>
+<p>Another way of constructing a hash map is by using the <code>collect</code> method on a vector of tuples, where each tuple consists of a key and its value.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let map = vec![(String::from(&quot;Blue&quot;), 10), (String::from(&quot;Yellow&quot;), 50)].collect();
+<span class="boring">}
+</span></code></pre></pre>
+<p>We could also use the <code>zip</code> method to create a vector of tuples.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+let teams = vec![String::from(&quot;Blue&quot;), String::from(&quot;Yellow&quot;)];
+let initial_scores = vec![10, 50];
+
+let scores: HashMap&lt;_, _&gt; = teams.iter().zip(initial_scores.iter()).collect();
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>For types that implements the <code>Copy</code>trait, such as <code>i32</code>, the values are copied into the hash map. For owned values such as <code>String</code>, the values will be moved and the hash map will be the owner of those values.</p>
+</blockquote>
+<h3 id="accessing-values"><a class="header" href="#accessing-values">Accessing Values</a></h3>
+<p>We can get a value out of the hash map by proving its key to the <code>get</code> method. The result is wrapped in <code>Some</code> because <code>get</code> returns an <code>Option&lt;&amp;V&gt;</code>.</p>
+<p>We can iterates over each key/value pair in a similar manner as we do with vectors, using a <code>for</code> loop.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>for (key, value) in &amp;scores {
+    println!(&quot;{}: {}&quot;, key, value);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="updating-a-hash-map"><a class="header" href="#updating-a-hash-map">Updating a Hash Map</a></h2>
+<blockquote>
+<p>Each key can only have on value associated with it at a time.</p>
+</blockquote>
+<p>If we insert a key and a value into a hash map and then insert that same key with a different value, the value associated with that key will be replaced.</p>
+<p>Hash Maps have a special API for inserting a value only if the key has no value, called <code>entry</code>. It takes the key you want to check as a parameter. The return value of the entry method is an enum called <code>Entry</code> that represents a value that might or might not exist.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+scores.insert(String::from(&quot;Blue&quot;), 10);
+
+scores.entry(String::from(&quot;Yellow&quot;)).or_insert(50);
+scores.entry(String::from(&quot;Blue&quot;)).or_insert(50);
+<span class="boring">}
+</span></code></pre></pre>
+<p>The <code>or_insert</code> method on <code>Entry</code> is defined to return a mutable reference to the value for the corresponding <code>Entry</code> key if that exists, and if not, inserts the parameter as the new value for this key and returns a mutable reference (<code>&amp;mut V</code>) to the new value.</p>
+<blockquote>
+<p>By default, <code>HashMap</code> uses a cryptographically strong hashing function that is not the fastest algorithm available. You can switch to another function by specifying a different <em>hasher</em>. A hasher is a type that implements the <code>BuildHasher</code>trait.</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch01-06-control-flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="ch03-00-crates-modules.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch01-06-control-flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="ch03-00-crates-modules.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_line_numbers = true;
+        </script>
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

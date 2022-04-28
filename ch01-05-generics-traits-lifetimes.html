@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Struct, Implementation and Traits - Concise Rust &amp; WebAssembly</title>
+        <title>Generics, Traits and Lifetimes - Concise Rust &amp; WebAssembly</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch01-04-struct-trait.html" class="active"><strong aria-hidden="true">1.4.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch01-05-control-flow.html"><strong aria-hidden="true">1.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust-history.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables-data-types.html"><strong aria-hidden="true">1.1.</strong> Variables and Data Types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership-borrowing-slices.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Slices</a></li><li class="chapter-item expanded "><a href="ch01-04-structs-enums-implementation.html"><strong aria-hidden="true">1.4.</strong> Struct, Enums and Implementation</a></li><li class="chapter-item expanded "><a href="ch01-05-generics-traits-lifetimes.html" class="active"><strong aria-hidden="true">1.5.</strong> Generics, Traits and Lifetimes</a></li><li class="chapter-item expanded "><a href="ch01-06-control-flow.html"><strong aria-hidden="true">1.6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="ch01-07-collections.html"><strong aria-hidden="true">1.7.</strong> Collections</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,181 +137,94 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="struct-implementation-and-traits"><a class="header" href="#struct-implementation-and-traits">Struct, Implementation and Traits</a></h1>
-<p>There is no <code>class</code> and no inheritance. Rust has only <code>struct</code>, <code>impl</code> and <code>trait</code>.</p>
-<h2 id="struct"><a class="header" href="#struct">Struct</a></h2>
-<p>A <code>struct</code> is like an object's data attribute.</p>
-<blockquote>
-<p>It's possible for structs to store references to data owned by something else, but to do so requires the use of <em>lifetimes</em>.</p>
-</blockquote>
+                        <h1 id="generic-types-traits-and-lifetimes"><a class="header" href="#generic-types-traits-and-lifetimes">Generic Types, Traits and Lifetimes</a></h1>
+<h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
+<p>Generics are abstract stand-ins for concrete types or other properties.</p>
+<p>We can use generics to create definitions for items like function signatures or structs, which we can then use with many different concrete data types.</p>
+<p>To define the generic <code>largest</code> function, place type name declaration inside angle brackets, <code>&lt;&gt;</code>, between the name of the function and the parameter list.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>struct Rectangle {
-	width: u32,
-	height: u32,
-}
-
-let rect = Rectangle { width: 3, height: 2 };
-rect.width; // =&gt; 3
+</span>fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T {}
 <span class="boring">}
 </span></code></pre></pre>
-<h3 id="tuple-structs"><a class="header" href="#tuple-structs">Tuple Structs</a></h3>
-<p>Tuple structs are useful when you want to give the whole tuple a name and make the tuple be a different type from other tuples, and naming each field as in a regular struct would be verbose or redundant.</p>
+<p>We can also define structs to use a generic type parameter in one or more fields using the <code>&lt;&gt;</code> syntax.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>struct Color(i32, i32, i32);
-let black = Color(0, 0, 0);
+</span>struct Point&lt;T&gt; {
+	x: T,
+	y: T,
+}
 <span class="boring">}
 </span></code></pre></pre>
-<h3 id="unit-like-structs"><a class="header" href="#unit-like-structs">Unit-Like Structs</a></h3>
-<p>You can also define structs that don't have any fields! These are called <em>unit-like structs</em> because they behave similarly to <code>()</code>, the unit type. Unit-like structs can be useful in situations in which you need to implement a trait on some type but don't have any data that you want to store in the type itself.</p>
-<h2 id="method-syntax-implementation"><a class="header" href="#method-syntax-implementation">Method Syntax: Implementation</a></h2>
+<p>To define a <code>Point</code> struct where <code>x</code> and <code>y</code> are both generics but could have different types, we can use multiple generic type parameters.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>struct Rectangle {
-	width: u32,
-	height: u32,
+</span>struct Point&lt;T, U&gt; {
+	x: T,
+	y: U,
 }
-
-impl Rectangle {
-	fn area(&amp;self) -&gt; u32 {
-		self.width * self.height
-	}
-}
-
-let rect = Rectangle { width: 30, height: 50 };
-println!(&quot;The are is {} square pixels.&quot;, rect.area());
 <span class="boring">}
 </span></code></pre></pre>
-<p>Methods are similar to functions. To define the function within the context of <code>Rectangle</code>, we start an <code>impl</code> block. Then we move the <code>area</code> function within the <code>impl</code> curly brackets.</p>
-<p>We can use the <em>method syntax</em> to call the area method on our <code>Rectangle</code> instance.</p>
-<p>In the signature for <code>area</code> we use <code>&amp;self</code> instead of <code>rectangle: &amp;Rectangle</code> because Rust knows the type of <code>self</code> is <code>Rectangle</code> due to this method's being inside the <code>impl Rectangle</code> context. Methods can take multiple parameters that we add to the signature after the <code>self</code> parameter, and those parameters work just like parameters in functions.</p>
 <blockquote>
-<p>Each struct is allowed to have multiple <code>impl</code> blocks.</p>
+<p>You can use as many generic type parameters in a definition as you want, but using more than a few makes your code hard to read.</p>
 </blockquote>
-<h3 id="associated-functions"><a class="header" href="#associated-functions">Associated functions</a></h3>
-<p>Another useful feature of <code>impl</code> blocks is that we are allowed to define functions within <code>impl</code> blocks that <em>do not</em> take <code>self</code> as a parameter. These are called <em>associated functions</em> because they are associated with the struct.</p>
-<blockquote>
-<p>They're still functions, not methods, because they don't have an instance of the struct to work with, like <code>String::from</code>.</p>
-</blockquote>
-<p>Associated functions are often used for constructors that will return a new instance of the struct. A common usage in the standard library and in the community is to define a <code>new</code> function. You can use the <em>field init shorthand</em> syntax to initialize a struct with variables.</p>
+<p>We can define enums to hold generic data types in their variants as we just see in <code>Option&lt;T&gt;</code> that returns <code>Some&lt;T&gt;</code> for instance.</p>
+<p>We can also implement methods on structs and enums and use generic types in their definitions, too.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>impl Rectangle {
-	fn new(width: u32, height: u32) -&gt; Self {
-		Rectangle { width, height };
+</span>struct Point&lt;T&gt; {
+	x: T,
+	y: T,
+}
+
+impl&lt;T&gt; Point&lt;T&gt; {
+	fn x(&amp;self) -&gt; &amp;T {
+		&amp;self.x
 	}
 }
 <span class="boring">}
 </span></code></pre></pre>
-<h3 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h3>
-<p>The rest operator <code>..</code> allows to fill the <em>holes</em>. It is called the <em>struct update syntax</em>.</p>
-<blockquote>
-<p>The rest must be the last and not be followed by a comma.</p>
-</blockquote>
+<p>Note that we have to declare <code>T</code> just after <code>impl</code> so we can use it to specify that we are implementing methods on the type <code>Point&lt;T&gt;</code>. By declaring <code>T</code> as a generic type after <code>impl</code>, Rust can identify that the type in the angle brackets in <code>Point</code> is a generic type rather than a concrete type.</p>
+<p>We could, for example, implement methods only on <code>Point&lt;f32&gt;</code> instances rather than on <code>Point&lt;T&gt;</code> instances with a generic type.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>#[derive(Debug)]
-struct Vec2 {
-	x: f32,
-	y: f32
-}
-
-// Rest
-let v1 = Vec2 { x: 1.0, y: 3.0 };
-let v2 = Vec2 { y: 2.0, ..v1 };
-
-// Destructuring
-let (a, b) = (3, 7);
-
-// Destructuring with Rest
-let Vec2 { x,..} = v2;
-
-println! {&quot;{:?}, {:?}, {:?}&quot;, v2, b, x} // =&gt; Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
-<span class="boring">}
-</span></code></pre></pre>
-<h2 id="enums"><a class="header" href="#enums">Enums</a></h2>
-<p>Rust's enums are most similar to <em>algebraic data types</em> in functional languages.
-Note that the variants of the enum are namespaced (<code>::</code>) under its identifier.</p>
-<p>We can put data directly into each enum variant. Each variant can have different types and amount of associated data.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>enum IpAddr {
-	V4(u8, u8, u8, u8),
-	V6(String),
-}
-
-let home = IpAddr::V4(127, 0, 0, 1);
-let loopback = IpAddr::V6(String::from(&quot;::1&quot;));
-<span class="boring">}
-</span></code></pre></pre>
-<p>You can put any kind of data inside an enum variant: strings, numeric types, or struct, for example. You can even include another enum.</p>
-<h3 id="the-billion-dollars-mistake"><a class="header" href="#the-billion-dollars-mistake">The billion dollars mistake</a></h3>
-<p>The problem with <code>null</code> values is that if you try to use a <code>null</code> value as a not-null value, you will get an error of some kind.
-As such, Rust does not have nulls, but it does have an enum that can encode the concept of a value being present or absent.</p>
-<p>It is replaced by the <code>Option&lt;T&gt;</code> enumeration. The variants of <code>Option</code> are <code>Some</code>
-and <code>None</code>. The <code>None</code> variant represents no value while <code>Some</code> can hold one piece of data of any type.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>enum Option&lt;T&gt; {
-	Some(T),
-	None,
+</span>impl Point&lt;f32&gt; {
+	fn distance_form_origin(&amp;self) -&gt; f32 {
+		(self.x.powi(2) + self.y.powi(2)).sqrt()
+	}
 }
 <span class="boring">}
 </span></code></pre></pre>
-<p>If we use <code>None</code> rather that <code>Some</code>, we need to tell Rust what type of <code>Option&lt;T&gt;</code> we have.</p>
+<p>Generic type parameters in a struct definition aren't always the same as those you use in that struct`s method signatures.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let val1: Option&lt;i32&gt; = None;
-let val2: Option&lt;_&gt; = Some(32);
-
-println!(&quot;{:?}, {:?}&quot;, val1, val2);
-<span class="boring">}
-</span></code></pre></pre>
-<p>Because <code>Option&lt;T&gt;</code> and <code>T</code> (where <code>T</code> can be any type) are different types, the compiler won't let us use an <code>Option&lt;T&gt;</code> value as if it were definitely a valid value.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let x: i8 = 5;
-let y: Option&lt;i8&gt; = Some(5);
-
-let sum = x + y;
-//          ^ no implementation for `i8 + Option&lt;i8&gt;`
-<span class="boring">}
-</span></code></pre></pre>
-<blockquote>
-<p>Everywhere that a value has a type that is not an <code>Option&lt;T&gt;</code>, you <em>can</em> safely assume that the value is not null.</p>
-</blockquote>
-<h3 id="error-management"><a class="header" href="#error-management">Error management</a></h3>
-<p>There is no <code>try</code> / <code>catch</code>. <code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result</code>, the variants are <code>Ok</code>
-and <code>Err</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value.
-The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
-<p>The purpose of these <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
-<blockquote>
-<p>A function always returns a unit <code>()</code>, if nothing is specified.</p>
-</blockquote>
-<pre><pre class="playground"><code class="language-rust edition2021">use std::error::Error;
-
-fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
-	Ok(())
+</span>struct Point&lt;T, U&gt; {
+	x: T,
+	y: U,
 }
-</code></pre></pre>
+
+impl&lt;T, U&gt; Point&lt;T, U&gt; {
+	fn mixup&lt;V, W&gt;(self, other: Point&lt;V, W&gt;) -&gt; Point&lt;T, W&gt; {
+		Point {
+			x: self.x
+			y: other.y
+		}
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
 <blockquote>
-<p>⚠️ Talk about <code>unwrap</code> and <code>?</code>
-If you don’t call <code>except</code>, the program will compile, but you will get a warning</p>
+<p>Rust implements generics by performing monomorphization of the code that is using generics at compile time. <em>Monomorphization</em> is the process of turning generic code into specific code by filling in the concrete types that are used when compiled. With that, there is no runtime cost.</p>
 </blockquote>
 <h2 id="traits"><a class="header" href="#traits">Traits</a></h2>
-<p>Traits are like interfaces.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">// An &quot;interface&quot; to implement
-trait Geometry {
+<p>Trait definitions are a way to group method signatures together to define a set of behaviors necessary to accomplish some purpose. They are some kind of <em>interfaces</em>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">trait Geometry {
 	fn area(&amp;self) -&gt; u32;
 }
 
@@ -320,7 +233,6 @@ struct Rectangle {
 	height: u32,
 }
 
-// How to add functionality to a struct
 impl Rectangle {
 	// Common Rust way to do a &quot;constructor&quot;
 	fn new(width: u32, height: u32) -&gt; Self {
@@ -328,7 +240,6 @@ impl Rectangle {
 	}
 }
 
-// Implement a trait
 impl Geometry for Rectangle {
 	fn area(&amp;self) -&gt; u32 {
 		self.width * self.height
@@ -336,26 +247,16 @@ impl Geometry for Rectangle {
 }
 
 fn main() {
-	// Init a struct
-	let rect1 = Rectangle {
-		width: 30,
-		height: 50,
-	};
-
-	// Use the constructor instead
-	let rect2 = Rectangle::new(20, 30);
+	let rect = Rectangle::new(20, 30);
 
 	println!(
-		&quot;The area of the rectangle 1 is {} square pixels.&quot;,
-		rect1.area()
-	);
-
-	println!(
-		&quot;The area of the rectangle 2 is {} square pixels.&quot;,
-		rect2.area()
+		&quot;The area of the rectangle is {} square pixels.&quot;,
+		rect.area()
 	);
 }
 </code></pre></pre>
+<p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code>keyword, and then specify the name of the type we want to implement the trait for. Withing the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
+<hr />
 <p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
 function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
 static method_.</p>
@@ -363,17 +264,15 @@ static method_.</p>
 <p>You will find a new function on many types, even in the standard library, because it's a common name for a function
 that makes a new value of some kind.</p>
 </blockquote>
-<h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
-<p><code>&lt;T&gt;</code></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ch01-03-ownership.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch01-04-structs-enums-implementation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="ch01-05-control-flow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch01-06-control-flow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -382,10 +281,10 @@ that makes a new value of some kind.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ch01-03-ownership.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch01-04-structs-enums-implementation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="ch01-05-control-flow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch01-06-control-flow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

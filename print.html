@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables.html"><strong aria-hidden="true">1.1.</strong> Variables and Data types</a></li><li class="chapter-item expanded "><a href="ch01-02-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Lifetime</a></li><li class="chapter-item expanded "><a href="ch01-04-struct-trait.html"><strong aria-hidden="true">1.4.</strong> Struct, Implementation and Traits</a></li><li class="chapter-item expanded "><a href="ch01-05-control-flow.html"><strong aria-hidden="true">1.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust-history.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables-data-types.html"><strong aria-hidden="true">1.1.</strong> Variables and Data Types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership-borrowing-slices.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Slices</a></li><li class="chapter-item expanded "><a href="ch01-04-structs-enums-implementation.html"><strong aria-hidden="true">1.4.</strong> Struct, Enums and Implementation</a></li><li class="chapter-item expanded "><a href="ch01-05-generics-traits-lifetimes.html"><strong aria-hidden="true">1.5.</strong> Generics, Traits and Lifetimes</a></li><li class="chapter-item expanded "><a href="ch01-06-control-flow.html"><strong aria-hidden="true">1.6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="ch01-07-collections.html"><strong aria-hidden="true">1.7.</strong> Collections</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -453,7 +453,7 @@ let x = &quot;Hey&quot;;
 println!(&quot;{x}&quot;); // =&gt; &quot;Hey&quot;
 <span class="boring">}
 </span></code></pre></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="blocks-and-scope"><a class="header" href="#blocks-and-scope">Blocks and Scope</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="functions-blocks-and-scope"><a class="header" href="#functions-blocks-and-scope">Functions, Blocks and Scope</a></h1>
 <p>A pair of brackets declares a block, which has its own scope. It can evaluate to a value and can contain multiple statements.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
 	let x = &quot;out&quot;;
@@ -527,7 +527,7 @@ let closure_annotated = |i: i32| -&gt; i32 { i + 1 };
 let closure_inferred = |i | i + 1 ;
 <span class="boring">}
 </span></code></pre></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-borrowing-and-lifetime"><a class="header" href="#ownership-borrowing-and-lifetime">Ownership, Borrowing and Lifetime</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-borrowing-and-slices"><a class="header" href="#ownership-borrowing-and-slices">Ownership, Borrowing and Slices</a></h1>
 <p>Ownership is the most unique feature of Rust, and it enables Rust to make memory safety guarantees without needing a garbage collector.</p>
 <blockquote>
 <p>Don’t try to fight against the borrow checker.</p>
@@ -775,7 +775,7 @@ println!(&quot;the first word is: {}&quot;, word);
 <li>At any given time, you can have <em>either</em> one mutable reference <em>or</em> any number of immutable references.</li>
 <li>References must always be valid.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="struct-implementation-and-traits"><a class="header" href="#struct-implementation-and-traits">Struct, Implementation and Traits</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="structs-enums-and-implementation"><a class="header" href="#structs-enums-and-implementation">Structs, Enums and Implementation</a></h1>
 <p>There is no <code>class</code> and no inheritance. Rust has only <code>struct</code>, <code>impl</code> and <code>trait</code>.</p>
 <h2 id="struct"><a class="header" href="#struct">Struct</a></h2>
 <p>A <code>struct</code> is like an object's data attribute.</p>
@@ -929,27 +929,156 @@ let sum = x + y;
 <p>Everywhere that a value has a type that is not an <code>Option&lt;T&gt;</code>, you <em>can</em> safely assume that the value is not null.</p>
 </blockquote>
 <h3 id="error-management"><a class="header" href="#error-management">Error management</a></h3>
-<p>There is no <code>try</code> / <code>catch</code>. <code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result</code>, the variants are <code>Ok</code>
-and <code>Err</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value.
+<p>Rust doesn't have exceptions. Instead, it has the type the type <code>Result&lt;T, E&gt;</code> for recoverable errors and the <code>panic!</code> macro that stops execution when the program encounters an unrecoverable error.</p>
+<p><code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result&lt;T, E&gt;</code>, the variants are <code>Ok&lt;T&gt;</code> and <code>Err&lt;E&gt;</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value.
 The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
-<p>The purpose of these <code>Result</code> which is <code>Ok(_)</code> or <code>Err(_)</code>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::fs::File;
+
+let f = File::open(&quot;hello.txt&quot;);
+let f = match f {
+	Ok(file) =&gt; file,
+	Err(error) =&gt; {
+		panic!(&quot;Problem opening the file: {:?}&quot;, error)
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="shortcuts-for-panic-on-error-unwrap-and-expect"><a class="header" href="#shortcuts-for-panic-on-error-unwrap-and-expect">Shortcuts for Panic on Error: unwrap and expect</a></h4>
+<p>Using <code>match</code> can be a bit verbose. The <code>Result&lt;T, E&gt;</code> type has many helper methods.</p>
+<p>One of those method is called <code>unwrap</code>. If the <code>Result</code> value is the <code>Ok</code> variant, <code>unwrap</code> will return the value inside the <code>Ok</code>. If the <code>Result</code> is the <code>Err</code> variant, <code>unwrap</code> will call the <code>panic!</code> macro.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let f = File::open(&quot;hello.txt&quot;).unwrap();
+<span class="boring">}
+</span></code></pre></pre>
+<p>Another method, <code>expect</code>, which is similar to <code>unwrap</code>, lets us also choose the <code>panic!</code> error message.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let f = File::open(&quot;hello.txt&quot;).expect(&quot;Failed to open hello.txt&quot;);
+<span class="boring">}
+</span></code></pre></pre>
 <blockquote>
-<p>A function always returns a unit <code>()</code>, if nothing is specified.</p>
+<p>It would be appropriate to call <code>unwrap</code> when you have some other logic that ensures the <code>Result</code> will have an <code>Ok</code>value, but the logic isn't something the compiler understands.</p>
+</blockquote>
+<h4 id="propagating-errors"><a class="header" href="#propagating-errors">Propagating Errors</a></h4>
+<p>This pattern of propagating errors is so common in Rust that Rust provides the question mark operator <code>?</code> to make this easier. Error values that have the <code>?</code> operator called on them go through the <code>from</code> function, defined in the <code>From</code> trait in the standard library, which is used to convert errors from one type into another.</p>
+<p>the <code>?</code> operator eliminates a lot of boilerplate and makes this function's implementation simpler. We could event shorten the code further by chaining method calls immediately after the <code>?</code>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn read_username_from_file() -&gt; Result&lt;String, io::error&gt; {
+	let mut s = String::new();
+	File::open(&quot;hello.txt&quot;)?.read_to_string(&amp;mut s)?;
+	Ok(s);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>The <code>?</code> operator can only be used in functions that have a return type of <code>Result</code>.</p>
 </blockquote>
 <pre><pre class="playground"><code class="language-rust edition2021">use std::error::Error;
+use std::fs::File;
 
 fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
-	Ok(())
+	let f = File::open(&quot;hello.txt&quot;)?;
+
+	Ok(());
 }
 </code></pre></pre>
+<p>The <code>Box&lt;dyn Error&gt;</code> type is called a trait object. For now, you can read <code>Box&lt;dyn Error&gt;</code> to mean &quot;any kind of error&quot;.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generic-types-traits-and-lifetimes"><a class="header" href="#generic-types-traits-and-lifetimes">Generic Types, Traits and Lifetimes</a></h1>
+<h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
+<p>Generics are abstract stand-ins for concrete types or other properties.</p>
+<p>We can use generics to create definitions for items like function signatures or structs, which we can then use with many different concrete data types.</p>
+<p>To define the generic <code>largest</code> function, place type name declaration inside angle brackets, <code>&lt;&gt;</code>, between the name of the function and the parameter list.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T {}
+<span class="boring">}
+</span></code></pre></pre>
+<p>We can also define structs to use a generic type parameter in one or more fields using the <code>&lt;&gt;</code> syntax.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Point&lt;T&gt; {
+	x: T,
+	y: T,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>To define a <code>Point</code> struct where <code>x</code> and <code>y</code> are both generics but could have different types, we can use multiple generic type parameters.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Point&lt;T, U&gt; {
+	x: T,
+	y: U,
+}
+<span class="boring">}
+</span></code></pre></pre>
 <blockquote>
-<p>⚠️ Talk about <code>unwrap</code> and <code>?</code>
-If you don’t call <code>except</code>, the program will compile, but you will get a warning</p>
+<p>You can use as many generic type parameters in a definition as you want, but using more than a few makes your code hard to read.</p>
+</blockquote>
+<p>We can define enums to hold generic data types in their variants as we just see in <code>Option&lt;T&gt;</code> that returns <code>Some&lt;T&gt;</code> for instance.</p>
+<p>We can also implement methods on structs and enums and use generic types in their definitions, too.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Point&lt;T&gt; {
+	x: T,
+	y: T,
+}
+
+impl&lt;T&gt; Point&lt;T&gt; {
+	fn x(&amp;self) -&gt; &amp;T {
+		&amp;self.x
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Note that we have to declare <code>T</code> just after <code>impl</code> so we can use it to specify that we are implementing methods on the type <code>Point&lt;T&gt;</code>. By declaring <code>T</code> as a generic type after <code>impl</code>, Rust can identify that the type in the angle brackets in <code>Point</code> is a generic type rather than a concrete type.</p>
+<p>We could, for example, implement methods only on <code>Point&lt;f32&gt;</code> instances rather than on <code>Point&lt;T&gt;</code> instances with a generic type.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl Point&lt;f32&gt; {
+	fn distance_form_origin(&amp;self) -&gt; f32 {
+		(self.x.powi(2) + self.y.powi(2)).sqrt()
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Generic type parameters in a struct definition aren't always the same as those you use in that struct`s method signatures.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Point&lt;T, U&gt; {
+	x: T,
+	y: U,
+}
+
+impl&lt;T, U&gt; Point&lt;T, U&gt; {
+	fn mixup&lt;V, W&gt;(self, other: Point&lt;V, W&gt;) -&gt; Point&lt;T, W&gt; {
+		Point {
+			x: self.x
+			y: other.y
+		}
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Rust implements generics by performing monomorphization of the code that is using generics at compile time. <em>Monomorphization</em> is the process of turning generic code into specific code by filling in the concrete types that are used when compiled. With that, there is no runtime cost.</p>
 </blockquote>
 <h2 id="traits"><a class="header" href="#traits">Traits</a></h2>
-<p>Traits are like interfaces.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">// An &quot;interface&quot; to implement
-trait Geometry {
+<p>Trait definitions are a way to group method signatures together to define a set of behaviors necessary to accomplish some purpose. They are some kind of <em>interfaces</em>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">trait Geometry {
 	fn area(&amp;self) -&gt; u32;
 }
 
@@ -958,7 +1087,6 @@ struct Rectangle {
 	height: u32,
 }
 
-// How to add functionality to a struct
 impl Rectangle {
 	// Common Rust way to do a &quot;constructor&quot;
 	fn new(width: u32, height: u32) -&gt; Self {
@@ -966,7 +1094,6 @@ impl Rectangle {
 	}
 }
 
-// Implement a trait
 impl Geometry for Rectangle {
 	fn area(&amp;self) -&gt; u32 {
 		self.width * self.height
@@ -974,26 +1101,16 @@ impl Geometry for Rectangle {
 }
 
 fn main() {
-	// Init a struct
-	let rect1 = Rectangle {
-		width: 30,
-		height: 50,
-	};
-
-	// Use the constructor instead
-	let rect2 = Rectangle::new(20, 30);
+	let rect = Rectangle::new(20, 30);
 
 	println!(
-		&quot;The area of the rectangle 1 is {} square pixels.&quot;,
-		rect1.area()
-	);
-
-	println!(
-		&quot;The area of the rectangle 2 is {} square pixels.&quot;,
-		rect2.area()
+		&quot;The area of the rectangle is {} square pixels.&quot;,
+		rect.area()
 	);
 }
 </code></pre></pre>
+<p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code>keyword, and then specify the name of the type we want to implement the trait for. Withing the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
+<hr />
 <p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
 function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
 static method_.</p>
@@ -1001,8 +1118,6 @@ static method_.</p>
 <p>You will find a new function on many types, even in the standard library, because it's a common name for a function
 that makes a new value of some kind.</p>
 </blockquote>
-<h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
-<p><code>&lt;T&gt;</code></p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
 <h3 id="if-expressions"><a class="header" href="#if-expressions"><code>if</code> Expressions</a></h3>
 <p>Blocks of code associated with the conditions in <code>if</code> expressions are sometimes called <em>arms</em>, just like the arm in <code>match</code> expressions. Optionally, we can also include an <code>else</code> expression (or <code>else if</code>). It's also worth noting that the condition <em>must</em> be a <code>bool</code>.</p>
@@ -1155,6 +1270,191 @@ fn print_number(n: Option&lt;i32&gt;) {
 }
 <span class="boring">}
 </span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="collections"><a class="header" href="#collections">Collections</a></h1>
+<p>Unlike the built-in array and tuple types, the data these collections point to is stored on the heap, which means the amount of data does not need to be known at compile time.</p>
+<h2 id="vectors"><a class="header" href="#vectors">Vectors</a></h2>
+<p>Vectors <code>Vec&lt;T&gt;</code> allow you to store more than on value in a single data structure that puts all the values next to each other in memory. Vectors can only store values of the same type <code>T</code>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v: Vec&lt;i32&gt; = Vec::new();
+v.push(1);
+// ...
+// or
+let v = vec![1, 2, 3];
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Rust provides the <code>vec!</code>macro for convenience.</p>
+</blockquote>
+<h3 id="reading-elements-of-vectors"><a class="header" href="#reading-elements-of-vectors">Reading Elements of Vectors</a></h3>
+<p>There are two ways to reference a value stored in a vector.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![1, 2, 3, 4, 5];
+
+let third: &amp;i32 = &amp;v[2];
+
+match v.get(2) {
+    Some(third) =&gt; println!(&quot;The third element is: {}.&quot;, third);
+    None =&gt; println!(&quot;There is no third element.&quot;);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>The first <code>[]</code> method may cause the program to panic if it references a nonexistent element, like <code>&amp;v[100]</code>.
+When the <code>get</code> method is passed an index that is outside the vector, it returns <code>None</code> without panicking.</p>
+</blockquote>
+<p>When the program has a valid reference, the borrow checker enforces the ownership and borrowing rules to ensure this reference and any other references to the contents of the vector remain valid.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let first = &amp;v[0];
+//           - immutable borrow occurs here
+v.push(6);
+//^^^^^^^ mutable borrow occurs here
+println!(&quot;The first element is: {}&quot;, first);
+//                                   ----- immutable borrow later used here
+<span class="boring">}
+</span></code></pre></pre>
+<p>This error is due to the way vectors work: adding a new element onto the end of the vector might require allocating new memory and copying the old elements to the new space. In that case, the reference to the first element would be pointing to deallocated memory.</p>
+<h3 id="iterating-over-the-values-in-a-vector"><a class="header" href="#iterating-over-the-values-in-a-vector">Iterating over the Values in a Vector</a></h3>
+<p>If we want to access each element in a vector in turn, we can iterate through all of the elements rather than use indices to access one at a time.</p>
+<p>We can also iterate over mutable references to each element in a mutable vector in order to make changes to all the elements.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut v = vec![100, 32, 57];
+for i in &amp;mut v {
+    *i += 50;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>To change the value that the mutable reference refers to, we have to use the dereference operator <code>*</code> to get to the value in <code>i</code> before we can use the <code>+=</code> operator.</p>
+</blockquote>
+<h3 id="using-an-enum-to-store-multiple-types"><a class="header" href="#using-an-enum-to-store-multiple-types">Using an Enum to Store Multiple Types</a></h3>
+<p>We said that vectors can only store values that are the same type. Fortunately, the variant of an enum are defined under the same enum type, so when we need to store elements of a different type in vector, we can defined and use an enum.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum SpreadsheetCell {
+    Int(i32),
+    Float(f64),
+    Text(String),
+}
+
+let row = vec![
+    SpreadsheetCell::Int(3),
+    SpreadsheetCell::Text(String::from(&quot;blue&quot;)),
+    SpreadsheetCell:: Float(10.12),
+];
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="storing-utf-8-encoded-text-with-strings"><a class="header" href="#storing-utf-8-encoded-text-with-strings">Storing UTF-8 Encoded Text with Strings</a></h2>
+<p>Rust has only one string type in the core language, which is the string slice <code>str</code> that is usually seen in its borrowed form <code>&amp;str</code>.</p>
+<p>The <code>String</code> type, which is provided by Rust`s standard library rather than coded into the core language, is a growable, mutable, owned, UTF-8 encoded string type.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut s = String::new();
+s.push_str(&quot;hello&quot;);
+let h = s[0];
+<span class="boring">}
+</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s1 = String::from(&quot;tic&quot;);
+let s1 = String::from(&quot;tac&quot;);
+let s1 = String::from(&quot;toe&quot;);
+
+let s = s1 + &quot;-&quot; + &amp;s2 + &quot;-&quot; + &amp;s3; // note s1 has been moved here
+let s = format!(&quot;{}-{}-{}&quot;, s1, s2, s3);
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>A <code>String</code> is a wrapper over a <code>Vec&lt;u8&gt;</code>.</p>
+</blockquote>
+<p>In UTF-8, each Unicode scalar value may takes more than one byte of storage. Think of Cyrillic, Japanese or Hindi signs. Therefore, an index into the string's bytes will not always correlate to a valid Unicode scalar value.</p>
+<p>Another point about UTF-8 is that there are actually three relevant ways to look at strings from Rust's perspective: as bytes, scalar values, and grapheme clusters (the closest thing to what we would call <em>letters</em>).</p>
+<p>Sometimes when you extract chars from a string, you will have diacritics that do not make sense on their own. So, indexing into a string is often a bad idea because it is not clear what the return type of the string-indexing operation should be: a byte value, a character, a grapheme cluster, or a string slice.</p>
+<p>Getting grapheme clusters from strings is complex, so this functionality is not provided by the standard library. You can check the <a href="https://crates.io/crates/unicode-segmentation"><code>unicode-segmentation</code></a> crate.</p>
+<blockquote>
+<p>Rust has chosen to make the correct handling of <code>String</code> data the default behavior for all Rust programs, which means programmers have to put more thought into handling UTF-8 data up front. This trade-off exposes more of the complexity of strings than is apparent in other programming languages, but it prevents you from having to handle errors involving non-ASCII characters later in your development life cycle</p>
+</blockquote>
+<h2 id="hash-maps"><a class="header" href="#hash-maps">Hash Maps</a></h2>
+<p>The type <code>HashMap&lt;K, V&gt;</code> stores a mapping of keys of type <code>K</code> to values of type <code>V</code>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+
+scores.insert(String::from(&quot;Blue&quot;), 10);
+scores.insert(String::from(&quot;Yellow&quot;), 50);
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Of our three common collections, this one is the least often used, so it is not included in the features brought into scope automatically in the prelude.</p>
+</blockquote>
+<p>Another way of constructing a hash map is by using the <code>collect</code> method on a vector of tuples, where each tuple consists of a key and its value.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let map = vec![(String::from(&quot;Blue&quot;), 10), (String::from(&quot;Yellow&quot;), 50)].collect();
+<span class="boring">}
+</span></code></pre></pre>
+<p>We could also use the <code>zip</code> method to create a vector of tuples.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+let teams = vec![String::from(&quot;Blue&quot;), String::from(&quot;Yellow&quot;)];
+let initial_scores = vec![10, 50];
+
+let scores: HashMap&lt;_, _&gt; = teams.iter().zip(initial_scores.iter()).collect();
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>For types that implements the <code>Copy</code>trait, such as <code>i32</code>, the values are copied into the hash map. For owned values such as <code>String</code>, the values will be moved and the hash map will be the owner of those values.</p>
+</blockquote>
+<h3 id="accessing-values"><a class="header" href="#accessing-values">Accessing Values</a></h3>
+<p>We can get a value out of the hash map by proving its key to the <code>get</code> method. The result is wrapped in <code>Some</code> because <code>get</code> returns an <code>Option&lt;&amp;V&gt;</code>.</p>
+<p>We can iterates over each key/value pair in a similar manner as we do with vectors, using a <code>for</code> loop.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>for (key, value) in &amp;scores {
+    println!(&quot;{}: {}&quot;, key, value);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="updating-a-hash-map"><a class="header" href="#updating-a-hash-map">Updating a Hash Map</a></h2>
+<blockquote>
+<p>Each key can only have on value associated with it at a time.</p>
+</blockquote>
+<p>If we insert a key and a value into a hash map and then insert that same key with a different value, the value associated with that key will be replaced.</p>
+<p>Hash Maps have a special API for inserting a value only if the key has no value, called <code>entry</code>. It takes the key you want to check as a parameter. The return value of the entry method is an enum called <code>Entry</code> that represents a value that might or might not exist.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+scores.insert(String::from(&quot;Blue&quot;), 10);
+
+scores.entry(String::from(&quot;Yellow&quot;)).or_insert(50);
+scores.entry(String::from(&quot;Blue&quot;)).or_insert(50);
+<span class="boring">}
+</span></code></pre></pre>
+<p>The <code>or_insert</code> method on <code>Entry</code> is defined to return a mutable reference to the value for the corresponding <code>Entry</code> key if that exists, and if not, inserts the parameter as the new value for this key and returns a mutable reference (<code>&amp;mut V</code>) to the new value.</p>
+<blockquote>
+<p>By default, <code>HashMap</code> uses a cryptographically strong hashing function that is not the fastest algorithm available. You can switch to another function by specifying a different <em>hasher</em>. A hasher is a type that implements the <code>BuildHasher</code>trait.</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="crates-and-modules"><a class="header" href="#crates-and-modules">Crates and Modules</a></h1>
 <p>Rust has a specific way of declaring things.</p>
 <p>By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is
