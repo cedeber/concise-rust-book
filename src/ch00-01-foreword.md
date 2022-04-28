@@ -22,6 +22,7 @@ that.
 
 ## Inspiration and references
 
+- [The official Rust Book](https://doc.rust-lang.org/stable/book/), of course, from which I shamelessly copy the important parts to create this best-of concise book. It is very well written and a must-read recommendation if I convince you to learn more about Rust.
 - [A half-hour to learn Rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust)
   from [amos](https://fasterthanli.me)
 - ...
