@@ -75,7 +75,7 @@ let x = 2.0 // f64
 let t: bool = true
 ```
 
-When you're compiling in release mode, Rust does not checks for intergers overflow. If you want to wrap explicitly, you
+When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you
 can use the standard library type `Wrapping`.
 
 ```rust
@@ -128,7 +128,7 @@ let (x, y, z) = tup;
 
 Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather
 than the heap.
-You can access elements of an arrayusing indexing. As for tuple, the first index is `0`. If the index is greater than or
+You can access elements of an array using indexing. As for tuple, the first index is `0`. If the index is greater than or
 equal to the length, Rust will panic because of Rust's safety principle.
 
 ```rust

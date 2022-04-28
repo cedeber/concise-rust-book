@@ -33,7 +33,7 @@ println!(number is "{}", number);
 
 ### Repetitions
 
-Rust has thre kinds of loops: `loop`, `while` and `for`.
+Rust has three kinds of loops: `loop`, `while` and `for`.
 
 #### Loops
 
@@ -71,7 +71,7 @@ while number != 0 {
 
 ### Looping Through a Collection with `for`
 
-You can use a `for` loop and execute some code for each item in a collection. The safety and consiness of `for` loops make them the most commonly used loop construct in Rust.
+You can use a `for` loop and execute some code for each item in a collection. The safety and consiceness of `for` loops make them the most commonly used loop construct in Rust.
 
 ```rust
 for number in (1..4).rev() {

@@ -83,7 +83,7 @@ impl<T, U> Point<T, U> {
 
 ## Traits
 
-Trait definitions are a way to group method signatures together to define a set of behaviors necessary to accomplish some purpose. They are some kind of _interfaces_.
+Trait definitions are a way to group method signatures together to define a set of behaviours necessary to accomplish some purpose. They are some kind of _interfaces_.
 
 ```rust
 trait Geometry {
@@ -118,7 +118,7 @@ fn main() {
 }
 ```
 
-The difference is that after `impl`, we put the trait name that we want to implement, then use the `for`keyword, and then specify the name of the type we want to implement the trait for. Withing the `impl` block, we put the method signatures that the trait definition has defined.
+The difference is that after `impl`, we put the trait name that we want to implement, then use the `for`keyword, and then specify the name of the type we want to implement the trait for. Within the `impl` block, we put the method signatures that the trait definition has defined.
 
 ---
 
