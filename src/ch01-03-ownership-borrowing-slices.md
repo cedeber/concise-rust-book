@@ -1,4 +1,4 @@
-# Ownership, Borrowing and Lifetime
+# Ownership, Borrowing and Slices
 
 Ownership is the most unique feature of Rust, and it enables Rust to make memory safety guarantees without needing a garbage collector.
 

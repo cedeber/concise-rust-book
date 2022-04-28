@@ -1,4 +1,4 @@
-# Struct, Implementation and Traits
+# Structs, Enums and Implementation
 
 There is no `class` and no inheritance. Rust has only `struct`, `impl` and `trait`.
 
@@ -219,66 +219,3 @@ fn main() -> Result<(), Box<dyn Error>> {
 ```
 
 The `Box<dyn Error>` type is called a trait object. For now, you can read `Box<dyn Error>` to mean "any kind of error".
-
-## Traits
-
-Traits are like interfaces.
-
-```rust
-// An "interface" to implement
-trait Geometry {
-	fn area(&self) -> u32;
-}
-
-struct Rectangle {
-	width: u32,
-	height: u32,
-}
-
-// How to add functionality to a struct
-impl Rectangle {
-	// Common Rust way to do a "constructor"
-	fn new(width: u32, height: u32) -> Self {
-		Self { width, height }
-	}
-}
-
-// Implement a trait
-impl Geometry for Rectangle {
-	fn area(&self) -> u32 {
-		self.width * self.height
-	}
-}
-
-fn main() {
-	// Init a struct
-	let rect1 = Rectangle {
-		width: 30,
-		height: 50,
-	};
-
-	// Use the constructor instead
-	let rect2 = Rectangle::new(20, 30);
-
-	println!(
-		"The area of the rectangle 1 is {} square pixels.",
-		rect1.area()
-	);
-
-	println!(
-		"The area of the rectangle 2 is {} square pixels.",
-		rect2.area()
-	);
-}
-```
-
-The `::` syntax in the `::new` line indicates that new is an associated function of the `Rectangle` type. An associated
-function is implemented on a type, rather than on a particular instance of a `Rectangle`. Some language call this a _
-static method_.
-
-> You will find a new function on many types, even in the standard library, because it's a common name for a function
-> that makes a new value of some kind.
-
-## Generics
-
-`<T>`

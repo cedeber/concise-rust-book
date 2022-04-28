@@ -1,4 +1,4 @@
-# Blocks and Scope
+# Functions, Blocks and Scope
 
 A pair of brackets declares a block, which has its own scope. It can evaluate to a value and can contain multiple statements.
 
