@@ -1110,7 +1110,61 @@ fn main() {
 	);
 }
 </code></pre></pre>
-<p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code>keyword, and then specify the name of the type we want to implement the trait for. Within the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
+<p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code> keyword, and then specify the name of the type we want to implement the trait for. Within the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
+<p>One restriction to note with trait implementations is that we can implement a trait on a type only if at least one of the trait or the type is local to our crate. But we can’t implement external traits on external types. This restriction is part of a property of programs called <em>coherence</em>, and more specifically the <em>orphan rule</em>, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust wouldn’t know which implementation to use.</p>
+<h3 id="default-implementations"><a class="header" href="#default-implementations">Default Implementations</a></h3>
+<p>Sometimes it’s useful to have default behavior for some or all of the methods in a trait instead of requiring implementations for all methods on every type.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Summary {
+    fn summarize(&amp;self) -&gt; String {
+        String::from(&quot;(Read more...)&quot;)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>To use a default implementation we specify an empty <code>impl</code> block. Default implementations can call other methods in the same trait, even if those other methods don’t have a default implementation.</p>
+</blockquote>
+<h3 id="traits-as-parameters"><a class="header" href="#traits-as-parameters">Traits as Parameters</a></h3>
+<p>We can define a function that calls the method on its parameter, which is of some type that implements the trait. To do this we can use the <code>impl Trait</code> syntax.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn notify(item: &amp;impl Summary) {
+    println!(&quot;Breaking news! {}&quot;, item.summarize());
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The <code>impl Trait</code> syntax works for straightforward cases but is actually syntax sugar for a longer form, which is called a <em>trait bound</em>.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn notify&lt;T: Summary&gt;(item: &amp;T) {
+    println!(&quot;Breaking news! {}&quot;, item.summarize());
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>We can also specify more than one trait bound.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn notify(item: &amp;(impl Summary + Display)) {}
+pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) {}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Rust has alternate syntax for specifying trait bounds inside a <code>where</code> clause after the function signature.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn some_function&lt;T, U&gt;(t: &amp;T, u: &amp;U) -&gt; i32
+    where T: Display + Clone,
+          U: Clone + Debug
+{}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="returning-types-that-implement-traits"><a class="header" href="#returning-types-that-implement-traits">Returning Types that Implement Traits</a></h3>
 <hr />
 <p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
 function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
