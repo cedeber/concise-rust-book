@@ -10,6 +10,7 @@
   - [Ownership, Borrowing and Lifetime](ch01-03-ownership.md)
   - [Struct, Implementation and Traits](ch01-04-struct-trait.md)
   - [Control Flow](ch01-05-control-flow.md)
+  - [Collections](ch01-06-collections.md)
 - [Concise WebAssembly]()
 - [Crates and Modules](ch03-00-crates-modules.md)
   - [Useful Crates](ch03-xx-useful-crates.md)

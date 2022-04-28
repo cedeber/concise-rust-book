@@ -156,24 +156,69 @@ let sum = x + y;
 
 ### Error management
 
-There is no `try` / `catch`. `Result` is, like `Option`, also an enumeration. For `Result`, the variants are `Ok`
-and `Err`. The `Ok` variant indicates the operation was successful, and inside `Ok` is the successfully generated value.
+Rust doesn't have exceptions. Instead, it has the type the type `Result<T, E>` for recoverable errors and the `panic!` macro that stops execution when the program encounters an unrecoverable error.
+
+`Result` is, like `Option`, also an enumeration. For `Result<T, E>`, the variants are `Ok<T>` and `Err<E>`. The `Ok` variant indicates the operation was successful, and inside `Ok` is the successfully generated value.
 The `Err` variant means the operation failed, and `Err` contains information about how or why the operation failed.
 
-The purpose of these `Result` which is `Ok(_)` or `Err(_)`.
-
-> A function always returns a unit `()`, if nothing is specified.
-
 ```rust
-use std::error::Error;
+use std::fs::File;
 
-fn main() -> Result<(), Box<dyn Error>> {
-	Ok(())
+let f = File::open("hello.txt");
+let f = match f {
+	Ok(file) => file,
+	Err(error) => {
+		panic!("Problem opening the file: {:?}", error)
+	}
 }
 ```
 
-> ⚠️ Talk about `unwrap` and `?`
-> If you don’t call `except`, the program will compile, but you will get a warning
+#### Shortcuts for Panic on Error: unwrap and expect
+
+Using `match` can be a bit verbose. The `Result<T, E>` type has many helper methods.
+
+One of those method is called `unwrap`. If the `Result` value is the `Ok` variant, `unwrap` will return the value inside the `Ok`. If the `Result` is the `Err` variant, `unwrap` will call the `panic!` macro.
+
+```rust
+let f = File::open("hello.txt").unwrap();
+```
+
+Another method, `expect`, which is similar to `unwrap`, lets us also choose the `panic!` error message.
+
+```rust
+let f = File::open("hello.txt").expect("Failed to open hello.txt");
+```
+
+> It would be appropriate to call `unwrap` when you have some other logic that ensures the `Result` will have an `Ok`value, but the logic isn't something the compiler understands.
+
+#### Propagating Errors
+
+This pattern of propagating errors is so common in Rust that Rust provides the question mark operator `?` to make this easier. Error values that have the `?` operator called on them go through the `from` function, defined in the `From` trait in the standard library, which is used to convert errors from one type into another.
+
+the `?` operator eliminates a lot of boilerplate and makes this function's implementation simpler. We could event shorten the code further by chaining method calls immediately after the `?`.
+
+```rust
+fn read_username_from_file() -> Result<String, io::error> {
+	let mut s = String::new();
+	File::open("hello.txt")?.read_to_string(&mut s)?;
+	Ok(s);
+}
+```
+
+> The `?` operator can only be used in functions that have a return type of `Result`.
+
+```rust
+use std::error::Error;
+use std::fs::File;
+
+fn main() -> Result<(), Box<dyn Error>> {
+	let f = File::open("hello.txt")?;
+
+	Ok(());
+}
+```
+
+The `Box<dyn Error>` type is called a trait object. For now, you can read `Box<dyn Error>` to mean "any kind of error".
 
 ## Traits
 
