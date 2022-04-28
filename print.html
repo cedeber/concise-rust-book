@@ -293,7 +293,7 @@ let x = 2.0 // f64
 let t: bool = true
 <span class="boring">}
 </span></code></pre></pre>
-<p>When you're compiling in release mode, Rust does not checks for intergers overflow. If you want to wrap explicitly, you
+<p>When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you
 can use the standard library type <code>Wrapping</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -348,7 +348,7 @@ let (x, y, z) = tup;
 <h4 id="the-array-type"><a class="header" href="#the-array-type">The Array Type</a></h4>
 <p>Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather
 than the heap.
-You can access elements of an arrayusing indexing. As for tuple, the first index is <code>0</code>. If the index is greater than or
+You can access elements of an array using indexing. As for tuple, the first index is <code>0</code>. If the index is greater than or
 equal to the length, Rust will panic because of Rust's safety principle.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -534,7 +534,7 @@ let closure_inferred = |i | i + 1 ;
 </blockquote>
 <h2 id="the-stack-and-the-heap"><a class="header" href="#the-stack-and-the-heap">The Stack and the Heap</a></h2>
 <p>The <em>stack</em> stores values in the order it gets them and removes the values in the opposite order. This is referred to as <em>last in, first out</em>. All data stored in the stack must have a known, fixed size. Data with an unknown size at compile time or a size that might change must be stored on the heap instead.</p>
-<p>The <em>heap</em> is less organized. The operating system finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is called allocating on the heap.</p>
+<p>The <em>heap</em> is less organised. The operating system finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is called allocating on the heap.</p>
 <p>Pushing to the stack is faster than allocating on the heap because the operating system never has to search for a place to store new data. Comparatively, allocating space on the heap requires more work, because the operating system must first find a big enough space to hold the data and then perform bookkeeping to prepare for the next allocation.</p>
 <p>Accessing data in the heap is slower than accessing data on the stack because you have to follow a pointer to get there. Contemporary processors are faster if they jump around less in memory.</p>
 <h2 id="memory-and-allocation"><a class="header" href="#memory-and-allocation">Memory and Allocation</a></h2>
@@ -1077,7 +1077,7 @@ impl&lt;T, U&gt; Point&lt;T, U&gt; {
 <p>Rust implements generics by performing monomorphization of the code that is using generics at compile time. <em>Monomorphization</em> is the process of turning generic code into specific code by filling in the concrete types that are used when compiled. With that, there is no runtime cost.</p>
 </blockquote>
 <h2 id="traits"><a class="header" href="#traits">Traits</a></h2>
-<p>Trait definitions are a way to group method signatures together to define a set of behaviors necessary to accomplish some purpose. They are some kind of <em>interfaces</em>.</p>
+<p>Trait definitions are a way to group method signatures together to define a set of behaviours necessary to accomplish some purpose. They are some kind of <em>interfaces</em>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">trait Geometry {
 	fn area(&amp;self) -&gt; u32;
 }
@@ -1109,7 +1109,7 @@ fn main() {
 	);
 }
 </code></pre></pre>
-<p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code>keyword, and then specify the name of the type we want to implement the trait for. Withing the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
+<p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code>keyword, and then specify the name of the type we want to implement the trait for. Within the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
 <hr />
 <p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
 function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
@@ -1151,7 +1151,7 @@ println!(number is &quot;{}&quot;, number);
 <span class="boring">}
 </span></code></pre></pre>
 <h3 id="repetitions"><a class="header" href="#repetitions">Repetitions</a></h3>
-<p>Rust has thre kinds of loops: <code>loop</code>, <code>while</code> and <code>for</code>.</p>
+<p>Rust has three kinds of loops: <code>loop</code>, <code>while</code> and <code>for</code>.</p>
 <h4 id="loops"><a class="header" href="#loops">Loops</a></h4>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -1189,7 +1189,7 @@ while number != 0 {
 <span class="boring">}
 </span></code></pre></pre>
 <h3 id="looping-through-a-collection-with-for"><a class="header" href="#looping-through-a-collection-with-for">Looping Through a Collection with <code>for</code></a></h3>
-<p>You can use a <code>for</code> loop and execute some code for each item in a collection. The safety and consiness of <code>for</code> loops make them the most commonly used loop construct in Rust.</p>
+<p>You can use a <code>for</code> loop and execute some code for each item in a collection. The safety and consiceness of <code>for</code> loops make them the most commonly used loop construct in Rust.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -1382,7 +1382,7 @@ let s = format!(&quot;{}-{}-{}&quot;, s1, s2, s3);
 <p>Sometimes when you extract chars from a string, you will have diacritics that do not make sense on their own. So, indexing into a string is often a bad idea because it is not clear what the return type of the string-indexing operation should be: a byte value, a character, a grapheme cluster, or a string slice.</p>
 <p>Getting grapheme clusters from strings is complex, so this functionality is not provided by the standard library. You can check the <a href="https://crates.io/crates/unicode-segmentation"><code>unicode-segmentation</code></a> crate.</p>
 <blockquote>
-<p>Rust has chosen to make the correct handling of <code>String</code> data the default behavior for all Rust programs, which means programmers have to put more thought into handling UTF-8 data up front. This trade-off exposes more of the complexity of strings than is apparent in other programming languages, but it prevents you from having to handle errors involving non-ASCII characters later in your development life cycle</p>
+<p>Rust has chosen to make the correct handling of <code>String</code> data the default behaviour for all Rust programs, which means programmers have to put more thought into handling UTF-8 data up front. This trade-off exposes more of the complexity of strings than is apparent in other programming languages, but it prevents you from having to handle errors involving non-ASCII characters later in your development life cycle</p>
 </blockquote>
 <h2 id="hash-maps"><a class="header" href="#hash-maps">Hash Maps</a></h2>
 <p>The type <code>HashMap&lt;K, V&gt;</code> stores a mapping of keys of type <code>K</code> to values of type <code>V</code>.</p>

@@ -223,7 +223,7 @@ impl&lt;T, U&gt; Point&lt;T, U&gt; {
 <p>Rust implements generics by performing monomorphization of the code that is using generics at compile time. <em>Monomorphization</em> is the process of turning generic code into specific code by filling in the concrete types that are used when compiled. With that, there is no runtime cost.</p>
 </blockquote>
 <h2 id="traits"><a class="header" href="#traits">Traits</a></h2>
-<p>Trait definitions are a way to group method signatures together to define a set of behaviors necessary to accomplish some purpose. They are some kind of <em>interfaces</em>.</p>
+<p>Trait definitions are a way to group method signatures together to define a set of behaviours necessary to accomplish some purpose. They are some kind of <em>interfaces</em>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">trait Geometry {
 	fn area(&amp;self) -&gt; u32;
 }
@@ -255,7 +255,7 @@ fn main() {
 	);
 }
 </code></pre></pre>
-<p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code>keyword, and then specify the name of the type we want to implement the trait for. Withing the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
+<p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code>keyword, and then specify the name of the type we want to implement the trait for. Within the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
 <hr />
 <p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
 function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
