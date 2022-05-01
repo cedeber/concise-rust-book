@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust-history.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables-data-types.html"><strong aria-hidden="true">1.1.</strong> Variables and Data Types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership-borrowing-slices.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Slices</a></li><li class="chapter-item expanded "><a href="ch01-04-structs-enums-implementation.html"><strong aria-hidden="true">1.4.</strong> Struct, Enums and Implementation</a></li><li class="chapter-item expanded "><a href="ch01-05-generics-traits-lifetimes.html"><strong aria-hidden="true">1.5.</strong> Generics, Traits and Lifetimes</a></li><li class="chapter-item expanded "><a href="ch01-06-control-flow.html"><strong aria-hidden="true">1.6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="ch01-07-collections.html"><strong aria-hidden="true">1.7.</strong> Collections</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust-history.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables-data-types.html"><strong aria-hidden="true">1.1.</strong> Variables and Data Types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership-borrowing-slices.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Slices</a></li><li class="chapter-item expanded "><a href="ch01-04-structs-enums-implementation.html"><strong aria-hidden="true">1.4.</strong> Struct, Enums and Implementation</a></li><li class="chapter-item expanded "><a href="ch01-05-generics-traits-lifetimes.html"><strong aria-hidden="true">1.5.</strong> Generics, Traits and Lifetimes</a></li><li class="chapter-item expanded "><a href="ch01-06-control-flow.html"><strong aria-hidden="true">1.6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="ch01-07-collections.html"><strong aria-hidden="true">1.7.</strong> Collections</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.8.</strong> Smart Pointers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.9.</strong> Asynchronous Programming</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.10.</strong> Concurrency</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.11.</strong> Macros</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Tests and Documentation</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -1165,6 +1165,67 @@ pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) {}
 <span class="boring">}
 </span></code></pre></pre>
 <h3 id="returning-types-that-implement-traits"><a class="header" href="#returning-types-that-implement-traits">Returning Types that Implement Traits</a></h3>
+<p>We can also use the 'impl Trait' syntax in the return position to return a value of some type that implements a trait.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn returns_summarizable() -&gt; impl Summary {
+	Tweet {
+		// --snip--
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators.
+However you can only use the <code>impl Trait</code> if you are returning a single type.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn returns_summarizable(switch: bool) -&gt; impl Summary {
+	if switch {
+		NewsArticle {
+			// --snip--
+		}
+	} else {
+		Tweet {
+			// --snip--
+		}
+	}
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Returning either a NewsArticle or a Tweet isn't allowed dur to restrictions around how the <code>impl Trait</code> is implemented in the compiler.</p>
+</blockquote>
+<h3 id="derivable-traits"><a class="header" href="#derivable-traits">Derivable Traits</a></h3>
+<p>page 190, 507</p>
+<h3 id="using-trait-bounds-to-conditionally-implement-methods"><a class="header" href="#using-trait-bounds-to-conditionally-implement-methods">Using Trait Bounds to Conditionally Implement Methods</a></h3>
+<p>By using a trait bound with an <code>impl</code> block that uses generic type parameters, we can implement methods conditionnally for types that implement the specified traits.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Pair&lt;T&gt; {
+	x: T,
+	y: T,
+}
+
+impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
+	// --snip--
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>We can also conditionally implement a trait for any type that implements another trait. Implementations of a trait on any type that satisfies the trait bounds are called <em>blanket implementations</em> and are extensively used in the Rust standard library.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl&lt;T: Display&gt; ToString for T {
+    // --snip--
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>In dynamically typed languages, we would get an error at runtime if we called a method on a type which didn’t define the method. But Rust moves these errors to compile time so we’re forced to fix the problems before our code is even able to run. Additionally, we don’t have to write code that checks for behavior at runtime because we’ve already checked at compile time.</p>
+</blockquote>
 <hr />
 <p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
 function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
@@ -1173,6 +1234,102 @@ static method_.</p>
 <p>You will find a new function on many types, even in the standard library, because it's a common name for a function
 that makes a new value of some kind.</p>
 </blockquote>
+<h2 id="lifetimes"><a class="header" href="#lifetimes">Lifetimes</a></h2>
+<p>Most of the time, lifetimes are implicit and inferred, just like most of the time, types are inferred. We must annotate types when multiple types are possible. In a similar way, we must annotate lifetimes when the lifetimes of references could be related in a few different ways</p>
+<p>The main aim of lifetimes is to prevent dangling references, which cause a program to reference data other than the data it is intended to reference.</p>
+<h3 id="the-borrow-checker"><a class="header" href="#the-borrow-checker">The Borrow Checker</a></h3>
+<p>The Rust compiler has a borrow checker that compares scopes to determine whether all borrows are valid.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+    {
+        let r;                // ---------+-- 'a
+                              //          |
+        {                     //          |
+            let x = 5;        // -+-- 'b  |
+            r = &amp;x;           //  |       |
+        }                     // -+       |
+                              //          |
+        println!(&quot;r: {}&quot;, r); //          |
+    }                         // ---------+
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
+//            ----     ----     ^ expected named lifetime parameter
+    if x.len() &gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+
+//   = help: this function's return type contains a borrowed value,
+//           but the signature does not say whether it is borrowed from `x` or `y`
+// help: consider introducing a named lifetime parameter
+//   |
+//   | fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
+//   |           ++++     ++          ++          ++
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="lifetime-annotation"><a class="header" href="#lifetime-annotation">Lifetime annotation</a></h3>
+<p>Lifetime annotations have a slightly unusual syntax: the names of lifetime parameters must start with an apostrophe (<code>'</code>) and are usually all lowercase and very short, like generic types. Most people use the name <code>'a</code>. We place lifetime parameter annotations after the <code>&amp;</code> of a reference, using a space to separate the annotation from the reference’s type.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>&amp;i32        // a reference
+&amp;'a i32     // a reference with an explicit lifetime
+&amp;'a mut i32 // a mutable reference with an explicit lifetime
+<span class="boring">}
+</span></code></pre></pre>
+<p>As with generic type parameters, we need to declare generic lifetime parameters inside angle brackets between the function name and the parameter list. The constraint we want to express in this signature is that the lifetimes of both of the parameters and the lifetime of the returned reference are related such that the returned reference will be valid as long as both the parameters are.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
+	// --snip--
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Remember, when we specify the lifetime parameters in this function signature, we’re not changing the lifetimes of any values passed in or returned. Rather, we’re specifying that the borrow checker should reject any values that don’t adhere to these constraints.
+In other words, the generic lifetime <code>'a</code> will get the concrete lifetime that is equal to the smaller of the lifetimes of <code>x</code> and <code>y</code>.</p>
+<blockquote>
+<p>The way in which you need to specify lifetime parameters depends on what your function is doing.</p>
+</blockquote>
+<p>So far, we’ve only defined structs to hold owned types. It’s possible for structs to hold references, but in that case we would need to add a lifetime annotation on every reference in the struct’s definition.
+We declare the name of the generic lifetime parameter inside angle brackets after the name of the struct so we can use the lifetime parameter in the body of the struct definition.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct ImportantExcerpt&lt;'a&gt; {
+    part: &amp;'a str,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="lifetime-elision"><a class="header" href="#lifetime-elision">Lifetime elision</a></h3>
+<p>You have learned that every reference has a lifetime and that you need to specify lifetime parameters for functions or structs that use references. The Rust team found that Rust programmers were entering the same lifetime annotations over and over in particular situations. These situations were predictable and followed a few deterministic patterns. The developers programmed these patterns into the compiler’s code so the borrow checker could infer the lifetimes in these situations and wouldn’t need explicit annotations.</p>
+<blockquote>
+<p>The patterns programmed into Rust’s analysis of references are called the <em>lifetime elision rules</em>. Lifetimes on function or method parameters are called <em>input lifetimes</em>, and lifetimes on return values are called <em>output lifetimes</em>.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {
+    fn level(&amp;self) -&gt; i32 {
+        3
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The lifetime parameter declaration after impl and its use after the type name are required, but we’re not required to annotate the lifetime of the reference to self because of the first elision rule.</p>
+<h3 id="the-static-lifetime"><a class="header" href="#the-static-lifetime">The Static Lifetime</a></h3>
+<p>One special lifetime we need to discuss is <code>'static</code>, which means that this reference can live for the entire duration of the program. All string literals have the <code>'static</code> lifetime.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s: &amp;'static str = &quot;I have a static lifetime.&quot;;
+<span class="boring">}
+</span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
 <h3 id="if-expressions"><a class="header" href="#if-expressions"><code>if</code> Expressions</a></h3>
 <p>Blocks of code associated with the conditions in <code>if</code> expressions are sometimes called <em>arms</em>, just like the arm in <code>match</code> expressions. Optionally, we can also include an <code>else</code> expression (or <code>else if</code>). It's also worth noting that the condition <em>must</em> be a <code>bool</code>.</p>
