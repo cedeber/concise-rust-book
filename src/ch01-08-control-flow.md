@@ -116,8 +116,8 @@ fn print_number(n: Number) {
 }
 ```
 
-A `match` has to be exhaustive. At least one arm needs to match.
-`_` can be used as a "catch-all" special pattern that will match any value if we do not want to list all possible values.
+one requirement for `match` expressions is that they need to be _exhaustive_. At least one arm needs to match.
+One way to ensure you have covered every possibility is to have a catchall pattern for the last arm. A particular pattern `_` will match anything, but it never binds to a variable.
 
 ```rust
 fn print_number(n: Number) {
@@ -131,9 +131,72 @@ fn print_number(n: Number) {
 
 > The `()` is just the unit value, so nothing will happen in the `_` case here.
 
-## Concise Control Flow with if let
+### Pattern syntax
+
+#### Literals
+
+```rust
+1 => println!("one")
+```
+
+#### Named Variables
+
+```rust
+Some(x) => println!("x = {}", x)
+```
+
+#### Multiple
+
+```rust
+1 | 2 => println!("one or two")
+```
+
+#### Range with the ..= Syntax
+
+Ranges are only allowed with numeric values or `char` values, because the compiler checks that the range isn’t empty at compile time.
+
+```rust
+1..=5 => println!("one through five"),
+'a'..='j' => println!("early ASCII letter"),
+```
+
+### Match guard
+
+A _match guard_ is an additional `if` condition specified after the pattern in a `match` arm that must also match, along with the pattern matching, for that arm to be chosen. Match guards are useful for expressing more complex ideas than a pattern alone allows.
+
+```rust
+fn main() {
+    let num = Some(4);
+
+    match num {
+        Some(x) if x % 2 == 0 => println!("The number {} is even", x),
+        Some(x) => println!("The number {} is odd", x),
+        None => (),
+    }
+}
+```
+
+### @ Bindings
+
+The `at` operator (`@`) lets us create a variable that holds a value at the same time we are testing that value to see whether it matches a pattern.
+
+```rust
+match msg {
+	Message::Hello {
+		id: id_variable @ 3..=7,
+	} => println!("Found an id in range: {}", id_variable),
+	Message::Hello { id: 10..=12 } => {
+		println!("Found an id in another range")
+	}
+	Message::Hello { id } => println!("Found some other id: {}", id),
+}
+```
+
+## Concise Control Flow with if let and while let
 
 The `if let` syntax lets you combine `if` and `let` into a less verbose way to handle values that match one pattern while ignoring the rest.
+
+> `if let` can also introduce shadowed variables in the same way that `match` arms can: `if let Ok(age) = age`.
 
 ```rust
 let a = Some(40);
@@ -149,4 +212,10 @@ fn print_number(n: Option<i32>) {
 }
 ```
 
-## Patterns and Matching
+Similar in construction to `if let`, the `while let` conditional loop allows a while loop to run for as long as a pattern continues to match.
+
+```rust
+while let Some(top) = stack.pop() {
+	println!("{}", top);
+}
+```

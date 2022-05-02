@@ -90,7 +90,7 @@ struct Vec2 {
 let v1 = Vec2 { x: 1.0, y: 3.0 };
 let v2 = Vec2 { y: 2.0, ..v1 };
 
-// Destructuring
+// Destructuring a tuple
 let (a, b) = (3, 7);
 
 // Destructuring with Rest
@@ -110,6 +110,21 @@ let _ = get_stuff(); // throws away the returned value
 // The value 3 and the rest will not be assigned to a variable
 let (_, b, ..) = (3, 7, 14, 45);
 let (width, _) = get_size();
+```
+
+#### Function parameters
+
+Function parameters can also be pattern.
+
+```rust
+fn print_coordinates(&(x, y): &(i32, i32)) {
+    println!("Current location: ({}, {})", x, y);
+}
+
+fn main() {
+    let point = (3, 5);
+    print_coordinates(&point);
+}
 ```
 
 ## Enums
