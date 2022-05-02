@@ -71,7 +71,7 @@ while number != 0 {
 
 ### Looping Through a Collection with `for`
 
-You can use a `for` loop and execute some code for each item in a collection. The safety and consiceness of `for` loops make them the most commonly used loop construct in Rust.
+You can use a `for` loop and execute some code for each item in a collection. The safety and conciseness of `for` loops make them the most commonly used loop construct in Rust.
 
 ```rust
 for number in (1..4).rev() {
@@ -148,3 +148,5 @@ fn print_number(n: Option<i32>) {
 	}
 }
 ```
+
+## Patterns and Matching

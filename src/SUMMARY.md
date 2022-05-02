@@ -20,4 +20,4 @@
 - [Concise WebAssembly]()
 - [Crates and Modules](ch03-00-crates-modules.md)
   - [Useful Crates](ch03-xx-useful-crates.md)
-- [Tests and Documentation]()
+- [Tests, Documentation and Benchmarking]()
