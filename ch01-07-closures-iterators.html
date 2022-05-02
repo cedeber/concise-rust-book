@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Control Flow - Concise Rust &amp; WebAssembly</title>
+        <title>Closures and Iterators - Concise Rust &amp; WebAssembly</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust-history.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables-data-types.html"><strong aria-hidden="true">1.1.</strong> Variables and Data Types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership-borrowing-slices.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Slices</a></li><li class="chapter-item expanded "><a href="ch01-04-structs-enums-implementation.html"><strong aria-hidden="true">1.4.</strong> Struct, Enums and Implementation</a></li><li class="chapter-item expanded "><a href="ch01-05-generics-traits-lifetimes.html"><strong aria-hidden="true">1.5.</strong> Generics, Traits and Lifetimes</a></li><li class="chapter-item expanded "><a href="ch01-06-control-flow.html" class="active"><strong aria-hidden="true">1.6.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="ch01-07-collections.html"><strong aria-hidden="true">1.7.</strong> Collections</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.8.</strong> Smart Pointers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.9.</strong> Asynchronous Programming</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.10.</strong> Concurrency</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.11.</strong> Macros</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Tests and Documentation</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust-history.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables-data-types.html"><strong aria-hidden="true">1.1.</strong> Variables and Data Types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership-borrowing-slices.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Slices</a></li><li class="chapter-item expanded "><a href="ch01-04-structs-enums-implementation.html"><strong aria-hidden="true">1.4.</strong> Struct, Enums and Implementation</a></li><li class="chapter-item expanded "><a href="ch01-05-collections.html"><strong aria-hidden="true">1.5.</strong> Collections</a></li><li class="chapter-item expanded "><a href="ch01-06-generics-traits-lifetimes.html"><strong aria-hidden="true">1.6.</strong> Generics, Traits and Lifetimes</a></li><li class="chapter-item expanded "><a href="ch01-07-closures-iterators.html" class="active"><strong aria-hidden="true">1.7.</strong> Closures and Iterators</a></li><li class="chapter-item expanded "><a href="ch01-08-control-flow.html"><strong aria-hidden="true">1.8.</strong> Control Flow</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.9.</strong> Smart Pointers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.10.</strong> Asynchronous Programming</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.11.</strong> Concurrency</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.12.</strong> Macros</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Tests and Documentation</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,156 +137,147 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
-<h3 id="if-expressions"><a class="header" href="#if-expressions"><code>if</code> Expressions</a></h3>
-<p>Blocks of code associated with the conditions in <code>if</code> expressions are sometimes called <em>arms</em>, just like the arm in <code>match</code> expressions. Optionally, we can also include an <code>else</code> expression (or <code>else if</code>). It's also worth noting that the condition <em>must</em> be a <code>bool</code>.</p>
+                        <h1 id="closures-and-iterators"><a class="header" href="#closures-and-iterators">Closures and Iterators</a></h1>
+<h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
+<p>Rust's closures are anonymous functions you cqn save in a variable or pass as arguments to other functions.</p>
+<p>To define a closure, we start with a pair if vertical pipes (<code>|</code>), inside which we specify the parameters to the closure. After the parameters, we place curly brackets that hold the body of the closure – these are optional if the closure body is a single expression.</p>
+<p>Closures don't require you to annotate the types of the parameters or the return value like <code>fn</code> functions do. But as with variables, we can add type annotations of we want to increase explicitness and clarity at the cost of being more verbose than is strictly necessary.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>fn eight() -&gt; i32 {
-	if true {
-		8
-	} else {
-		4
-	}
-}
+</span>let x = vec![1, 2, 3, 4]
+    .iter()
+    .map(|x| x + 3);
 
-println!(&quot;{}&quot;, eight()); // =&gt; 8
+let closure_annotated = |i: i32| -&gt; i32 { i + 1 };
+let closure_inferred = |i | i + 1 ;
 <span class="boring">}
 </span></code></pre></pre>
-<h4 id="using-if-in-a-let-statement"><a class="header" href="#using-if-in-a-let-statement">Using <code>if</code> in a <code>let</code> statement</a></h4>
-<p>Because <code>if</code> is an expression, we can use it on the right side of a <code>let</code> statement. Remember that blocks of code evaluate to the last expression in them. This means the values that have the potential to be results from each arm of the <code>if</code> must be the <strong>same type</strong>.</p>
+<p>We can defined a closure and store the <em>closure</em> in a variable rather than storing the result of the function call.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>let condition = true;
-let number = if condition {
-	5
-} else {
-	6
-};
-
-println!(number is &quot;{}&quot;, number);
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="repetitions"><a class="header" href="#repetitions">Repetitions</a></h3>
-<p>Rust has three kinds of loops: <code>loop</code>, <code>while</code> and <code>for</code>.</p>
-<h4 id="loops"><a class="header" href="#loops">Loops</a></h4>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>loop {
-	println!(&quot;again!&quot;);
-}
-<span class="boring">}
-</span></code></pre></pre>
-<p>You might need to pass the result of a <code>loop</code>. To do this, add the value you want returned after the <code>break</code> expression, you use to stop the loop.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut counter = 0;
-
-let result = loop {
-	counter += 1;
-
-	if counter == 10 {
-		break counter * 2;
-	}
-};
-<span class="boring">}
-</span></code></pre></pre>
-<h4 id="conditional-loops-with-while"><a class="header" href="#conditional-loops-with-while">Conditional Loops with <code>while</code></a></h4>
-<p>It's often useful for a program to evaluate a condition within a loop. While the condition is true, the loop runs.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let mut number = 3;
-
-while number != 0 {
-	number = number - 1;
-}
-<span class="boring">}
-</span></code></pre></pre>
-<h3 id="looping-through-a-collection-with-for"><a class="header" href="#looping-through-a-collection-with-for">Looping Through a Collection with <code>for</code></a></h3>
-<p>You can use a <code>for</code> loop and execute some code for each item in a collection. The safety and consiceness of <code>for</code> loops make them the most commonly used loop construct in Rust.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>for number in (1..4).rev() {
-	println(&quot;{}!&quot;, number);
+</span>let expensive_closure = |num| {
+	thread::sleep(Duration::from_secs(2));
+	num
 }
 <span class="boring">}
 </span></code></pre></pre>
 <blockquote>
-<p><code>.rev()</code> reverses the range</p>
+<p>The first time we call a closure with any value, the compiler infers the type of it and the return type of the closure. Those types are the locked into the closure and we get a type error if we try to use a different type with the same closure.</p>
 </blockquote>
-<h2 id="the-match-control-flow-operator"><a class="header" href="#the-match-control-flow-operator">The match Control Flow Operator</a></h2>
-<p>Rust has an extremely powerful control flow operator called <code>match</code> that allows you to compare a value against a series of patterns and then execute code based on which pattern matches. The power of <code>match</code> comes from the expressiveness of the patterns and the fact that the compiler confirms that all possible cases are handled.</p>
-<blockquote>
-<p>When the <code>match</code> expression executes, it compares the resulting value against the pattern of each arm, in order.</p>
-</blockquote>
-<p>The code associated with each arm is an expression, and the resulting value of the expression in the matching arm is the value that gets returned for the entire <code>match</code> expression.</p>
-<blockquote>
-<p>Curly brackets typically are not used if the match arm code is short.</p>
-</blockquote>
-<p>Another useful feature of match arms is that they can bind to the parts of the values that match the pattern. This is how we can extract values out of enum variants.</p>
-<p>Combining <code>match</code> and enums is useful in many situation. You will see this pattern a lot in Rust code: match against an enum, bind a variable to the data inside, and then execute code based on it.</p>
+<p>The <code>Fn</code> traits are provided by the standard library. All closures implement at least on the traits: <code>Fn</code>, <code>FnMut</code> or <code>FnOnce</code>.</p>
+<h3 id="capturing-the-environment-with-closures"><a class="header" href="#capturing-the-environment-with-closures">Capturing the Environment with Closures</a></h3>
+<p>Closures have an additional capability that functions don`t have: they can capture their environment and access variables from the scope in which they are defined.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>struct Number {
-	odd: bool,
-	value: i32,
+</span>let x = 4;
+let equal_to_x = |z| z == x;
+let y = 4;
+assert!(equal_to_x(y));
+<span class="boring">}
+</span></code></pre></pre>
+<p>Closures can capture values from their environment in three ways, which directly map to the three ways a function can take a parameter: taking ownership, borrowing mutably, and borrowing immutably. These are encoded in the three <code>Fn</code> traits.</p>
+<!-- prettier-ignore -->
+<table><thead><tr><th>Trait</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>FnOnce</code></td><td>consumes the variables it captures from its enclosing scope, known as closure's <em>environment</em>. To consume the captured variables, the closure must take ownership of these variables and move them into the closure when it is defined. The <code>Once</code> part represents the fact that the closure can not take ownership more than once, so it can be called only once.</td></tr>
+<tr><td><code>FnMut</code></td><td>can change the environment be it mutably borrows values</td></tr>
+<tr><td><code>Fn</code> </td><td>borrows value from the environment immutability</td></tr>
+</tbody></table>
+<p>If you want to force the closure to take ownership of the values it uses in the environment, you can use the <code>move</code> keyword before the parameter list.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let equal_to_x = move |z| z == x;
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="iterators"><a class="header" href="#iterators">Iterators</a></h2>
+<p>The iterator pattern allows you to perform some task on a sequence of items in turn. An iterator is responsible for the logic of iterating over each item and determining when the sequence has finished.</p>
+<p>In Rust, iterators are <em>lazy</em>, meaning they have no effect until you call methods that consume the iterator to use it up.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![1, 2, 3];
+let v_iter = v.iter();
+
+for val in v_iter {
+	// -- snip --
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>All iterators implement a trait named <code>Iterator</code> that is defined in the standard library.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Iterator {
+	type Item;
+
+	fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt;;
+
+	// -- snip --
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Notice this definition uses some new syntax: <code>type Item</code> and <code>Self::Item</code>, which are defining an <em>associated type</em> with this trait. The <code>Item</code> type will be the type returned from the iterator.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let v = vec![1, 2, 3];
+let mut v_iter = v.iter();
+
+assert_eq!(v_iter.next(), Some(&amp;1));
+assert_eq!(v_iter.next(), Some(&amp;2));
+assert_eq!(v_iter.next(), Some(&amp;3));
+assert_eq!(v_iter.next(), None);
+<span class="boring">}
+</span></code></pre></pre>
+<p>We need to make iterator mutable: calling the <code>next</code> method on an iterator changes internal state that the iterator uses to keep track of where it is in the sequence.</p>
+<p>We did not need to make <code>v_iter</code> mutable when we used a <code>for</code> loop because the lopp took ownership of <code>v_iter</code> and made it mutable behind the scenes.</p>
+<p>The <code>iter</code> method produces an iterator over immutable references. If we want to create an iterator that takes ownership of <code>v</code> and returns owned values, we can call <code>into_iter</code> instead of <code>iter</code>. Similarly, if we want to iterate over mutable references, we can call <code>iter_mut</code> instead of <code>iter</code>.</p>
+<h3 id="creating-our-own-iterators"><a class="header" href="#creating-our-own-iterators">Creating our own Iterators</a></h3>
+<blockquote>
+<p>The <code>Iterator</code> trait has a number of different methods with default implementations provided by the standard library. Other methods defined on the <code>Iterator</code>trait, known as <em>iterator adaptors</em>, allow you to change iterators into different kinds of iterators.</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Counter {
+	count: u32,
 }
 
-let one = Number { odd: true, value: 1 };
-let two = Number { odd: false, value: 2 };
+impl Counter {
+	fn new() -&gt; Self {
+		Counter { count: 0 }
+	}
+}
 
-print_number(one); // =&gt; Odd number: 1
-print_number(two); // =&gt; Even number: 2
+impl Iterator for Counter {
+	type Item = u32;
 
-// Same as with the if pattern
-fn print_number(n: Number) {
-	match n {
-		Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
-		Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
+	fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt; {
+		self.count += 1;
+
+		if self.count &lt; 6 {
+			Some{self.count}
+		} else {
+			None
+		}
 	}
 }
 <span class="boring">}
 </span></code></pre></pre>
-<p>A <code>match</code> has to be exhaustive. At least one arm needs to match.
-<code>_</code> can be used as a &quot;catch-all&quot; special pattern that will match any value if we do not want to list all possible values.</p>
+<p>We implemented the <code>Iterator</code> trait by defining the <code>next</code> method, so we can now use any <code>Iterator</code> trait method's default implementations as defined in the standard library, because they all use the <code>next</code> method's functionality.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>fn print_number(n: Number) {
-	match n.value {
-		1 =&gt; println!(&quot;One&quot;),
-		2 =&gt; println!(&quot;Two&quot;),
-		_ =&gt; (),
-	}
-}
-<span class="boring">}
-</span></code></pre></pre>
-<blockquote>
-<p>The <code>()</code> is just the unit value, so nothing will happen in the <code>_</code> case here.</p>
-</blockquote>
-<h2 id="concise-control-flow-with-if-let"><a class="header" href="#concise-control-flow-with-if-let">Concise Control Flow with if let</a></h2>
-<p>The <code>if let</code> syntax lets you combine <code>if</code> and <code>let</code> into a less verbose way to handle values that match one pattern while ignoring the rest.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let a = Some(40);
-let b = None;
-
-print_number(a); // =&gt; 40
-print_number(b); // =&gt; No output
-
-fn print_number(n: Option&lt;i32&gt;) {
-	if let Some(value) = n {
-		println!(&quot;{}&quot;, value)
-	}
-}
+</span>let sum: u32 = Counter::new().zip(Counter::new().skip(1))
+							 .map(|(a, b)| a * b)
+							 .filter(|x| x % 3 == 0)
+							 .sum();
+asset_eq!(sum, 18);
 <span class="boring">}
 </span></code></pre></pre>
 
@@ -294,10 +285,10 @@ fn print_number(n: Option&lt;i32&gt;) {
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ch01-05-generics-traits-lifetimes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch01-06-generics-traits-lifetimes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="ch01-07-collections.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch01-08-control-flow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -306,10 +297,10 @@ fn print_number(n: Option&lt;i32&gt;) {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ch01-05-generics-traits-lifetimes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch01-06-generics-traits-lifetimes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="ch01-07-collections.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch01-08-control-flow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
