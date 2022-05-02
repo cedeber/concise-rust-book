@@ -45,19 +45,6 @@ While you are coding, you can say the compiler to not complain about a variable 
 let _unused_variable = 42;
 ```
 
-### Throw away a value
-
-During destructuring, if you don't want to deal with all values you can omit some with an underscore.
-In use with the rest operator `..` it's very easy to just export what you need.
-
-```rust
-let _ = get_stuff(); // throws away the returned value
-
-// The value 3 and the rest will not be assigned to a variable
-let (_, b, ..) = (3, 7, 14, 45);
-let (width, _) = get_size();
-```
-
 ## Data types
 
 The types covered here are all stored on the stack.
@@ -171,23 +158,6 @@ let mut n = Number {
 };
 n.value = 5; // Yep
 n = Number { value: 5 } // Yep
-```
-
-### Mutable reference
-
-> Of course this in not a good practice and a function should avoid to have side effect like this. But sometimes this is
-> needed, like when you want to update a graphical context for example.
-
-```rust
-// This function will have side effects
-fn change(a: &mut i32) {
-    *a = 5
-}
-
-let mut a: i32 = 3;
-change(&mut a); // Explicit mutability. You have been warned.
-
-println!("{}", a); // => 5
 ```
 
 ## Constants

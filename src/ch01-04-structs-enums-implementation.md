@@ -99,6 +99,19 @@ let Vec2 { x,..} = v2;
 println! {"{:?}, {:?}, {:?}", v2, b, x} // => Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
 ```
 
+#### Throw away a value
+
+During destructuring, if you don't want to deal with all values you can omit some with an underscore.
+In use with the rest operator `..` it's very easy to just export what you need.
+
+```rust
+let _ = get_stuff(); // throws away the returned value
+
+// The value 3 and the rest will not be assigned to a variable
+let (_, b, ..) = (3, 7, 14, 45);
+let (width, _) = get_size();
+```
+
 ## Enums
 
 Rust's enums are most similar to _algebraic data types_ in functional languages.
