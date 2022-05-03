@@ -123,8 +123,6 @@ let first = a[0];
 
 ## Immutable by default
 
-> TODO
-
 Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the value.
 
 ```rust

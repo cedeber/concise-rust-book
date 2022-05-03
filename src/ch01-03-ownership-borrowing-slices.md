@@ -16,27 +16,20 @@ Accessing data in the heap is slower than accessing data on the stack because yo
 
 ## Memory and Allocation
 
-Rust has three kind of string:
+As an example, there are two types of strings in Rust: `String` and `&str`.
 
-- String literal: `&str` which is known content.
-- String slice: `&String` which has a fixed size.
-- `String` which can grow and shrink.
+- A `String` is stored as a vector of bytes (`Vec<u8>`), but guaranteed to always be a valid UTF-8 sequence. String is heap allocated, growable and not null terminated. With the `String` type, in order to support a mutable, growable piece of text, we need to allocate an amount of memory on the heap, unknown at compile time, to hold the content.
+- `&str` is a slice (`&[u8]`) that always points to a valid UTF-8 sequence, and can be used to view into a `String`, just like `&[T]` is a view into `Vec<T>`. In the case of a string literal, we know the content at compile time, so the text is hardcoded directly into the final executable. This is why string literals are fast and efficient.
 
-> `&str` does refer to string literals and String slices, as they both have a fixed size.
+```rust
+let mut s = String::From("hello");
 
-In the case of a string literal, we know the content at compile time, so the text is hardcoded directly into the final executable. This is why string literals are fast and efficient.
-
-With the `String` type, in order to support a mutable, growable piece of text, we need to allocate an amount of memory on the heap, unknown at compile time, to hold the content.
+s.push_str(", world!"); // appends a literal to a String
+```
 
 ### Drop
 
 When a variable goes out of scope, Rust calls a special function for us. This function is called `drop`. Rust call `drop` automatically at the closing curly bracket.
-
-```rust
-let mut s = String::From("hello");
-s.push_str(", world!"); // appends a literal to a String
-println!("{}", s);
-```
 
 ### Move
 
@@ -186,8 +179,6 @@ fn main() {
 	println!("{}", name);
 }
 ```
-
-implement Copy/Clone trait
 
 ---
 
