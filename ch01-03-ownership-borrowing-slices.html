@@ -148,27 +148,21 @@
 <p>Pushing to the stack is faster than allocating on the heap because the operating system never has to search for a place to store new data. Comparatively, allocating space on the heap requires more work, because the operating system must first find a big enough space to hold the data and then perform bookkeeping to prepare for the next allocation.</p>
 <p>Accessing data in the heap is slower than accessing data on the stack because you have to follow a pointer to get there. Contemporary processors are faster if they jump around less in memory.</p>
 <h2 id="memory-and-allocation"><a class="header" href="#memory-and-allocation">Memory and Allocation</a></h2>
-<p>Rust has three kind of string:</p>
+<p>As an example, there are two types of strings in Rust: <code>String</code> and <code>&amp;str</code>.</p>
 <ul>
-<li>String literal: <code>&amp;str</code> which is known content.</li>
-<li>String slice: <code>&amp;String</code> which has a fixed size.</li>
-<li><code>String</code> which can grow and shrink.</li>
+<li>A <code>String</code> is stored as a vector of bytes (<code>Vec&lt;u8&gt;</code>), but guaranteed to always be a valid UTF-8 sequence. String is heap allocated, growable and not null terminated. With the <code>String</code> type, in order to support a mutable, growable piece of text, we need to allocate an amount of memory on the heap, unknown at compile time, to hold the content.</li>
+<li><code>&amp;str</code> is a slice (<code>&amp;[u8]</code>) that always points to a valid UTF-8 sequence, and can be used to view into a <code>String</code>, just like <code>&amp;[T]</code> is a view into <code>Vec&lt;T&gt;</code>. In the case of a string literal, we know the content at compile time, so the text is hardcoded directly into the final executable. This is why string literals are fast and efficient.</li>
 </ul>
-<blockquote>
-<p><code>&amp;str</code> does refer to string literals and String slices, as they both have a fixed size.</p>
-</blockquote>
-<p>In the case of a string literal, we know the content at compile time, so the text is hardcoded directly into the final executable. This is why string literals are fast and efficient.</p>
-<p>With the <code>String</code> type, in order to support a mutable, growable piece of text, we need to allocate an amount of memory on the heap, unknown at compile time, to hold the content.</p>
-<h3 id="drop"><a class="header" href="#drop">Drop</a></h3>
-<p>When a variable goes out of scope, Rust calls a special function for us. This function is called <code>drop</code>. Rust call <code>drop</code> automatically at the closing curly bracket.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let mut s = String::From(&quot;hello&quot;);
+
 s.push_str(&quot;, world!&quot;); // appends a literal to a String
-println!(&quot;{}&quot;, s);
 <span class="boring">}
 </span></code></pre></pre>
+<h3 id="drop"><a class="header" href="#drop">Drop</a></h3>
+<p>When a variable goes out of scope, Rust calls a special function for us. This function is called <code>drop</code>. Rust call <code>drop</code> automatically at the closing curly bracket.</p>
 <h3 id="move"><a class="header" href="#move">Move</a></h3>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -298,7 +292,6 @@ fn main() {
 	println!(&quot;{}&quot;, name);
 }
 </code></pre></pre>
-<p>implement Copy/Clone trait</p>
 <hr />
 <h2 id="references-and-borrowing"><a class="header" href="#references-and-borrowing">References and Borrowing</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
