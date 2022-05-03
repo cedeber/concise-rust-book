@@ -146,7 +146,7 @@
 <span class="boring">}
 </span></code></pre></pre>
 <p>This line creates a new variable named <code>foo</code> and binds it to the value of the <code>bar</code> variable.</p>
-<p>You don't need to define the type on assignment. But you must assign a value before usage. The compiler can usually
+<p>You don't need to define the type on assignment. But you must bind a value before usage. The compiler can usually
 infer what type we want to use based on the value and how we use it.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -187,7 +187,8 @@ a = 42;
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="data-types"><a class="header" href="#data-types">Data types</a></h2>
-<p>The types covered here are all stored on the stack.</p>
+<p>The types covered here are all stored on the stack. We will talk about the stack and the heap on another chapter.
+What you need to know for now is that the stack is the fast memory.</p>
 <h3 id="scalar-types"><a class="header" href="#scalar-types">Scalar Types</a></h3>
 <p>A <em>scalar</em> type represents a single value. Rust has four primary scalar types: <strong>integers</strong>, <strong>floating point numbers</strong>
 , <strong>booleans</strong> and <strong>characters</strong>.</p>
@@ -201,8 +202,7 @@ let x = 2.0 // f64
 let t: bool = true
 <span class="boring">}
 </span></code></pre></pre>
-<p>When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you
-can use the standard library type <code>Wrapping</code>.</p>
+<p>When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you can use the standard library type <code>Wrapping</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -222,9 +222,7 @@ let one = Wrapping(1u8);
 println!(&quot;{}&quot;, (zero - one).0); // -&gt; 255
 <span class="boring">}
 </span></code></pre></pre>
-<p>Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more
-than just ASCII. Accented letters; Chinese, Japanese and Korean characters; emoji; and zero-width spaces are all valid
-char values in Rust.</p>
+<p>Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII. Accented letters; Chinese, Japanese and Korean characters; emoji; and zero-width spaces are all valid char values in Rust.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -235,8 +233,7 @@ char values in Rust.</p>
 <p>Rust has two primitive compound types: <strong>tuples</strong> and <strong>arrays</strong>.</p>
 <h4 id="the-tuple-type"><a class="header" href="#the-tuple-type">The Tuple Type</a></h4>
 <p>This is a fixed length collections of values of different types.
-We can access a tuple element directly bu using a <code>.</code> followed by the index of the value we want to access. The first
-index in a tuple is <code>0</code>.</p>
+We can access a tuple element directly bu using a <code>.</code> followed by the index of the value we want to access. The first index in a tuple is <code>0</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -254,10 +251,8 @@ let (x, y, z) = tup;
 <span class="boring">}
 </span></code></pre></pre>
 <h4 id="the-array-type"><a class="header" href="#the-array-type">The Array Type</a></h4>
-<p>Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather
-than the heap.
-You can access elements of an array using indexing. As for tuple, the first index is <code>0</code>. If the index is greater than or
-equal to the length, Rust will panic because of Rust's safety principle.</p>
+<p>Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather than the heap.
+You can access elements of an array using indexing. As for tuple, the first index is <code>0</code>. If the index is greater than or equal to the length, Rust will panic because of Rust's safety principle.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -267,12 +262,13 @@ let first = a[0];
 <span class="boring">}
 </span></code></pre></pre>
 <blockquote>
-<p>An array is not as flexible as the vector type. A vector (<code>Vec</code>) is a similar collection type provided by the standard
-library that is allowed to grow or shrink in size.</p>
+<p>An array is not as flexible as the vector type. A vector (<code>Vec</code>) is a similar collection type provided by the standard library that is allowed to grow or shrink in size.</p>
 </blockquote>
 <h2 id="immutable-by-default"><a class="header" href="#immutable-by-default">Immutable by default</a></h2>
-<p>Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the
-value.</p>
+<blockquote>
+<p>TODO</p>
+</blockquote>
+<p>Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the value.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -310,8 +306,7 @@ n = Number { value: 5 } // Yep
 <li>Declared using the const keyword.</li>
 <li>The type must be annotated. You can not infer it.</li>
 <li>You are not allowed to use mut with constants.</li>
-<li>Set only to a constant expression, not to the result of a function call or any other value that could only be computed
-at runtime.</li>
+<li>Set only to a constant expression, not to the result of a function call or any other value that could only be computed at runtime.</li>
 </ul>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -320,9 +315,7 @@ at runtime.</li>
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="shadowing"><a class="header" href="#shadowing">Shadowing</a></h2>
-<p>Shadowing is different from marking a variable as <code>mut</code>, because we will get a compile-time error if we accidentally try
-to reassign to this variable without using the <code>let</code> keyword. By using let, we can perform a few transformations on a
-value but have the variable be immutable after those transformations have been completed.</p>
+<p>Shadowing is different from marking a variable as <code>mut</code>, because we will get a compile-time error if we accidentally try to reassign to this variable without using the <code>let</code> keyword. By using let, we can perform a few transformations on a value but have the variable be immutable after those transformations have been completed.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {

@@ -226,7 +226,7 @@ just awesome. It is definitely feature-complete:</p>
 <span class="boring">}
 </span></code></pre></pre>
 <p>This line creates a new variable named <code>foo</code> and binds it to the value of the <code>bar</code> variable.</p>
-<p>You don't need to define the type on assignment. But you must assign a value before usage. The compiler can usually
+<p>You don't need to define the type on assignment. But you must bind a value before usage. The compiler can usually
 infer what type we want to use based on the value and how we use it.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -267,7 +267,8 @@ a = 42;
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="data-types"><a class="header" href="#data-types">Data types</a></h2>
-<p>The types covered here are all stored on the stack.</p>
+<p>The types covered here are all stored on the stack. We will talk about the stack and the heap on another chapter.
+What you need to know for now is that the stack is the fast memory.</p>
 <h3 id="scalar-types"><a class="header" href="#scalar-types">Scalar Types</a></h3>
 <p>A <em>scalar</em> type represents a single value. Rust has four primary scalar types: <strong>integers</strong>, <strong>floating point numbers</strong>
 , <strong>booleans</strong> and <strong>characters</strong>.</p>
@@ -281,8 +282,7 @@ let x = 2.0 // f64
 let t: bool = true
 <span class="boring">}
 </span></code></pre></pre>
-<p>When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you
-can use the standard library type <code>Wrapping</code>.</p>
+<p>When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you can use the standard library type <code>Wrapping</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -302,9 +302,7 @@ let one = Wrapping(1u8);
 println!(&quot;{}&quot;, (zero - one).0); // -&gt; 255
 <span class="boring">}
 </span></code></pre></pre>
-<p>Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more
-than just ASCII. Accented letters; Chinese, Japanese and Korean characters; emoji; and zero-width spaces are all valid
-char values in Rust.</p>
+<p>Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII. Accented letters; Chinese, Japanese and Korean characters; emoji; and zero-width spaces are all valid char values in Rust.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -315,8 +313,7 @@ char values in Rust.</p>
 <p>Rust has two primitive compound types: <strong>tuples</strong> and <strong>arrays</strong>.</p>
 <h4 id="the-tuple-type"><a class="header" href="#the-tuple-type">The Tuple Type</a></h4>
 <p>This is a fixed length collections of values of different types.
-We can access a tuple element directly bu using a <code>.</code> followed by the index of the value we want to access. The first
-index in a tuple is <code>0</code>.</p>
+We can access a tuple element directly bu using a <code>.</code> followed by the index of the value we want to access. The first index in a tuple is <code>0</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -334,10 +331,8 @@ let (x, y, z) = tup;
 <span class="boring">}
 </span></code></pre></pre>
 <h4 id="the-array-type"><a class="header" href="#the-array-type">The Array Type</a></h4>
-<p>Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather
-than the heap.
-You can access elements of an array using indexing. As for tuple, the first index is <code>0</code>. If the index is greater than or
-equal to the length, Rust will panic because of Rust's safety principle.</p>
+<p>Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather than the heap.
+You can access elements of an array using indexing. As for tuple, the first index is <code>0</code>. If the index is greater than or equal to the length, Rust will panic because of Rust's safety principle.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -347,12 +342,13 @@ let first = a[0];
 <span class="boring">}
 </span></code></pre></pre>
 <blockquote>
-<p>An array is not as flexible as the vector type. A vector (<code>Vec</code>) is a similar collection type provided by the standard
-library that is allowed to grow or shrink in size.</p>
+<p>An array is not as flexible as the vector type. A vector (<code>Vec</code>) is a similar collection type provided by the standard library that is allowed to grow or shrink in size.</p>
 </blockquote>
 <h2 id="immutable-by-default"><a class="header" href="#immutable-by-default">Immutable by default</a></h2>
-<p>Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the
-value.</p>
+<blockquote>
+<p>TODO</p>
+</blockquote>
+<p>Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the value.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -390,8 +386,7 @@ n = Number { value: 5 } // Yep
 <li>Declared using the const keyword.</li>
 <li>The type must be annotated. You can not infer it.</li>
 <li>You are not allowed to use mut with constants.</li>
-<li>Set only to a constant expression, not to the result of a function call or any other value that could only be computed
-at runtime.</li>
+<li>Set only to a constant expression, not to the result of a function call or any other value that could only be computed at runtime.</li>
 </ul>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -400,9 +395,7 @@ at runtime.</li>
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="shadowing"><a class="header" href="#shadowing">Shadowing</a></h2>
-<p>Shadowing is different from marking a variable as <code>mut</code>, because we will get a compile-time error if we accidentally try
-to reassign to this variable without using the <code>let</code> keyword. By using let, we can perform a few transformations on a
-value but have the variable be immutable after those transformations have been completed.</p>
+<p>Shadowing is different from marking a variable as <code>mut</code>, because we will get a compile-time error if we accidentally try to reassign to this variable without using the <code>let</code> keyword. By using let, we can perform a few transformations on a value but have the variable be immutable after those transformations have been completed.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -435,12 +428,8 @@ println!(&quot;{x}&quot;); // =&gt; &quot;Hey&quot;
 }
 </code></pre></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<p>Functions are pervasive in Rust code. The <code>main</code> function is the most important function in the language. It's the entry
-point of many programs.</p>
-<p>The <code>fn</code> keyword allows you to declare new functions. Rust code uses <em>snake case</em> as the conventional style for
-functions and variables names. Every function returns by default a <strong>unit</strong> type, written <code>()</code>. It's an empty tuple. No
-need to specify it or return
-it, it is implicit.</p>
+<p>Functions are pervasive in Rust code. The <code>main</code> function is the most important function in the language. It's the entry point of many programs.</p>
+<p>The <code>fn</code> keyword allows you to declare new functions. Rust code uses <em>snake case</em> as the conventional style for functions and variables names. Every function returns by default a <strong>unit</strong> type, written <code>()</code>. It's an empty tuple. No need to specify it or return it, it is implicit.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
 	// empty
 }
@@ -491,12 +480,22 @@ println!(&quot;{}&quot;, add_2(5)); // =&gt; 7
 </blockquote>
 <h2 id="the-stack-and-the-heap"><a class="header" href="#the-stack-and-the-heap">The Stack and the Heap</a></h2>
 <p>The <em>stack</em> stores values in the order it gets them and removes the values in the opposite order. This is referred to as <em>last in, first out</em>. All data stored in the stack must have a known, fixed size. Data with an unknown size at compile time or a size that might change must be stored on the heap instead.</p>
-<p>The <em>heap</em> is less organised. The operating system finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is called allocating on the heap.</p>
+<p>The <em>heap</em> is less organised. The operating system finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is called <em>allocating on the heap</em>.</p>
 <p>Pushing to the stack is faster than allocating on the heap because the operating system never has to search for a place to store new data. Comparatively, allocating space on the heap requires more work, because the operating system must first find a big enough space to hold the data and then perform bookkeeping to prepare for the next allocation.</p>
 <p>Accessing data in the heap is slower than accessing data on the stack because you have to follow a pointer to get there. Contemporary processors are faster if they jump around less in memory.</p>
 <h2 id="memory-and-allocation"><a class="header" href="#memory-and-allocation">Memory and Allocation</a></h2>
+<p>Rust has three kind of string:</p>
+<ul>
+<li>String literal: <code>&amp;str</code> which is known content.</li>
+<li>String slice: <code>&amp;String</code> which has a fixed size.</li>
+<li><code>String</code> which can grow and shrink.</li>
+</ul>
+<blockquote>
+<p><code>&amp;str</code> does refer to string literals and String slices, as they both have a fixed size.</p>
+</blockquote>
 <p>In the case of a string literal, we know the content at compile time, so the text is hardcoded directly into the final executable. This is why string literals are fast and efficient.</p>
 <p>With the <code>String</code> type, in order to support a mutable, growable piece of text, we need to allocate an amount of memory on the heap, unknown at compile time, to hold the content.</p>
+<h3 id="drop"><a class="header" href="#drop">Drop</a></h3>
 <p>When a variable goes out of scope, Rust calls a special function for us. This function is called <code>drop</code>. Rust call <code>drop</code> automatically at the closing curly bracket.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -608,7 +607,7 @@ fn main() {
 }
 </code></pre></pre>
 <p>It can be borrowed, though. For that you need to use references and lifetime tags.</p>
-<p>The &amp; indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
+<p>The <code>&amp;</code> indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
 piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of
 Rust’s major advantages is how safe and easy it is to use references. References passed to Person&lt;'a&gt; will now be alive
 as long as its usage, which is the implicit lifetime of main().</p>
