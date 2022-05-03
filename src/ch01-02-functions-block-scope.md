@@ -16,13 +16,9 @@ fn main() {
 
 ## Functions
 
-Functions are pervasive in Rust code. The `main` function is the most important function in the language. It's the entry
-point of many programs.
+Functions are pervasive in Rust code. The `main` function is the most important function in the language. It's the entry point of many programs.
 
-The `fn` keyword allows you to declare new functions. Rust code uses _snake case_ as the conventional style for
-functions and variables names. Every function returns by default a **unit** type, written `()`. It's an empty tuple. No
-need to specify it or return
-it, it is implicit.
+The `fn` keyword allows you to declare new functions. Rust code uses _snake case_ as the conventional style for functions and variables names. Every function returns by default a **unit** type, written `()`. It's an empty tuple. No need to specify it or return it, it is implicit.
 
 ```rust
 fn main() {

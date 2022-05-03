@@ -8,7 +8,7 @@ let foo = bar;
 
 This line creates a new variable named `foo` and binds it to the value of the `bar` variable.
 
-You don't need to define the type on assignment. But you must assign a value before usage. The compiler can usually
+You don't need to define the type on assignment. But you must bind a value before usage. The compiler can usually
 infer what type we want to use based on the value and how we use it.
 
 ```rust
@@ -47,7 +47,8 @@ let _unused_variable = 42;
 
 ## Data types
 
-The types covered here are all stored on the stack.
+The types covered here are all stored on the stack. We will talk about the stack and the heap on another chapter.
+What you need to know for now is that the stack is the fast memory.
 
 ### Scalar Types
 
@@ -62,8 +63,7 @@ let x = 2.0 // f64
 let t: bool = true
 ```
 
-When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you
-can use the standard library type `Wrapping`.
+When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you can use the standard library type `Wrapping`.
 
 ```rust
 let zero = 0u8;
@@ -80,9 +80,7 @@ let one = Wrapping(1u8);
 println!("{}", (zero - one).0); // -> 255
 ```
 
-Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more
-than just ASCII. Accented letters; Chinese, Japanese and Korean characters; emoji; and zero-width spaces are all valid
-char values in Rust.
+Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII. Accented letters; Chinese, Japanese and Korean characters; emoji; and zero-width spaces are all valid char values in Rust.
 
 ```rust
 let heart_eyed_cat = '😻';
@@ -95,8 +93,7 @@ Rust has two primitive compound types: **tuples** and **arrays**.
 #### The Tuple Type
 
 This is a fixed length collections of values of different types.
-We can access a tuple element directly bu using a `.` followed by the index of the value we want to access. The first
-index in a tuple is `0`.
+We can access a tuple element directly bu using a `.` followed by the index of the value we want to access. The first index in a tuple is `0`.
 
 ```rust
 let tupl = ('x', 32); // => (char, i32)
@@ -113,10 +110,8 @@ let (x, y, z) = tup;
 
 #### The Array Type
 
-Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather
-than the heap.
-You can access elements of an array using indexing. As for tuple, the first index is `0`. If the index is greater than or
-equal to the length, Rust will panic because of Rust's safety principle.
+Arrays in Rust have a fixed length, like tuples. Arrays are useful when you want your data allocated on the stack rather than the heap.
+You can access elements of an array using indexing. As for tuple, the first index is `0`. If the index is greater than or equal to the length, Rust will panic because of Rust's safety principle.
 
 ```rust
 let a: [i32; 5] = [1, 2, 3, 4, 5];
@@ -124,13 +119,13 @@ let a: [i32; 5] = [1, 2, 3, 4, 5];
 let first = a[0];
 ```
 
-> An array is not as flexible as the vector type. A vector (`Vec`) is a similar collection type provided by the standard
-> library that is allowed to grow or shrink in size.
+> An array is not as flexible as the vector type. A vector (`Vec`) is a similar collection type provided by the standard library that is allowed to grow or shrink in size.
 
 ## Immutable by default
 
-Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the
-value.
+> TODO
+
+Mutability in Rust is explicit. When a variable le is immutable, once a value is bound to a name, you can’t change the value.
 
 ```rust
 struct Number { value: i32 }
@@ -167,8 +162,7 @@ Constants are like immutable variables, but there are some differences:
 - Declared using the const keyword.
 - The type must be annotated. You can not infer it.
 - You are not allowed to use mut with constants.
-- Set only to a constant expression, not to the result of a function call or any other value that could only be computed
-  at runtime.
+- Set only to a constant expression, not to the result of a function call or any other value that could only be computed at runtime.
 
 ```rust
 const MAX_POINTS: u32 = 100_000;
@@ -176,9 +170,7 @@ const MAX_POINTS: u32 = 100_000;
 
 ## Shadowing
 
-Shadowing is different from marking a variable as `mut`, because we will get a compile-time error if we accidentally try
-to reassign to this variable without using the `let` keyword. By using let, we can perform a few transformations on a
-value but have the variable be immutable after those transformations have been completed.
+Shadowing is different from marking a variable as `mut`, because we will get a compile-time error if we accidentally try to reassign to this variable without using the `let` keyword. By using let, we can perform a few transformations on a value but have the variable be immutable after those transformations have been completed.
 
 ```rust
 let x = 32;

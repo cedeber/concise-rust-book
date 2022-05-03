@@ -8,7 +8,7 @@ Ownership is the most unique feature of Rust, and it enables Rust to make memory
 
 The _stack_ stores values in the order it gets them and removes the values in the opposite order. This is referred to as _last in, first out_. All data stored in the stack must have a known, fixed size. Data with an unknown size at compile time or a size that might change must be stored on the heap instead.
 
-The _heap_ is less organised. The operating system finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is called allocating on the heap.
+The _heap_ is less organised. The operating system finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is called _allocating on the heap_.
 
 Pushing to the stack is faster than allocating on the heap because the operating system never has to search for a place to store new data. Comparatively, allocating space on the heap requires more work, because the operating system must first find a big enough space to hold the data and then perform bookkeeping to prepare for the next allocation.
 
@@ -16,9 +16,19 @@ Accessing data in the heap is slower than accessing data on the stack because yo
 
 ## Memory and Allocation
 
+Rust has three kind of string:
+
+- String literal: `&str` which is known content.
+- String slice: `&String` which has a fixed size.
+- `String` which can grow and shrink.
+
+> `&str` does refer to string literals and String slices, as they both have a fixed size.
+
 In the case of a string literal, we know the content at compile time, so the text is hardcoded directly into the final executable. This is why string literals are fast and efficient.
 
 With the `String` type, in order to support a mutable, growable piece of text, we need to allocate an amount of memory on the heap, unknown at compile time, to hold the content.
+
+### Drop
 
 When a variable goes out of scope, Rust calls a special function for us. This function is called `drop`. Rust call `drop` automatically at the closing curly bracket.
 
@@ -144,7 +154,7 @@ fn main() {
 
 It can be borrowed, though. For that you need to use references and lifetime tags.
 
-The & indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
+The `&` indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
 piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of
 Rust’s major advantages is how safe and easy it is to use references. References passed to Person<'a> will now be alive
 as long as its usage, which is the implicit lifetime of main().
