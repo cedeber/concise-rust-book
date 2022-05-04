@@ -96,7 +96,7 @@ let (a, b) = (3, 7);
 // Destructuring with Rest
 let Vec2 { x,..} = v2;
 
-println! {"{:?}, {:?}, {:?}", v2, b, x} // => Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
+println!("{:?}, {:?}, {:?}", v2, b, x) // => Vec2 { x: 1.0, y: 2.0 }, 7, 1.0
 ```
 
 #### Throw away a value
