@@ -185,7 +185,7 @@ let s2 = s1;
 <p>A <code>String</code> is made of three parts: a <em>pointer</em> to the memory that holds the content of the string, a <em>length</em>, and a <em>capacity</em>.</p>
 <div style="display: flex; gap: 40px; justify-content: center;">
 <div>
-<p style="text-align: center;">s1</p>
+<p style="text-align: center;">s1 data</p>
 <table><thead><tr><th>name</th><th>value</th></tr></thead><tbody>
 <tr><td>ptr</td><td>→</td></tr>
 <tr><td>len</td><td>5</td></tr>
@@ -193,7 +193,7 @@ let s2 = s1;
 </tbody></table>
 </div>
 <div>
-<p style="text-align: center;">data</p>
+<p style="text-align: center;">content</p>
 <table><thead><tr><th>index</th><th>value</th></tr></thead><tbody>
 <tr><td>0</td><td>h</td></tr>
 <tr><td>1</td><td>e</td></tr>
@@ -239,60 +239,7 @@ In other words, there’s no difference between deep and shallow copying here, s
 </ul>
 <h3 id="ownership-and-functions"><a class="header" href="#ownership-and-functions">Ownership and Functions</a></h3>
 <p>Passing a variable to a function will <code>move</code> or <code>copy</code>, just as assignment does.
-The ownership of a variable follows the same pattern every time: assigning a value to another variable moves it.</p>
-<hr />
-<h2 id="ownership-rules"><a class="header" href="#ownership-rules">Ownership rules</a></h2>
-<ul>
-<li>Each value in Rust has a variable that's called its <em>owner</em>.</li>
-<li>There can be only one owner at a time.</li>
-<li>When the owner goes out of scope, the value will be dropped.</li>
-</ul>
-<p>This first example will fail as name has been passed to <code>Person.first_name</code>, bound to <code>p</code> and is not owned by <code>name</code> anymore.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">struct Person {
-	first_name: String,
-}
-
-fn main() {
-	let name = String::from(&quot;Cédric&quot;);
-	//  ---- move occurs because `name` has type `String`,
-	//       which does not implement the `Copy` trait
-
-	let p = Person { first_name: name };
-	//                            ---- value moved here
-
-	println!(&quot;{}&quot;, name);
-	//             ^^^^ value borrowed here after move
-}
-</code></pre></pre>
-<p>It can be borrowed, though. For that you need to use references and lifetime tags.</p>
-<p>The <code>&amp;</code> indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
-piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of
-Rust’s major advantages is how safe and easy it is to use references. References passed to Person&lt;'a&gt; will now be alive
-as long as its usage, which is the implicit lifetime of main().</p>
-<pre><pre class="playground"><code class="language-rust edition2021">struct Person&lt;'a&gt; {
-	first_name: &amp;'a str,
-}
-
-fn main() {
-	let name = String::from(&quot;Cédric&quot;);
-	let _p = Person { first_name: &amp;name };
-
-	println!(&quot;{}&quot;, name);
-}
-</code></pre></pre>
-<p>Or simply copy or clone the value. Copy is a shallow copy, while Clone is a deep clone.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">struct Person {
-	name: String,
-}
-
-fn main() {
-	let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
-	let _p = Person { name: name.clone() };
-
-	println!(&quot;{}&quot;, name);
-}
-</code></pre></pre>
-<hr />
+The ownership of a variable follows the same pattern every time: assigning a value to another variable <strong>moves</strong> it.</p>
 <h2 id="references-and-borrowing"><a class="header" href="#references-and-borrowing">References and Borrowing</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
 	let s1 = String::from(&quot;hello&quot;);
@@ -343,6 +290,8 @@ println!(&quot;{}, {}, and {}&quot;, r1, r2, r3);
 }
 
 fn dangle() -&gt; &amp;String {
+//             ^ expected named lifetime parameter
+
 	let s = String::from(&quot;hello&quot;);
 
 	&amp;s
@@ -383,11 +332,63 @@ println!(&quot;the first word is: {}&quot;, word);
 <li>String literals are slices</li>
 <li>Arrays are a general slice type, like <code>&amp;[i32]</code></li>
 </ul>
+<h2 id="recap"><a class="header" href="#recap">Recap</a></h2>
+<h3 id="the-rules-of-ownership"><a class="header" href="#the-rules-of-ownership">The Rules of Ownership</a></h3>
+<ul>
+<li>Each value in Rust has a variable that's called its <em>owner</em>.</li>
+<li>There can be only one owner at a time.</li>
+<li>When the owner goes out of scope, the value will be dropped.</li>
+</ul>
+<p>The next example will fail as name has been passed to <code>Person.first_name</code>, bound to <code>p</code> and is not owned by <code>name</code> anymore.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">struct Person {
+	first_name: String,
+}
+
+fn main() {
+	let name = String::from(&quot;Cédric&quot;);
+	//  ---- move occurs because `name` has type `String`,
+	//       which does not implement the `Copy` trait
+
+	let p = Person { first_name: name };
+	//                            ---- value moved here
+
+	println!(&quot;{}&quot;, name);
+	//             ^^^^ value borrowed here after move
+}
+</code></pre></pre>
+<p>It can be borrowed, though. For that you need to use references and lifetime tags.</p>
 <h3 id="the-rules-of-references"><a class="header" href="#the-rules-of-references">The Rules of References</a></h3>
 <ul>
 <li>At any given time, you can have <em>either</em> one mutable reference <em>or</em> any number of immutable references.</li>
 <li>References must always be valid.</li>
 </ul>
+<p>The <code>&amp;</code> indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
+piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of
+Rust’s major advantages is how safe and easy it is to use references. References passed to Person&lt;'a&gt; will now be alive
+as long as its usage, which is the implicit lifetime of main().</p>
+<pre><pre class="playground"><code class="language-rust edition2021">struct Person&lt;'a&gt; {
+	first_name: &amp;'a str,
+}
+
+fn main() {
+	let name = String::from(&quot;Cédric&quot;);
+	let _p = Person { first_name: &amp;name };
+
+	println!(&quot;{}&quot;, name);
+}
+</code></pre></pre>
+<p>Or simply copy or clone the value. Copy is a shallow copy, while Clone is a deep clone.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">struct Person {
+	name: String,
+}
+
+fn main() {
+	let name = format!(&quot;Hello, {}!&quot;, &quot;World&quot;);
+	let _p = Person { name: name.clone() };
+
+	println!(&quot;{}&quot;, name);
+}
+</code></pre></pre>
 
                     </main>
 
