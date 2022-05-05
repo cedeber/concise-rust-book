@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust-history.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables-data-types.html"><strong aria-hidden="true">1.1.</strong> Variables and Data Types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership-borrowing-slices.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Slices</a></li><li class="chapter-item expanded "><a href="ch01-04-structs-enums-implementation.html"><strong aria-hidden="true">1.4.</strong> Struct, Enums and Implementation</a></li><li class="chapter-item expanded "><a href="ch01-05-collections.html" class="active"><strong aria-hidden="true">1.5.</strong> Collections</a></li><li class="chapter-item expanded "><a href="ch01-06-generics-traits-lifetimes.html"><strong aria-hidden="true">1.6.</strong> Generics, Traits and Lifetimes</a></li><li class="chapter-item expanded "><a href="ch01-07-closures-iterators.html"><strong aria-hidden="true">1.7.</strong> Closures and Iterators</a></li><li class="chapter-item expanded "><a href="ch01-08-control-flow.html"><strong aria-hidden="true">1.8.</strong> Control Flow</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.9.</strong> Smart Pointers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.10.</strong> Asynchronous Programming</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.11.</strong> Concurrency</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.12.</strong> Macros</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Tests, Documentation and Benchmarking</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="ch00-01-foreword.html">Foreword</a></li><li class="chapter-item expanded "><a href="ch01-00-rust-history.html"><strong aria-hidden="true">1.</strong> Concise Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-variables-data-types.html"><strong aria-hidden="true">1.1.</strong> Variables and Data Types</a></li><li class="chapter-item expanded "><a href="ch01-02-functions-block-scope.html"><strong aria-hidden="true">1.2.</strong> Functions, Blocks and Scope</a></li><li class="chapter-item expanded "><a href="ch01-03-ownership-borrowing-slices.html"><strong aria-hidden="true">1.3.</strong> Ownership, Borrowing and Slices</a></li><li class="chapter-item expanded "><a href="ch01-04-structs-enums-implementation.html"><strong aria-hidden="true">1.4.</strong> Struct, Enums and Implementation</a></li><li class="chapter-item expanded "><a href="ch01-05-generics-traits-lifetimes.html"><strong aria-hidden="true">1.5.</strong> Generics, Traits and Lifetimes</a></li><li class="chapter-item expanded "><a href="ch01-06-collections.html" class="active"><strong aria-hidden="true">1.6.</strong> Collections</a></li><li class="chapter-item expanded "><a href="ch01-07-closures-iterators.html"><strong aria-hidden="true">1.7.</strong> Closures and Iterators</a></li><li class="chapter-item expanded "><a href="ch01-08-control-flow.html"><strong aria-hidden="true">1.8.</strong> Control Flow</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.9.</strong> Smart Pointers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.10.</strong> Asynchronous Programming</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.11.</strong> Concurrency</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.12.</strong> Macros</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Concise WebAssembly</div></li><li class="chapter-item expanded "><a href="ch03-00-crates-modules.html"><strong aria-hidden="true">3.</strong> Crates and Modules</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-xx-useful-crates.html"><strong aria-hidden="true">3.1.</strong> Useful Crates</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Tests, Documentation and Benchmarking</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -253,6 +253,9 @@ let s = format!(&quot;{}-{}-{}&quot;, s1, s2, s3);
 </blockquote>
 <h2 id="hash-maps"><a class="header" href="#hash-maps">Hash Maps</a></h2>
 <p>The type <code>HashMap&lt;K, V&gt;</code> stores a mapping of keys of type <code>K</code> to values of type <code>V</code>.</p>
+<blockquote>
+<p>Each key can only have one value associated with it at a time.</p>
+</blockquote>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -301,9 +304,6 @@ let scores: HashMap&lt;_, _&gt; = teams.iter().zip(initial_scores.iter()).collec
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="updating-a-hash-map"><a class="header" href="#updating-a-hash-map">Updating a Hash Map</a></h2>
-<blockquote>
-<p>Each key can only have on value associated with it at a time.</p>
-</blockquote>
 <p>If we insert a key and a value into a hash map and then insert that same key with a different value, the value associated with that key will be replaced.</p>
 <p>Hash Maps have a special API for inserting a value only if the key has no value, called <code>entry</code>. It takes the key you want to check as a parameter. The return value of the entry method is an enum called <code>Entry</code> that represents a value that might or might not exist.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -327,10 +327,10 @@ scores.entry(String::from(&quot;Blue&quot;)).or_insert(50);
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ch01-04-structs-enums-implementation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch01-05-generics-traits-lifetimes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="ch01-06-generics-traits-lifetimes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="ch01-07-closures-iterators.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -339,10 +339,10 @@ scores.entry(String::from(&quot;Blue&quot;)).or_insert(50);
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ch01-04-structs-enums-implementation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch01-05-generics-traits-lifetimes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="ch01-06-generics-traits-lifetimes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="ch01-07-closures-iterators.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
