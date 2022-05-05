@@ -117,6 +117,8 @@ Getting grapheme clusters from strings is complex, so this functionality is not 
 
 The type `HashMap<K, V>` stores a mapping of keys of type `K` to values of type `V`.
 
+> Each key can only have one value associated with it at a time.
+
 ```rust
 use std::collections::HashMap;
 
@@ -160,8 +162,6 @@ for (key, value) in &scores {
 ```
 
 ## Updating a Hash Map
-
-> Each key can only have on value associated with it at a time.
 
 If we insert a key and a value into a hash map and then insert that same key with a different value, the value associated with that key will be replaced.
 
