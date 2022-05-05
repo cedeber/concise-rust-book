@@ -132,7 +132,7 @@ fn main() {
 Rust's enums are most similar to _algebraic data types_ in functional languages.
 Note that the variants of the enum are namespaced (`::`) under its identifier.
 
-We can put data directly into each enum variant. Each variant can have different types and amount of associated data.
+We can put data directly into each enum variant. You can put any kind of data inside an enum variant: strings, numeric types, or struct, for example. You can even include another enum.
 
 ```rust
 enum IpAddr {
@@ -144,9 +144,7 @@ let home = IpAddr::V4(127, 0, 0, 1);
 let loopback = IpAddr::V6(String::from("::1"));
 ```
 
-You can put any kind of data inside an enum variant: strings, numeric types, or struct, for example. You can even include another enum.
-
-### The billion dollars mistake
+### The Billion Dollars Mistake
 
 The problem with `null` values is that if you try to use a `null` value as a not-null value, you will get an error of some kind.
 As such, Rust does not have nulls, but it does have an enum that can encode the concept of a value being present or absent.
@@ -217,18 +215,20 @@ Another method, `expect`, which is similar to `unwrap`, lets us also choose the 
 let f = File::open("hello.txt").expect("Failed to open hello.txt");
 ```
 
-> It would be appropriate to call `unwrap` when you have some other logic that ensures the `Result` will have an `Ok`value, but the logic isn't something the compiler understands.
+> It would be appropriate to call `unwrap` when you have some other logic that ensures the `Result` will have an `Ok` value, but the logic isn't something the compiler understands.
 
 #### Propagating Errors
 
 This pattern of propagating errors is so common in Rust that Rust provides the question mark operator `?` to make this easier. Error values that have the `?` operator called on them go through the `from` function, defined in the `From` trait in the standard library, which is used to convert errors from one type into another.
 
-the `?` operator eliminates a lot of boilerplate and makes this function's implementation simpler. We could event shorten the code further by chaining method calls immediately after the `?`.
+The `?` operator eliminates a lot of boilerplate and makes this function's implementation simpler. We could even shorten the code further by chaining method calls immediately after the `?`.
 
 ```rust
 fn read_username_from_file() -> Result<String, io::error> {
 	let mut s = String::new();
+
 	File::open("hello.txt")?.read_to_string(&mut s)?;
+
 	Ok(s);
 }
 ```
