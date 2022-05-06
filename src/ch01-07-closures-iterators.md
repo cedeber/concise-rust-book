@@ -2,33 +2,26 @@
 
 ## Closures
 
-Rust's closures are anonymous functions you cqn save in a variable or pass as arguments to other functions.
-
-To define a closure, we start with a pair if vertical pipes (`|`), inside which we specify the parameters to the closure. After the parameters, we place curly brackets that hold the body of the closure – these are optional if the closure body is a single expression.
-
-Closures don't require you to annotate the types of the parameters or the return value like `fn` functions do. But as with variables, we can add type annotations of we want to increase explicitness and clarity at the cost of being more verbose than is strictly necessary.
+Rust's closures are anonymous functions you can save in a variable or pass as arguments to other functions.
 
 ```rust
 let x = vec![1, 2, 3, 4]
     .iter()
     .map(|x| x + 3);
+```
 
+To define a closure, we start with a pair of vertical pipes (`|`), inside which we specify the parameters to the closure. After the parameters, we place curly brackets that hold the body of the closure – these are optional if the closure body is a single expression.
+
+Closures don't require you to annotate the types of the parameters or the return value like `fn` functions do. But as with variables, we can add type annotations of we want to increase explicitness and clarity at the cost of being more verbose than is strictly necessary.
+
+```rust
 let closure_annotated = |i: i32| -> i32 { i + 1 };
 let closure_inferred = |i | i + 1 ;
 ```
 
 We can defined a closure and store the _closure_ in a variable rather than storing the result of the function call.
 
-```rust
-let expensive_closure = |num| {
-	thread::sleep(Duration::from_secs(2));
-	num
-}
-```
-
-> The first time we call a closure with any value, the compiler infers the type of it and the return type of the closure. Those types are the locked into the closure and we get a type error if we try to use a different type with the same closure.
-
-The `Fn` traits are provided by the standard library. All closures implement at least on the traits: `Fn`, `FnMut` or `FnOnce`.
+The first time we call a closure with any value, the compiler infers the type of it and the return type of the closure. Those types are the locked into the closure and we get a type error if we try to use a different type with the same closure.
 
 ### Capturing the Environment with Closures
 
@@ -42,6 +35,8 @@ assert!(equal_to_x(y));
 ```
 
 Closures can capture values from their environment in three ways, which directly map to the three ways a function can take a parameter: taking ownership, borrowing mutably, and borrowing immutably. These are encoded in the three `Fn` traits.
+
+> The `Fn` traits are provided by the standard library. All closures implement at least one of the traits: `Fn`, `FnMut` or `FnOnce`.
 
 <!-- prettier-ignore -->
 | Trait    | Description |
