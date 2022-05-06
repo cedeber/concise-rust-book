@@ -1492,34 +1492,26 @@ scores.entry(String::from(&quot;Blue&quot;)).or_insert(50);
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="closures-and-iterators"><a class="header" href="#closures-and-iterators">Closures and Iterators</a></h1>
 <h2 id="closures"><a class="header" href="#closures">Closures</a></h2>
-<p>Rust's closures are anonymous functions you cqn save in a variable or pass as arguments to other functions.</p>
-<p>To define a closure, we start with a pair if vertical pipes (<code>|</code>), inside which we specify the parameters to the closure. After the parameters, we place curly brackets that hold the body of the closure – these are optional if the closure body is a single expression.</p>
-<p>Closures don't require you to annotate the types of the parameters or the return value like <code>fn</code> functions do. But as with variables, we can add type annotations of we want to increase explicitness and clarity at the cost of being more verbose than is strictly necessary.</p>
+<p>Rust's closures are anonymous functions you can save in a variable or pass as arguments to other functions.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let x = vec![1, 2, 3, 4]
     .iter()
     .map(|x| x + 3);
-
-let closure_annotated = |i: i32| -&gt; i32 { i + 1 };
+<span class="boring">}
+</span></code></pre></pre>
+<p>To define a closure, we start with a pair of vertical pipes (<code>|</code>), inside which we specify the parameters to the closure. After the parameters, we place curly brackets that hold the body of the closure – these are optional if the closure body is a single expression.</p>
+<p>Closures don't require you to annotate the types of the parameters or the return value like <code>fn</code> functions do. But as with variables, we can add type annotations of we want to increase explicitness and clarity at the cost of being more verbose than is strictly necessary.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let closure_annotated = |i: i32| -&gt; i32 { i + 1 };
 let closure_inferred = |i | i + 1 ;
 <span class="boring">}
 </span></code></pre></pre>
 <p>We can defined a closure and store the <em>closure</em> in a variable rather than storing the result of the function call.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>let expensive_closure = |num| {
-	thread::sleep(Duration::from_secs(2));
-	num
-}
-<span class="boring">}
-</span></code></pre></pre>
-<blockquote>
 <p>The first time we call a closure with any value, the compiler infers the type of it and the return type of the closure. Those types are the locked into the closure and we get a type error if we try to use a different type with the same closure.</p>
-</blockquote>
-<p>The <code>Fn</code> traits are provided by the standard library. All closures implement at least on the traits: <code>Fn</code>, <code>FnMut</code> or <code>FnOnce</code>.</p>
 <h3 id="capturing-the-environment-with-closures"><a class="header" href="#capturing-the-environment-with-closures">Capturing the Environment with Closures</a></h3>
 <p>Closures have an additional capability that functions don`t have: they can capture their environment and access variables from the scope in which they are defined.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -1532,6 +1524,9 @@ assert!(equal_to_x(y));
 <span class="boring">}
 </span></code></pre></pre>
 <p>Closures can capture values from their environment in three ways, which directly map to the three ways a function can take a parameter: taking ownership, borrowing mutably, and borrowing immutably. These are encoded in the three <code>Fn</code> traits.</p>
+<blockquote>
+<p>The <code>Fn</code> traits are provided by the standard library. All closures implement at least one of the traits: <code>Fn</code>, <code>FnMut</code> or <code>FnOnce</code>.</p>
+</blockquote>
 <!-- prettier-ignore -->
 <table><thead><tr><th>Trait</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>FnOnce</code></td><td>consumes the variables it captures from its enclosing scope, known as closure's <em>environment</em>. To consume the captured variables, the closure must take ownership of these variables and move them into the closure when it is defined. The <code>Once</code> part represents the fact that the closure can not take ownership more than once, so it can be called only once.</td></tr>
