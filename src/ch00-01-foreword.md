@@ -26,3 +26,6 @@ that.
 - [A half-hour to learn Rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust)
   from [amos](https://fasterthanli.me)
 - ...
+
+- [Rust by example](https://doc.rust-lang.org/stable/rust-by-example/)
+- [The Rustonomicon](https://doc.rust-lang.org/nomicon/)
