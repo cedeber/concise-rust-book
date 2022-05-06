@@ -157,10 +157,22 @@ a mistake, which is to expect, as I still consider myself as a Rust beginner. Th
 that.</p>
 <h2 id="inspiration-and-references"><a class="header" href="#inspiration-and-references">Inspiration and references</a></h2>
 <ul>
-<li><a href="https://doc.rust-lang.org/stable/book/">The official Rust Book</a>, of course, from which I shamelessly copy the important parts to create this best-of concise book. It is very well written and a must-read recommendation if I convince you to learn more about Rust.</li>
-<li><a href="https://fasterthanli.me/articles/a-half-hour-to-learn-rust">A half-hour to learn Rust</a>
-from <a href="https://fasterthanli.me">amos</a></li>
-<li>...</li>
+<li>
+<p><a href="https://doc.rust-lang.org/stable/book/">The official Rust Book</a>, of course, from which I shamelessly copy the important parts to create this best-of concise book. It is very well written and a must-read recommendation if I convince you to learn more about Rust.</p>
+</li>
+<li>
+<p><a href="https://fasterthanli.me/articles/a-half-hour-to-learn-rust">A half-hour to learn Rust</a>
+from <a href="https://fasterthanli.me">amos</a></p>
+</li>
+<li>
+<p>...</p>
+</li>
+<li>
+<p><a href="https://doc.rust-lang.org/stable/rust-by-example/">Rust by example</a></p>
+</li>
+<li>
+<p><a href="https://doc.rust-lang.org/nomicon/">The Rustonomicon</a></p>
+</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="concise-rust"><a class="header" href="#concise-rust">Concise Rust</a></h1>
 <h2 id="short-history-of-rust"><a class="header" href="#short-history-of-rust">Short history of Rust</a></h2>
@@ -778,9 +790,9 @@ println!(&quot;The are is {} square pixels.&quot;, rect.area());
 <p>Each struct is allowed to have multiple <code>impl</code> blocks.</p>
 </blockquote>
 <h3 id="associated-functions"><a class="header" href="#associated-functions">Associated functions</a></h3>
-<p>Another useful feature of <code>impl</code> blocks is that we are allowed to define functions within <code>impl</code> blocks that <em>do not</em> take <code>self</code> as a parameter. These are called <em>associated functions</em> because they are associated with the struct.</p>
+<p>Another useful feature of <code>impl</code> blocks is that we are allowed to define functions within <code>impl</code> blocks that <em>do not</em> take <code>self</code> as a parameter. These are called <em>associated functions</em> because they are associated with the struct. They are called after the <code>::</code> syntax.</p>
 <blockquote>
-<p>They're still functions, not methods, because they don't have an instance of the struct to work with, like <code>String::from</code>.</p>
+<p>They're still functions, not methods, because they don't have an instance of the struct to work with, like <code>String::from</code>. An associated function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a <em>static method</em>.</p>
 </blockquote>
 <p>Associated functions are often used for constructors that will return a new instance of the struct. A common usage in the standard library and in the community is to define a <code>new</code> function. You can use the <em>field init shorthand</em> syntax to initialize a struct with variables.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -791,6 +803,8 @@ println!(&quot;The are is {} square pixels.&quot;, rect.area());
 		Rectangle { width, height };
 	}
 }
+
+let rect = Rectangle::new(30, 20);
 <span class="boring">}
 </span></code></pre></pre>
 <h3 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h3>
@@ -1147,8 +1161,7 @@ pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) {}
 }
 <span class="boring">}
 </span></code></pre></pre>
-<p>The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators.
-However you can only use the <code>impl Trait</code> if you are returning a single type.</p>
+<p>The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators. However you can only use the <code>impl Trait</code> if you are returning a single type.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -1166,7 +1179,7 @@ However you can only use the <code>impl Trait</code> if you are returning a sing
 <span class="boring">}
 </span></code></pre></pre>
 <blockquote>
-<p>Returning either a NewsArticle or a Tweet isn't allowed dur to restrictions around how the <code>impl Trait</code> is implemented in the compiler.</p>
+<p>Returning either a NewsArticle or a Tweet isn't allowed due to restrictions around how the <code>impl Trait</code> is implemented in the compiler.</p>
 </blockquote>
 <h3 id="derivable-traits"><a class="header" href="#derivable-traits">Derivable Traits</a></h3>
 <p>page 190, 507</p>
@@ -1197,31 +1210,21 @@ impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
 <blockquote>
 <p>In dynamically typed languages, we would get an error at runtime if we called a method on a type which didn’t define the method. But Rust moves these errors to compile time so we’re forced to fix the problems before our code is even able to run. Additionally, we don’t have to write code that checks for behavior at runtime because we’ve already checked at compile time.</p>
 </blockquote>
-<hr />
-<p>The <code>::</code> syntax in the <code>::new</code> line indicates that new is an associated function of the <code>Rectangle</code> type. An associated
-function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a _
-static method_.</p>
-<blockquote>
-<p>You will find a new function on many types, even in the standard library, because it's a common name for a function
-that makes a new value of some kind.</p>
-</blockquote>
 <h2 id="lifetimes"><a class="header" href="#lifetimes">Lifetimes</a></h2>
 <p>Most of the time, lifetimes are implicit and inferred, just like most of the time, types are inferred. We must annotate types when multiple types are possible. In a similar way, we must annotate lifetimes when the lifetimes of references could be related in a few different ways</p>
 <p>The main aim of lifetimes is to prevent dangling references, which cause a program to reference data other than the data it is intended to reference.</p>
 <h3 id="the-borrow-checker"><a class="header" href="#the-borrow-checker">The Borrow Checker</a></h3>
 <p>The Rust compiler has a borrow checker that compares scopes to determine whether all borrows are valid.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
-    {
-        let r;                // ---------+-- 'a
-                              //          |
-        {                     //          |
-            let x = 5;        // -+-- 'b  |
-            r = &amp;x;           //  |       |
-        }                     // -+       |
-                              //          |
-        println!(&quot;r: {}&quot;, r); //          |
-    }                         // ---------+
-}
+	let r;                // ---------+-- 'a
+						  //          |
+	{                     //          |
+		let x = 5;        // -+-- 'b  |
+		r = &amp;x;           //  |       |
+	}                     // -+       |
+						  //          |
+	println!(&quot;r: {}&quot;, r); //          |
+}                         // ---------+
 </code></pre></pre>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -1293,6 +1296,7 @@ We declare the name of the generic lifetime parameter inside angle brackets afte
 <span class="boring">}
 </span></code></pre></pre>
 <p>The lifetime parameter declaration after impl and its use after the type name are required, but we’re not required to annotate the lifetime of the reference to self because of the first elision rule.</p>
+<p>Check <a href="https://doc.rust-lang.org/nomicon/lifetime-elision.html">the Rustonomicon</a></p>
 <h3 id="the-static-lifetime"><a class="header" href="#the-static-lifetime">The Static Lifetime</a></h3>
 <p>One special lifetime we need to discuss is <code>'static</code>, which means that this reference can live for the entire duration of the program. All string literals have the <code>'static</code> lifetime.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">

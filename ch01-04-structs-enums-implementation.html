@@ -193,9 +193,9 @@ println!(&quot;The are is {} square pixels.&quot;, rect.area());
 <p>Each struct is allowed to have multiple <code>impl</code> blocks.</p>
 </blockquote>
 <h3 id="associated-functions"><a class="header" href="#associated-functions">Associated functions</a></h3>
-<p>Another useful feature of <code>impl</code> blocks is that we are allowed to define functions within <code>impl</code> blocks that <em>do not</em> take <code>self</code> as a parameter. These are called <em>associated functions</em> because they are associated with the struct.</p>
+<p>Another useful feature of <code>impl</code> blocks is that we are allowed to define functions within <code>impl</code> blocks that <em>do not</em> take <code>self</code> as a parameter. These are called <em>associated functions</em> because they are associated with the struct. They are called after the <code>::</code> syntax.</p>
 <blockquote>
-<p>They're still functions, not methods, because they don't have an instance of the struct to work with, like <code>String::from</code>.</p>
+<p>They're still functions, not methods, because they don't have an instance of the struct to work with, like <code>String::from</code>. An associated function is implemented on a type, rather than on a particular instance of a <code>Rectangle</code>. Some language call this a <em>static method</em>.</p>
 </blockquote>
 <p>Associated functions are often used for constructors that will return a new instance of the struct. A common usage in the standard library and in the community is to define a <code>new</code> function. You can use the <em>field init shorthand</em> syntax to initialize a struct with variables.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -206,6 +206,8 @@ println!(&quot;The are is {} square pixels.&quot;, rect.area());
 		Rectangle { width, height };
 	}
 }
+
+let rect = Rectangle::new(30, 20);
 <span class="boring">}
 </span></code></pre></pre>
 <h3 id="rest-and-destructuring"><a class="header" href="#rest-and-destructuring">Rest and Destructuring</a></h3>
