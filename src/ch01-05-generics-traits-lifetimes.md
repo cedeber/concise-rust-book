@@ -182,8 +182,7 @@ fn returns_summarizable() -> impl Summary {
 }
 ```
 
-The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators.
-However you can only use the `impl Trait` if you are returning a single type.
+The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators. However you can only use the `impl Trait` if you are returning a single type.
 
 ```rust
 fn returns_summarizable(switch: bool) -> impl Summary {
@@ -199,7 +198,7 @@ fn returns_summarizable(switch: bool) -> impl Summary {
 }
 ```
 
-> Returning either a NewsArticle or a Tweet isn't allowed dur to restrictions around how the `impl Trait` is implemented in the compiler.
+> Returning either a NewsArticle or a Tweet isn't allowed due to restrictions around how the `impl Trait` is implemented in the compiler.
 
 ### Derivable Traits
 
@@ -230,15 +229,6 @@ impl<T: Display> ToString for T {
 
 > In dynamically typed languages, we would get an error at runtime if we called a method on a type which didn’t define the method. But Rust moves these errors to compile time so we’re forced to fix the problems before our code is even able to run. Additionally, we don’t have to write code that checks for behavior at runtime because we’ve already checked at compile time.
 
----
-
-The `::` syntax in the `::new` line indicates that new is an associated function of the `Rectangle` type. An associated
-function is implemented on a type, rather than on a particular instance of a `Rectangle`. Some language call this a _
-static method_.
-
-> You will find a new function on many types, even in the standard library, because it's a common name for a function
-> that makes a new value of some kind.
-
 ## Lifetimes
 
 Most of the time, lifetimes are implicit and inferred, just like most of the time, types are inferred. We must annotate types when multiple types are possible. In a similar way, we must annotate lifetimes when the lifetimes of references could be related in a few different ways
@@ -251,17 +241,15 @@ The Rust compiler has a borrow checker that compares scopes to determine whether
 
 ```rust
 fn main() {
-    {
-        let r;                // ---------+-- 'a
-                              //          |
-        {                     //          |
-            let x = 5;        // -+-- 'b  |
-            r = &x;           //  |       |
-        }                     // -+       |
-                              //          |
-        println!("r: {}", r); //          |
-    }                         // ---------+
-}
+	let r;                // ---------+-- 'a
+						  //          |
+	{                     //          |
+		let x = 5;        // -+-- 'b  |
+		r = &x;           //  |       |
+	}                     // -+       |
+						  //          |
+	println!("r: {}", r); //          |
+}                         // ---------+
 ```
 
 ```rust
@@ -329,6 +317,8 @@ impl<'a> ImportantExcerpt<'a> {
 ```
 
 The lifetime parameter declaration after impl and its use after the type name are required, but we’re not required to annotate the lifetime of the reference to self because of the first elision rule.
+
+Check [the Rustonomicon](https://doc.rust-lang.org/nomicon/lifetime-elision.html)
 
 ### The Static Lifetime
 

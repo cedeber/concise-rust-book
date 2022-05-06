@@ -59,9 +59,9 @@ In the signature for `area` we use `&self` instead of `rectangle: &Rectangle` be
 
 ### Associated functions
 
-Another useful feature of `impl` blocks is that we are allowed to define functions within `impl` blocks that _do not_ take `self` as a parameter. These are called _associated functions_ because they are associated with the struct.
+Another useful feature of `impl` blocks is that we are allowed to define functions within `impl` blocks that _do not_ take `self` as a parameter. These are called _associated functions_ because they are associated with the struct. They are called after the `::` syntax.
 
-> They're still functions, not methods, because they don't have an instance of the struct to work with, like `String::from`.
+> They're still functions, not methods, because they don't have an instance of the struct to work with, like `String::from`. An associated function is implemented on a type, rather than on a particular instance of a `Rectangle`. Some language call this a _static method_.
 
 Associated functions are often used for constructors that will return a new instance of the struct. A common usage in the standard library and in the community is to define a `new` function. You can use the _field init shorthand_ syntax to initialize a struct with variables.
 
@@ -71,6 +71,8 @@ impl Rectangle {
 		Rectangle { width, height };
 	}
 }
+
+let rect = Rectangle::new(30, 20);
 ```
 
 ### Rest and Destructuring
