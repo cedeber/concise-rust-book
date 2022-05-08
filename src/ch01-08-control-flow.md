@@ -116,7 +116,7 @@ fn print_number(n: Number) {
 }
 ```
 
-one requirement for `match` expressions is that they need to be _exhaustive_. At least one arm needs to match.
+One requirement for `match` expressions is that they need to be _exhaustive_. At least one arm needs to match.
 One way to ensure you have covered every possibility is to have a catchall pattern for the last arm. A particular pattern `_` will match anything, but it never binds to a variable.
 
 ```rust

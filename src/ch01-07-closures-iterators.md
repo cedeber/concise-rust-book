@@ -78,7 +78,7 @@ pub trait Iterator {
 }
 ```
 
-> Notice this definition uses some new syntax: `type Item` and `Self::Item`, which are defining an _associated type_ with this trait. The `Item` type will be the type returned from the iterator.
+Notice this definition uses some new syntax: `type Item` and `Self::Item`, which are defining an _associated type_ with this trait. The `Item` type will be the type returned from the iterator.
 
 ```rust
 let v = vec![1, 2, 3];
@@ -92,13 +92,13 @@ assert_eq!(v_iter.next(), None);
 
 We need to make iterator mutable: calling the `next` method on an iterator changes internal state that the iterator uses to keep track of where it is in the sequence.
 
-We did not need to make `v_iter` mutable when we used a `for` loop because the lopp took ownership of `v_iter` and made it mutable behind the scenes.
+We did not need to make `v_iter` mutable when we used a `for` loop because the loop took ownership of `v_iter` and made it mutable behind the scenes.
 
 The `iter` method produces an iterator over immutable references. If we want to create an iterator that takes ownership of `v` and returns owned values, we can call `into_iter` instead of `iter`. Similarly, if we want to iterate over mutable references, we can call `iter_mut` instead of `iter`.
 
 ### Creating our own Iterators
 
-> The `Iterator` trait has a number of different methods with default implementations provided by the standard library. Other methods defined on the `Iterator`trait, known as _iterator adaptors_, allow you to change iterators into different kinds of iterators.
+The `Iterator` trait has a number of different methods with default implementations provided by the standard library. Other methods defined on the `Iterator`trait, known as _iterator adaptors_, allow you to change iterators into different kinds of iterators.
 
 ```rust
 struct Counter {
