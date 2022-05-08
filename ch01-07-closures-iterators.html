@@ -214,9 +214,7 @@ for val in v_iter {
 }
 <span class="boring">}
 </span></code></pre></pre>
-<blockquote>
 <p>Notice this definition uses some new syntax: <code>type Item</code> and <code>Self::Item</code>, which are defining an <em>associated type</em> with this trait. The <code>Item</code> type will be the type returned from the iterator.</p>
-</blockquote>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -230,12 +228,10 @@ assert_eq!(v_iter.next(), None);
 <span class="boring">}
 </span></code></pre></pre>
 <p>We need to make iterator mutable: calling the <code>next</code> method on an iterator changes internal state that the iterator uses to keep track of where it is in the sequence.</p>
-<p>We did not need to make <code>v_iter</code> mutable when we used a <code>for</code> loop because the lopp took ownership of <code>v_iter</code> and made it mutable behind the scenes.</p>
+<p>We did not need to make <code>v_iter</code> mutable when we used a <code>for</code> loop because the loop took ownership of <code>v_iter</code> and made it mutable behind the scenes.</p>
 <p>The <code>iter</code> method produces an iterator over immutable references. If we want to create an iterator that takes ownership of <code>v</code> and returns owned values, we can call <code>into_iter</code> instead of <code>iter</code>. Similarly, if we want to iterate over mutable references, we can call <code>iter_mut</code> instead of <code>iter</code>.</p>
 <h3 id="creating-our-own-iterators"><a class="header" href="#creating-our-own-iterators">Creating our own Iterators</a></h3>
-<blockquote>
 <p>The <code>Iterator</code> trait has a number of different methods with default implementations provided by the standard library. Other methods defined on the <code>Iterator</code>trait, known as <em>iterator adaptors</em>, allow you to change iterators into different kinds of iterators.</p>
-</blockquote>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
