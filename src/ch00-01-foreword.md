@@ -29,3 +29,4 @@ that.
 
 - [Rust by example](https://doc.rust-lang.org/stable/rust-by-example/)
 - [The Rustonomicon](https://doc.rust-lang.org/nomicon/)
+- [The Rust and WebAssembly Book](https://rustwasm.github.io/docs/book/)
