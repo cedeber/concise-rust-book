@@ -202,7 +202,7 @@ fn returns_summarizable(switch: bool) -> impl Summary {
 
 ### Derivable Traits
 
-page 190, 507
+> TODO: Do the macro chapter first
 
 ### Using Trait Bounds to Conditionally Implement Methods
 
