@@ -2,14 +2,13 @@
 
 Rust has a specific way of declaring things.
 
-By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is
-not in the prelude, you have to bring that type into scope explicitly with a `use` statement.
+By default, Rust brings only a few types into the scope of every program in the prelude. If a type you want to use is not in the prelude, you have to bring that type into scope explicitly with a `use` statement.
 
 ## Hierarchy
 
 The double colon `::` is an operator that allows us to namespace this particular `from` function under the `String` type.
 
-````rust
+```rust
 String::from("Hey");
 ```
 
@@ -37,16 +36,6 @@ Every module exports functions.
 ```rust
 use std::cmp::min(3, 8); // => 3
 use std::cmp::*
-````
-
-The JavaScript equivalent would be, considering that the folder `cmp` contains an `index.js` file.
-
-```javascript
-import { min } from "std/cmp";
-import { * as cmp } from "std/cmp";
-
-// or inside "std"
-import { min } from "./cmp";
 ```
 
 ### Types are namespace too
