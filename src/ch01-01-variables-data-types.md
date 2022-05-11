@@ -8,8 +8,7 @@ let foo = bar;
 
 This line creates a new variable named `foo` and binds it to the value of the `bar` variable.
 
-You don't need to define the type on assignment. But you must bind a value before usage. The compiler can usually
-infer what type we want to use based on the value and how we use it.
+You don't need to define the type on assignment. But you must bind a value before usage. The compiler can usually infer what type we want to use based on the value and how we use it.
 
 ```rust
 let str; // declare str

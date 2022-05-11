@@ -46,4 +46,4 @@ See more on the [cargo-edit crate page](https://crates.io/crates/cargo-edit).
 
 ## Other
 
-Cargo can do more, it is detailed in the next chapters.
+Cargo can also run examples, do testing, create documentation, do some benchmarking and even more. Some of those possibilities are detailed in the next chapters.
