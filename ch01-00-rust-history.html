@@ -139,12 +139,9 @@
                     <main>
                         <h1 id="concise-rust"><a class="header" href="#concise-rust">Concise Rust</a></h1>
 <h2 id="short-history-of-rust"><a class="header" href="#short-history-of-rust">Short history of Rust</a></h2>
-<p>Rust began, in 2006, as a side project of Graydon Hoare, an employee at Mozilla. Mozilla believed in the potential of
-this new language and began sponsoring it. It was revealed to the world in 2010.</p>
-<p>According to Hoare, the name of the language comes from the rust fungus. This has caused Rust programmers to adopt
-“Rustaceans” as their nickname of choice.</p>
-<p>In mid-2020, following the layoffs at Mozilla, the Rust core team said they were considering a new Rust foundation to
-boost Rust independence. It was officially announced in February 2021.</p>
+<p>Rust began, in 2006, as a side project of Graydon Hoare, an employee at Mozilla. Mozilla believed in the potential of this new language and began sponsoring it. It was revealed to the world in 2010.</p>
+<p>According to Hoare, the name of the language comes from the rust fungus. This has caused Rust programmers to adopt “Rustaceans” as their nickname of choice.</p>
+<p>In mid-2020, following the layoffs at Mozilla, the Rust core team said they were considering a new Rust foundation to boost Rust independence. It was officially announced in February 2021.</p>
 <h3 id="editions"><a class="header" href="#editions">Editions</a></h3>
 <ul>
 <li>Rust 2015: <code>1.0</code> (cargo’s <code>edition</code> has been introduced in 2017)</li>
@@ -152,37 +149,26 @@ boost Rust independence. It was officially announced in February 2021.</p>
 <li>Rust 2021: <code>1.56</code> or <code>edition=&quot;2021&quot;</code></li>
 </ul>
 <h2 id="why-rust"><a class="header" href="#why-rust">Why Rust?</a></h2>
-<p>Rust is a very nice language. It has been designed to cover most development areas, from an easy CLI application to
-system programming. And all of that with <strong>safety</strong>, <strong>control</strong> and <strong>productivity</strong> in mind.</p>
-<p>Regarding safety, you can think of Python, and for control, C. Rust is some kind of mix of the best of both of these
-worlds. While I do not think Rust is a good replacement for Python as such, it is for sure a perfect replacement for C
-or any low-level languages, with the safety and fun of Python, but without trading the <strong>performance</strong> of C-like
-languages at the same time.</p>
-<p>A more personal point of view, what I like too, is the fact that Rust is an <strong>explicit</strong> language. There is no magic.
-What you read if what it is going to happen. There are no tricks, like for instance in JavaScript, where Array and
-Object are passed by reference. If you don't know that, you will have weird side effects. In Rust you always know what
-happens, even with mutability. You will definitely code with <strong>confidence</strong>.</p>
+<p>Rust is a very nice language. It has been designed to cover most development areas, from an easy CLI application to system programming. And all of that with <strong>safety</strong>, <strong>control</strong> and <strong>productivity</strong> in mind.</p>
+<p>Regarding safety, you can think of Python, and for control, C. Rust is some kind of mix of the best of both of these worlds. While I do not think Rust is a good replacement for Python as such, it is for sure a perfect replacement for C or any low-level languages, with the safety and fun of Python, but without trading the <strong>performance</strong> of C-like languages at the same time.</p>
+<p>A more personal point of view, what I like too, is the fact that Rust is an <strong>explicit</strong> language. There is no magic. What you read if what it is going to happen. There are no tricks, like for instance in JavaScript, where Array and Object are passed by reference. If you don't know that, you will have weird side effects. In Rust you always know what happens, even with mutability. You will definitely code with <strong>confidence</strong>.</p>
 <blockquote>
-<p>The Rust programming language is fundamentally about empowerment: no matter what kind of code you are writing, Rust
-empowers you to reach further, to program with confidence in a wide variety of domains than you did before.</p>
+<p>The Rust programming language is fundamentally about empowerment: no matter what kind of code you are writing, Rust empowers you to reach further, to program with confidence in a wide variety of domains than you did before.</p>
 <p>— <em>Foreword from the Rust programming language book.</em></p>
 </blockquote>
 <p>In the other hand, it makes things a little bit more complex and <strong>noisy</strong>.
 Well, this is the reason of this book and why Rust is known to have a steep learning curve.</p>
 <h3 id="what-makes-it-different-to-most-of-common-programming-languages"><a class="header" href="#what-makes-it-different-to-most-of-common-programming-languages">What makes it different to most of common programming languages?</a></h3>
 <ul>
-<li>It does <strong>not have a garbage collector</strong>. But you can still choose how the memory is managed. And you do not have to
-free the memory yourself. It has a lot of smart pointers for <strong>memory efficiency</strong>.</li>
-<li>Because of how memory is managed - the <strong>ownership</strong> principle - it is <strong>memory and thread safe</strong>. There are no
-dangling pointers, no data race, no buffer overflow, no iterator invalidation.</li>
+<li>It does <strong>not have a garbage collector</strong>. But you can still choose how the memory is managed. And you do not have to free the memory yourself. It has a lot of smart pointers for <strong>memory efficiency</strong>.</li>
+<li>Because of how memory is managed - the <strong>ownership</strong> principle - it is <strong>memory and thread safe</strong>. There are no dangling pointers, no data race, no buffer overflow, no iterator invalidation.</li>
 <li>It keeps <strong>performance</strong>, very close to what C can offer. Even sometimes faster.</li>
 <li>No <code>null</code> pointer exceptions.</li>
 <li>No <code>class</code> and so, no <code>inheritance</code>.</li>
 <li>First-class <strong>WebAssembly</strong> support.</li>
 </ul>
 <h3 id="ecosystem"><a class="header" href="#ecosystem">Ecosystem</a></h3>
-<p>Last but not least, although not related to the Rust language itself, the whole ecosystem and tooling around Rust is
-just awesome. It is definitely feature-complete:</p>
+<p>Last but not least, although not related to the Rust language itself, the whole ecosystem and tooling around Rust is just awesome. It is definitely feature-complete:</p>
 <ul>
 <li>A complete ecosystem (<code>rustup</code>, <code>cargo</code>, <code>crates</code>, <code>rustfmt</code>, <code>clippy</code>, ...)</li>
 <li>Good IDE support (IntelliJ-based and VSCode)</li>

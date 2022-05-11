@@ -362,10 +362,7 @@ fn main() {
 <li>At any given time, you can have <em>either</em> one mutable reference <em>or</em> any number of immutable references.</li>
 <li>References must always be valid.</li>
 </ul>
-<p>The <code>&amp;</code> indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
-piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of
-Rust’s major advantages is how safe and easy it is to use references. References passed to Person&lt;'a&gt; will now be alive
-as long as its usage, which is the implicit lifetime of main().</p>
+<p>The <code>&amp;</code> indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of Rust’s major advantages is how safe and easy it is to use references. References passed to Person&lt;'a&gt; will now be alive as long as its usage, which is the implicit lifetime of main().</p>
 <pre><pre class="playground"><code class="language-rust edition2021">struct Person&lt;'a&gt; {
 	first_name: &amp;'a str,
 }
