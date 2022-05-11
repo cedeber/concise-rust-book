@@ -16,16 +16,14 @@ String::from("Hey");
 
 A crate may contains a lot of modules. A crate is a folder where, in its root, you have a `Cargo.toml` file.
 
-> You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it
-> with a single name, the node module name.
+> You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it with a single name, the node module name.
 
 ### Modules
 
 - A module is a file.
 - Or a folder with a mod.rs file inside.
 
-> In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead
-> of a name.
+> In the JavaScript world this is a module, or an ES module. This is when you import a file with a relative path instead of a name.
 
 ### Functions
 
