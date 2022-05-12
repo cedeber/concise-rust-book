@@ -20,4 +20,7 @@
 - [Concise WebAssembly]()
 - [Crates and Modules](ch03-00-crates-modules.md)
   - [Useful Crates](ch03-xx-useful-crates.md)
-- [Tests, Documentation and Benchmarking]()
+- [Rustup and Cargo](ch04-xx-ecosysten-rustup-cargo.md)
+  - [Testing]()
+  - [Documentation]()
+  - [Benchmarking]()

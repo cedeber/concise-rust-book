@@ -251,10 +251,7 @@ It can be borrowed, though. For that you need to use references and lifetime tag
 - At any given time, you can have _either_ one mutable reference _or_ any number of immutable references.
 - References must always be valid.
 
-The `&` indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one
-piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of
-Rust’s major advantages is how safe and easy it is to use references. References passed to Person<'a> will now be alive
-as long as its usage, which is the implicit lifetime of main().
+The `&` indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one piece of data without needing to copy that data into memory multiple times. References are a complex feature, one of Rust’s major advantages is how safe and easy it is to use references. References passed to Person<'a> will now be alive as long as its usage, which is the implicit lifetime of main().
 
 ```rust
 struct Person<'a> {
