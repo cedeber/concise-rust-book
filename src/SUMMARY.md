@@ -15,7 +15,7 @@
   - [Control Flow](ch01-08-control-flow.md)
   - [Smart Pointers]()
   - [Asynchronous Programming]()
-  - [Concurrency]()
+  - [Concurrency](ch01-xx-concurrency.md)
   - [Macros]()
 - [Concise WebAssembly]()
 - [Crates and Modules](ch03-00-crates-modules.md)
