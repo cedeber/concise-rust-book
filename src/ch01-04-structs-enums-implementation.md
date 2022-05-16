@@ -68,7 +68,7 @@ Associated functions are often used for constructors that will return a new inst
 ```rust
 impl Rectangle {
 	fn new(width: u32, height: u32) -> Self {
-		Rectangle { width, height };
+		Rectangle { width, height }
 	}
 }
 
