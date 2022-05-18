@@ -49,7 +49,7 @@ This error is due to the way vectors work: adding a new element onto the end of 
 
 ### Iterating over the Values in a Vector
 
-If we want to access each element in a vector in turn, we can iterate through all of the elements rather than use indices to access one at a time.
+If we want to access each element in a vector in turn, we can iterate through all the elements rather than use indices to access one at a time.
 
 We can also iterate over mutable references to each element in a mutable vector in order to make changes to all the elements.
 
@@ -64,7 +64,7 @@ for i in &mut v {
 
 ### Using an Enum to Store Multiple Types
 
-We said that vectors can only store values that are the same type. Fortunately, the variant of an enum are defined under the same enum type, so when we need to store elements of a different type in vector, we can defined and use an enum.
+We said that vectors can only store values that are the same type. Fortunately, the variant of an enum are defined under the same enum type, so when we need to store elements of a different type in vector, we can define and use an enum.
 
 ```rust
 enum SpreadsheetCell {
@@ -103,7 +103,7 @@ let s = format!("{}-{}-{}", s1, s2, s3);
 
 > A `String` is a wrapper over a `Vec<u8>`.
 
-In UTF-8, each Unicode scalar value may takes more than one byte of storage. Think of Cyrillic, Japanese or Hindi signs. Therefore, an index into the string's bytes will not always correlate to a valid Unicode scalar value.
+In UTF-8, each Unicode scalar value may take more than one byte of storage. Think of Cyrillic, Japanese or Hindi signs. Therefore, an index into the string's bytes will not always correlate to a valid Unicode scalar value.
 
 Another point about UTF-8 is that there are actually three relevant ways to look at strings from Rust's perspective: as bytes, scalar values, and grapheme clusters (the closest thing to what we would call _letters_).
 
@@ -153,7 +153,7 @@ let scores: HashMap<_, _> = teams.iter().zip(initial_scores.iter()).collect();
 
 We can get a value out of the hash map by proving its key to the `get` method. The result is wrapped in `Some` because `get` returns an `Option<&V>`.
 
-We can iterates over each key/value pair in a similar manner as we do with vectors, using a `for` loop.
+We can iterate over each key/value pair in a similar manner as we do with vectors, using a `for` loop.
 
 ```rust
 for (key, value) in &scores {

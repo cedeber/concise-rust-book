@@ -1,6 +1,6 @@
 # Ownership, Borrowing and Slices
 
-Ownership is the most unique feature of Rust, and it enables Rust to make memory safety guarantees without needing a garbage collector.
+Ownership is one of the unique feature of Rust, and it enables Rust to make memory safety guarantees without needing a garbage collector.
 
 > Don’t try to fight against the borrow checker.
 
@@ -100,7 +100,7 @@ When you see a call to `clone`, you know that some arbitrary code is being execu
 ### Stack-Only Data: Copy
 
 Types such as integers that have a known size at compile time are stored entirely on the stack, so copies of the actual values are quick to make.
-In other words, there’s no difference between deep and shallow copying here, so calling clone wouldn’t do anything different from the usual shallow copying and we can leave it out.
+In other words, there’s no difference between deep and shallow copying here, so calling clone would not do anything different from the usual shallow copying, and we can leave it out.
 
 > Rust has a special annotation called the `Copy` trait that we can place on types that are stored on the stack like integers are.
 

@@ -4,7 +4,7 @@
 
 Generics are abstract stand-ins for concrete types or other properties.
 
-We can use generics to create definitions for items like function signatures or structs, which we can then use with many different concrete data types.
+We can use generics to create definitions for items like function signatures or structs, which we can then use with many concrete data types.
 
 To define the generic `largest` function, place type name declaration inside angle brackets, `<>`, between the name of the function and the parameter list.
 
@@ -120,7 +120,7 @@ fn main() {
 
 The difference is that after `impl`, we put the trait name that we want to implement, then use the `for` keyword, and then specify the name of the type we want to implement the trait for. Within the `impl` block, we put the method signatures that the trait definition has defined.
 
-One restriction to note with trait implementations is that we can implement a trait on a type only if at least one of the trait or the type is local to our crate. But we can’t implement external traits on external types. This restriction is part of a property of programs called _coherence_, and more specifically the _orphan rule_, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust wouldn’t know which implementation to use.
+One restriction to note with trait implementations is that we can implement a trait on a type only if at least one of the trait or the type is local to our crate. But we can’t implement external traits on external types. This restriction is part of a property of programs called _coherence_, and more specifically the _orphan rule_, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust would not know which implementation to use.
 
 ### Default Implementations
 
@@ -182,7 +182,7 @@ fn returns_summarizable() -> impl Summary {
 }
 ```
 
-The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators. However you can only use the `impl Trait` if you are returning a single type.
+The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators. However, you can only use the `impl Trait` if you are returning a single type.
 
 ```rust
 fn returns_summarizable(switch: bool) -> impl Summary {
@@ -227,7 +227,7 @@ impl<T: Display> ToString for T {
 }
 ```
 
-> In dynamically typed languages, we would get an error at runtime if we called a method on a type which didn’t define the method. But Rust moves these errors to compile time so we’re forced to fix the problems before our code is even able to run. Additionally, we don’t have to write code that checks for behavior at runtime because we’ve already checked at compile time.
+> In dynamically typed languages, we would get an error at runtime if we called a method on a type which did not define the method. But Rust moves these errors to compile time, so we’re forced to fix the problems before our code is even able to run. Additionally, we don’t have to write code that checks for behavior at runtime because we’ve already checked at compile time.
 
 ## Lifetimes
 
@@ -289,12 +289,12 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
 ```
 
 Remember, when we specify the lifetime parameters in this function signature, we’re not changing the lifetimes of any values passed in or returned. Rather, we’re specifying that the borrow checker should reject any values that don’t adhere to these constraints.
-In other words, the generic lifetime `'a` will get the concrete lifetime that is equal to the smaller of the lifetimes of `x` and `y`.
+In other words, the generic lifetime `'a` will get the concrete lifetime that is equal to the smallest of the lifetimes of `x` and `y`.
 
 > The way in which you need to specify lifetime parameters depends on what your function is doing.
 
 So far, we’ve only defined structs to hold owned types. It’s possible for structs to hold references, but in that case we would need to add a lifetime annotation on every reference in the struct’s definition.
-We declare the name of the generic lifetime parameter inside angle brackets after the name of the struct so we can use the lifetime parameter in the body of the struct definition.
+We declare the name of the generic lifetime parameter inside angle brackets after the name of the struct, so we can use the lifetime parameter in the body of the struct definition.
 
 ```rust
 struct ImportantExcerpt<'a> {
@@ -304,7 +304,7 @@ struct ImportantExcerpt<'a> {
 
 ### Lifetime elision
 
-You have learned that every reference has a lifetime and that you need to specify lifetime parameters for functions or structs that use references. The Rust team found that Rust programmers were entering the same lifetime annotations over and over in particular situations. These situations were predictable and followed a few deterministic patterns. The developers programmed these patterns into the compiler’s code so the borrow checker could infer the lifetimes in these situations and wouldn’t need explicit annotations.
+You have learned that every reference has a lifetime and that you need to specify lifetime parameters for functions or structs that use references. The Rust team found that Rust programmers were entering the same lifetime annotations over and over in particular situations. These situations were predictable and followed a few deterministic patterns. The developers programmed these patterns into the compiler’s code so the borrow checker could infer the lifetimes in these situations and would not need explicit annotations.
 
 > The patterns programmed into Rust’s analysis of references are called the _lifetime elision rules_. Lifetimes on function or method parameters are called _input lifetimes_, and lifetimes on return values are called _output lifetimes_.
 

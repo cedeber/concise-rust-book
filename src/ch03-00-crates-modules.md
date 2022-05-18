@@ -14,7 +14,7 @@ String::from("Hey");
 
 ### Crate
 
-A crate may contains a lot of modules. A crate is a folder where, in its root, you have a `Cargo.toml` file.
+A crate may contain a lot of modules. A crate is a folder where, in its root, you have a `Cargo.toml` file.
 
 > You can compare it to package.json in the JavaScript world, although we used to call it a node module. You import it with a single name, the node module name.
 

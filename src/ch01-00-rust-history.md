@@ -20,16 +20,16 @@ Rust is a very nice language. It has been designed to cover most development are
 
 Regarding safety, you can think of Python, and for control, C. Rust is some kind of mix of the best of both of these worlds. While I do not think Rust is a good replacement for Python as such, it is for sure a perfect replacement for C or any low-level languages, with the safety and fun of Python, but without trading the **performance** of C-like languages at the same time.
 
-A more personal point of view, what I like too, is the fact that Rust is an **explicit** language. There is no magic. What you read if what it is going to happen. There are no tricks, like for instance in JavaScript, where Array and Object are passed by reference. If you don't know that, you will have weird side effects. In Rust you always know what happens, even with mutability. You will definitely code with **confidence**.
+A more personal point of view, what I like too, is the fact that Rust is an **explicit** language. There is no magic. What you read if what it is going to happen. There are no tricks, like for instance in JavaScript, where Array and Object are passed by reference. If you don't know that, you will have weird side effects. In Rust, you always know what happens, even with mutability. You will definitely code with **confidence**.
 
 > The Rust programming language is fundamentally about empowerment: no matter what kind of code you are writing, Rust empowers you to reach further, to program with confidence in a wide variety of domains than you did before.
 >
 > — _Foreword from the Rust programming language book._
 
-In the other hand, it makes things a little bit more complex and **noisy**.
+In the other hand, it makes things a bit more complex and **noisy**.
 Well, this is the reason of this book and why Rust is known to have a steep learning curve.
 
-### What makes it different to most of common programming languages?
+### What makes it different to most common programming languages?
 
 - It does **not have a garbage collector**. But you can still choose how the memory is managed. And you do not have to free the memory yourself. It has a lot of smart pointers for **memory efficiency**.
 - Because of how memory is managed - the **ownership** principle - it is **memory and thread safe**. There are no dangling pointers, no data race, no buffer overflow, no iterator invalidation.

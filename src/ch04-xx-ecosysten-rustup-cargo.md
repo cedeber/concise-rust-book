@@ -34,7 +34,7 @@ Clippy is a linter which is more features complete than what the compiler can pr
 
 It is usually installed thanks to `rustup` and you can lint your code with `cargo clippy`. In order to apply the fix, run `cargo clippy --fix`
 
-Usually Clippy is well integrated into the IDE but needs to be activated. As you can imagine it needs more power and time to run properly, but beleave me, it's an incredible tool.
+Usually Clippy is well integrated into the IDE but needs to be activated. As you can imagine it needs more power and time to run properly, but believe me, it's an incredible tool.
 
 See more on the [Clippy GitHub repository](https://github.com/rust-lang/rust-clippy)
 

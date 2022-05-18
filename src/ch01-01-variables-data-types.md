@@ -62,7 +62,7 @@ let x = 2.0 // f64
 let t: bool = true
 ```
 
-When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you can use the standard library type `Wrapping`.
+When you are compiling in release mode, Rust does not check for integers overflow. If you want to wrap explicitly, you can use the standard library type `Wrapping`.
 
 ```rust
 let zero = 0u8;
@@ -92,7 +92,7 @@ Rust has two primitive compound types: **tuples** and **arrays**.
 #### The Tuple Type
 
 This is a fixed length collections of values of different types.
-We can access a tuple element directly bu using a `.` followed by the index of the value we want to access. The first index in a tuple is `0`.
+We can access a tuple element directly by using a `.` followed by the index of the value we want to access. The first index in a tuple is `0`.
 
 ```rust
 let tupl = ('x', 32); // => (char, i32)

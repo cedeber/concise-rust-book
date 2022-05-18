@@ -19,9 +19,9 @@ let closure_annotated = |i: i32| -> i32 { i + 1 };
 let closure_inferred = |i | i + 1 ;
 ```
 
-We can defined a closure and store the _closure_ in a variable rather than storing the result of the function call.
+We can define a closure and store the _closure_ in a variable rather than storing the result of the function call.
 
-The first time we call a closure with any value, the compiler infers the type of it and the return type of the closure. Those types are the locked into the closure and we get a type error if we try to use a different type with the same closure.
+The first time we call a closure with any value, the compiler infers the type of it and the return type of the closure. Those types are the locked into the closure, and we get a type error if we try to use a different type with the same closure.
 
 ### Capturing the Environment with Closures
 

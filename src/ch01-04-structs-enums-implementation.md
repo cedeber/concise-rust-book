@@ -6,7 +6,7 @@ There is no `class` and no inheritance. Rust has only `struct`, `impl` and `trai
 
 A `struct` is like an object's data attribute.
 
-> It's possible for structs to store references to data owned by something else, but to do so requires the use of _lifetimes_.
+> It's possible for structs to store references to data owned by something else, but to do so require the use of _lifetimes_.
 
 ```rust
 struct Rectangle {
@@ -184,7 +184,7 @@ let sum = x + y;
 
 ### Error management
 
-Rust doesn't have exceptions. Instead, it has the type the type `Result<T, E>` for recoverable errors and the `panic!` macro that stops execution when the program encounters an unrecoverable error.
+Rust doesn't have exceptions. Instead, it has the type `Result<T, E>` for recoverable errors and the `panic!` macro that stops execution when the program encounters an unrecoverable error.
 
 `Result` is, like `Option`, also an enumeration. For `Result<T, E>`, the variants are `Ok<T>` and `Err<E>`. The `Ok` variant indicates the operation was successful, and inside `Ok` is the successfully generated value.
 The `Err` variant means the operation failed, and `Err` contains information about how or why the operation failed.
