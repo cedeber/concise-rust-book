@@ -2,7 +2,7 @@
 
 Hello. I hope this book finds you well.
 
-> This book is currently beeing written.
+> This book is currently being written.
 
 As a non-daily rustacean - I am a daily TypeScript developer and UI designer -, coming back to Rust only from time to time is sometimes painful. I tend to forget how to code with Rust. Although it is a very nice language, it is also a complex and explicit language. There is a lot to keep in mind.
 

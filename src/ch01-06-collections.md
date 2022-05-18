@@ -111,7 +111,7 @@ Sometimes when you extract chars from a string, you will have diacritics that do
 
 Getting grapheme clusters from strings is complex, so this functionality is not provided by the standard library. You can check the [`unicode-segmentation`](https://crates.io/crates/unicode-segmentation) crate.
 
-> Rust has chosen to make the correct handling of `String` data the default behaviour for all Rust programs, which means programmers have to put more thought into handling UTF-8 data up front. This trade-off exposes more of the complexity of strings than is apparent in other programming languages, but it prevents you from having to handle errors involving non-ASCII characters later in your development life cycle
+> Rust has chosen to make the correct handling of `String` data the default behavior for all Rust programs, which means programmers have to put more thought into handling UTF-8 data up front. This trade-off exposes more of the complexity of strings than is apparent in other programming languages, but it prevents you from having to handle errors involving non-ASCII characters later in your development life cycle
 
 ## Hash Maps
 

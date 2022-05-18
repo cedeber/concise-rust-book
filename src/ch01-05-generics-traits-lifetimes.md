@@ -83,7 +83,7 @@ impl<T, U> Point<T, U> {
 
 ## Traits
 
-Trait definitions are a way to group method signatures together to define a set of behaviours necessary to accomplish some purpose. They are some kind of _interfaces_.
+Trait definitions are a way to group method signatures together to define a set of behaviors necessary to accomplish some purpose. They are some kind of _interfaces_.
 
 ```rust
 trait Geometry {
@@ -206,7 +206,7 @@ fn returns_summarizable(switch: bool) -> impl Summary {
 
 ### Using Trait Bounds to Conditionally Implement Methods
 
-By using a trait bound with an `impl` block that uses generic type parameters, we can implement methods conditionnally for types that implement the specified traits.
+By using a trait bound with an `impl` block that uses generic type parameters, we can implement methods conditionally for types that implement the specified traits.
 
 ```rust
 struct Pair<T> {

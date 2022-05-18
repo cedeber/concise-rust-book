@@ -8,7 +8,7 @@ Ownership is the most unique feature of Rust, and it enables Rust to make memory
 
 The _stack_ stores values in the order it gets them and removes the values in the opposite order. This is referred to as _last in, first out_. All data stored in the stack must have a known, fixed size. Data with an unknown size at compile time or a size that might change must be stored on the heap instead.
 
-The _heap_ is less organised. The operating system finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is called _allocating on the heap_.
+The _heap_ is less organized. The operating system finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is called _allocating on the heap_.
 
 Pushing to the stack is faster than allocating on the heap because the operating system never has to search for a place to store new data. Comparatively, allocating space on the heap requires more work, because the operating system must first find a big enough space to hold the data and then perform bookkeeping to prepare for the next allocation.
 

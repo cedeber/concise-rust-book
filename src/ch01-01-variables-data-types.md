@@ -12,7 +12,7 @@ You don't need to define the type on assignment. But you must bind a value befor
 
 ```rust
 let str; // declare str
-str = "Hello, world!"; // assignement -> &str
+str = "Hello, world!"; // assignment -> &str
 
 let a = 40_000; // -> i32
 let b = 40.; // -> f64
@@ -100,7 +100,7 @@ let x = tupl.0; // => 'x'
 let thirty_two = tupl.1; // => 32
 ```
 
-As we will see in the "pattern" chapter, you can use _pattern matching_ to desctructure a tuple value.
+As we will see in the "pattern" chapter, you can use _pattern matching_ to destructure a tuple value.
 
 ```rust
 let tup = (500, 6.4, 1);
