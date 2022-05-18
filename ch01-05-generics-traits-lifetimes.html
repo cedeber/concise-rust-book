@@ -140,7 +140,7 @@
                         <h1 id="generic-types-traits-and-lifetimes"><a class="header" href="#generic-types-traits-and-lifetimes">Generic Types, Traits and Lifetimes</a></h1>
 <h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
 <p>Generics are abstract stand-ins for concrete types or other properties.</p>
-<p>We can use generics to create definitions for items like function signatures or structs, which we can then use with many different concrete data types.</p>
+<p>We can use generics to create definitions for items like function signatures or structs, which we can then use with many concrete data types.</p>
 <p>To define the generic <code>largest</code> function, place type name declaration inside angle brackets, <code>&lt;&gt;</code>, between the name of the function and the parameter list.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -256,7 +256,7 @@ fn main() {
 }
 </code></pre></pre>
 <p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code> keyword, and then specify the name of the type we want to implement the trait for. Within the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
-<p>One restriction to note with trait implementations is that we can implement a trait on a type only if at least one of the trait or the type is local to our crate. But we can’t implement external traits on external types. This restriction is part of a property of programs called <em>coherence</em>, and more specifically the <em>orphan rule</em>, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust wouldn’t know which implementation to use.</p>
+<p>One restriction to note with trait implementations is that we can implement a trait on a type only if at least one of the trait or the type is local to our crate. But we can’t implement external traits on external types. This restriction is part of a property of programs called <em>coherence</em>, and more specifically the <em>orphan rule</em>, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust would not know which implementation to use.</p>
 <h3 id="default-implementations"><a class="header" href="#default-implementations">Default Implementations</a></h3>
 <p>Sometimes it’s useful to have default behavior for some or all of the methods in a trait instead of requiring implementations for all methods on every type.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -321,7 +321,7 @@ pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) {}
 }
 <span class="boring">}
 </span></code></pre></pre>
-<p>The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators. However you can only use the <code>impl Trait</code> if you are returning a single type.</p>
+<p>The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators. However, you can only use the <code>impl Trait</code> if you are returning a single type.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -370,7 +370,7 @@ impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
 <span class="boring">}
 </span></code></pre></pre>
 <blockquote>
-<p>In dynamically typed languages, we would get an error at runtime if we called a method on a type which didn’t define the method. But Rust moves these errors to compile time so we’re forced to fix the problems before our code is even able to run. Additionally, we don’t have to write code that checks for behavior at runtime because we’ve already checked at compile time.</p>
+<p>In dynamically typed languages, we would get an error at runtime if we called a method on a type which did not define the method. But Rust moves these errors to compile time, so we’re forced to fix the problems before our code is even able to run. Additionally, we don’t have to write code that checks for behavior at runtime because we’ve already checked at compile time.</p>
 </blockquote>
 <h2 id="lifetimes"><a class="header" href="#lifetimes">Lifetimes</a></h2>
 <p>Most of the time, lifetimes are implicit and inferred, just like most of the time, types are inferred. We must annotate types when multiple types are possible. In a similar way, we must annotate lifetimes when the lifetimes of references could be related in a few different ways</p>
@@ -428,12 +428,12 @@ impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
 <span class="boring">}
 </span></code></pre></pre>
 <p>Remember, when we specify the lifetime parameters in this function signature, we’re not changing the lifetimes of any values passed in or returned. Rather, we’re specifying that the borrow checker should reject any values that don’t adhere to these constraints.
-In other words, the generic lifetime <code>'a</code> will get the concrete lifetime that is equal to the smaller of the lifetimes of <code>x</code> and <code>y</code>.</p>
+In other words, the generic lifetime <code>'a</code> will get the concrete lifetime that is equal to the smallest of the lifetimes of <code>x</code> and <code>y</code>.</p>
 <blockquote>
 <p>The way in which you need to specify lifetime parameters depends on what your function is doing.</p>
 </blockquote>
 <p>So far, we’ve only defined structs to hold owned types. It’s possible for structs to hold references, but in that case we would need to add a lifetime annotation on every reference in the struct’s definition.
-We declare the name of the generic lifetime parameter inside angle brackets after the name of the struct so we can use the lifetime parameter in the body of the struct definition.</p>
+We declare the name of the generic lifetime parameter inside angle brackets after the name of the struct, so we can use the lifetime parameter in the body of the struct definition.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -443,7 +443,7 @@ We declare the name of the generic lifetime parameter inside angle brackets afte
 <span class="boring">}
 </span></code></pre></pre>
 <h3 id="lifetime-elision"><a class="header" href="#lifetime-elision">Lifetime elision</a></h3>
-<p>You have learned that every reference has a lifetime and that you need to specify lifetime parameters for functions or structs that use references. The Rust team found that Rust programmers were entering the same lifetime annotations over and over in particular situations. These situations were predictable and followed a few deterministic patterns. The developers programmed these patterns into the compiler’s code so the borrow checker could infer the lifetimes in these situations and wouldn’t need explicit annotations.</p>
+<p>You have learned that every reference has a lifetime and that you need to specify lifetime parameters for functions or structs that use references. The Rust team found that Rust programmers were entering the same lifetime annotations over and over in particular situations. These situations were predictable and followed a few deterministic patterns. The developers programmed these patterns into the compiler’s code so the borrow checker could infer the lifetimes in these situations and would not need explicit annotations.</p>
 <blockquote>
 <p>The patterns programmed into Rust’s analysis of references are called the <em>lifetime elision rules</em>. Lifetimes on function or method parameters are called <em>input lifetimes</em>, and lifetimes on return values are called <em>output lifetimes</em>.</p>
 </blockquote>

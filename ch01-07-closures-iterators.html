@@ -157,8 +157,8 @@
 let closure_inferred = |i | i + 1 ;
 <span class="boring">}
 </span></code></pre></pre>
-<p>We can defined a closure and store the <em>closure</em> in a variable rather than storing the result of the function call.</p>
-<p>The first time we call a closure with any value, the compiler infers the type of it and the return type of the closure. Those types are the locked into the closure and we get a type error if we try to use a different type with the same closure.</p>
+<p>We can define a closure and store the <em>closure</em> in a variable rather than storing the result of the function call.</p>
+<p>The first time we call a closure with any value, the compiler infers the type of it and the return type of the closure. Those types are the locked into the closure, and we get a type error if we try to use a different type with the same closure.</p>
 <h3 id="capturing-the-environment-with-closures"><a class="header" href="#capturing-the-environment-with-closures">Capturing the Environment with Closures</a></h3>
 <p>Closures have an additional capability that functions don`t have: they can capture their environment and access variables from the scope in which they are defined.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">

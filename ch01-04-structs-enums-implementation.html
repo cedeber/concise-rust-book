@@ -142,7 +142,7 @@
 <h2 id="struct"><a class="header" href="#struct">Struct</a></h2>
 <p>A <code>struct</code> is like an object's data attribute.</p>
 <blockquote>
-<p>It's possible for structs to store references to data owned by something else, but to do so requires the use of <em>lifetimes</em>.</p>
+<p>It's possible for structs to store references to data owned by something else, but to do so require the use of <em>lifetimes</em>.</p>
 </blockquote>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
@@ -316,7 +316,7 @@ let sum = x + y;
 <p>Everywhere that a value has a type that is not an <code>Option&lt;T&gt;</code>, you <em>can</em> safely assume that the value is not null.</p>
 </blockquote>
 <h3 id="error-management"><a class="header" href="#error-management">Error management</a></h3>
-<p>Rust doesn't have exceptions. Instead, it has the type the type <code>Result&lt;T, E&gt;</code> for recoverable errors and the <code>panic!</code> macro that stops execution when the program encounters an unrecoverable error.</p>
+<p>Rust doesn't have exceptions. Instead, it has the type <code>Result&lt;T, E&gt;</code> for recoverable errors and the <code>panic!</code> macro that stops execution when the program encounters an unrecoverable error.</p>
 <p><code>Result</code> is, like <code>Option</code>, also an enumeration. For <code>Result&lt;T, E&gt;</code>, the variants are <code>Ok&lt;T&gt;</code> and <code>Err&lt;E&gt;</code>. The <code>Ok</code> variant indicates the operation was successful, and inside <code>Ok</code> is the successfully generated value.
 The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information about how or why the operation failed.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">

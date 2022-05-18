@@ -138,7 +138,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="ownership-borrowing-and-slices"><a class="header" href="#ownership-borrowing-and-slices">Ownership, Borrowing and Slices</a></h1>
-<p>Ownership is the most unique feature of Rust, and it enables Rust to make memory safety guarantees without needing a garbage collector.</p>
+<p>Ownership is one of the unique feature of Rust, and it enables Rust to make memory safety guarantees without needing a garbage collector.</p>
 <blockquote>
 <p>Don’t try to fight against the borrow checker.</p>
 </blockquote>
@@ -225,7 +225,7 @@ println!(&quot;s1 = {}, s2 = {}&quot;, s1, s2);
 <p>When you see a call to <code>clone</code>, you know that some arbitrary code is being executed and that code may be expensive. It’s a visual indicator that something different is going on.</p>
 <h3 id="stack-only-data-copy"><a class="header" href="#stack-only-data-copy">Stack-Only Data: Copy</a></h3>
 <p>Types such as integers that have a known size at compile time are stored entirely on the stack, so copies of the actual values are quick to make.
-In other words, there’s no difference between deep and shallow copying here, so calling clone wouldn’t do anything different from the usual shallow copying and we can leave it out.</p>
+In other words, there’s no difference between deep and shallow copying here, so calling clone would not do anything different from the usual shallow copying, and we can leave it out.</p>
 <blockquote>
 <p>Rust has a special annotation called the <code>Copy</code> trait that we can place on types that are stored on the stack like integers are.</p>
 </blockquote>

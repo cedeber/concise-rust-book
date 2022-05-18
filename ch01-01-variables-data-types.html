@@ -201,7 +201,7 @@ let x = 2.0 // f64
 let t: bool = true
 <span class="boring">}
 </span></code></pre></pre>
-<p>When you are compiling in release mode, Rust does not checks for integers overflow. If you want to wrap explicitly, you can use the standard library type <code>Wrapping</code>.</p>
+<p>When you are compiling in release mode, Rust does not check for integers overflow. If you want to wrap explicitly, you can use the standard library type <code>Wrapping</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -232,7 +232,7 @@ println!(&quot;{}&quot;, (zero - one).0); // -&gt; 255
 <p>Rust has two primitive compound types: <strong>tuples</strong> and <strong>arrays</strong>.</p>
 <h4 id="the-tuple-type"><a class="header" href="#the-tuple-type">The Tuple Type</a></h4>
 <p>This is a fixed length collections of values of different types.
-We can access a tuple element directly bu using a <code>.</code> followed by the index of the value we want to access. The first index in a tuple is <code>0</code>.</p>
+We can access a tuple element directly by using a <code>.</code> followed by the index of the value we want to access. The first index in a tuple is <code>0</code>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
