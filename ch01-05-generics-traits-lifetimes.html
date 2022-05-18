@@ -223,7 +223,7 @@ impl&lt;T, U&gt; Point&lt;T, U&gt; {
 <p>Rust implements generics by performing monomorphization of the code that is using generics at compile time. <em>Monomorphization</em> is the process of turning generic code into specific code by filling in the concrete types that are used when compiled. With that, there is no runtime cost.</p>
 </blockquote>
 <h2 id="traits"><a class="header" href="#traits">Traits</a></h2>
-<p>Trait definitions are a way to group method signatures together to define a set of behaviours necessary to accomplish some purpose. They are some kind of <em>interfaces</em>.</p>
+<p>Trait definitions are a way to group method signatures together to define a set of behaviors necessary to accomplish some purpose. They are some kind of <em>interfaces</em>.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">trait Geometry {
 	fn area(&amp;self) -&gt; u32;
 }
@@ -346,7 +346,7 @@ pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) {}
 <p>TODO: Do the macro chapter first</p>
 </blockquote>
 <h3 id="using-trait-bounds-to-conditionally-implement-methods"><a class="header" href="#using-trait-bounds-to-conditionally-implement-methods">Using Trait Bounds to Conditionally Implement Methods</a></h3>
-<p>By using a trait bound with an <code>impl</code> block that uses generic type parameters, we can implement methods conditionnally for types that implement the specified traits.</p>
+<p>By using a trait bound with an <code>impl</code> block that uses generic type parameters, we can implement methods conditionally for types that implement the specified traits.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {

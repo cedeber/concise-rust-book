@@ -249,7 +249,7 @@ let s = format!(&quot;{}-{}-{}&quot;, s1, s2, s3);
 <p>Sometimes when you extract chars from a string, you will have diacritics that do not make sense on their own. So, indexing into a string is often a bad idea because it is not clear what the return type of the string-indexing operation should be: a byte value, a character, a grapheme cluster, or a string slice.</p>
 <p>Getting grapheme clusters from strings is complex, so this functionality is not provided by the standard library. You can check the <a href="https://crates.io/crates/unicode-segmentation"><code>unicode-segmentation</code></a> crate.</p>
 <blockquote>
-<p>Rust has chosen to make the correct handling of <code>String</code> data the default behaviour for all Rust programs, which means programmers have to put more thought into handling UTF-8 data up front. This trade-off exposes more of the complexity of strings than is apparent in other programming languages, but it prevents you from having to handle errors involving non-ASCII characters later in your development life cycle</p>
+<p>Rust has chosen to make the correct handling of <code>String</code> data the default behavior for all Rust programs, which means programmers have to put more thought into handling UTF-8 data up front. This trade-off exposes more of the complexity of strings than is apparent in other programming languages, but it prevents you from having to handle errors involving non-ASCII characters later in your development life cycle</p>
 </blockquote>
 <h2 id="hash-maps"><a class="header" href="#hash-maps">Hash Maps</a></h2>
 <p>The type <code>HashMap&lt;K, V&gt;</code> stores a mapping of keys of type <code>K</code> to values of type <code>V</code>.</p>
