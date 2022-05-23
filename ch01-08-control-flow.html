@@ -220,6 +220,30 @@ while number != 0 {
 <blockquote>
 <p><code>.rev()</code> reverses the range</p>
 </blockquote>
+<h3 id="loop-label"><a class="header" href="#loop-label">Loop label</a></h3>
+<p>If you have loops within loops, <code>break</code> and <code>continue</code> apply to the innermost loop at that point. You can optionally specify a <em>loop label</em> on a loop that we can then use with <code>break</code> or <code>continue</code> to specify that those keywords apply to the labeled loop instead of the innermost loop.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut count = 0;
+
+'counting_up: loop {
+	let mut remaining = 10;
+
+	loop {
+		if remaining == 9 {
+			break;
+		}
+		if count == 2 {
+			break 'counting_up;
+		}
+		remaining -= 1;
+	}
+
+	count += 1;
+}
+<span class="boring">}
+</span></code></pre></pre>
 <h2 id="the-match-control-flow-operator"><a class="header" href="#the-match-control-flow-operator">The match Control Flow Operator</a></h2>
 <p>Rust has an extremely powerful control flow operator called <code>match</code> that allows you to compare a value against a series of patterns and then execute code based on which pattern matches. The power of <code>match</code> comes from the expressiveness of the patterns and the fact that the compiler confirms that all possible cases are handled.</p>
 <blockquote>
