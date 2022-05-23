@@ -81,6 +81,30 @@ for number in (1..4).rev() {
 
 > `.rev()` reverses the range
 
+### Loop label
+
+If you have loops within loops, `break` and `continue` apply to the innermost loop at that point. You can optionally specify a _loop label_ on a loop that we can then use with `break` or `continue` to specify that those keywords apply to the labeled loop instead of the innermost loop.
+
+```rust
+let mut count = 0;
+
+'counting_up: loop {
+	let mut remaining = 10;
+
+	loop {
+		if remaining == 9 {
+			break;
+		}
+		if count == 2 {
+			break 'counting_up;
+		}
+		remaining -= 1;
+	}
+
+	count += 1;
+}
+```
+
 ## The match Control Flow Operator
 
 Rust has an extremely powerful control flow operator called `match` that allows you to compare a value against a series of patterns and then execute code based on which pattern matches. The power of `match` comes from the expressiveness of the patterns and the fact that the compiler confirms that all possible cases are handled.
