@@ -7,6 +7,7 @@ Rust. Some better-known crates are not displayed below, because I prefer the one
 
 | Crate Name                                          | Description                                                                                  |
 | --------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| [anyhow](https://crates.io/crates/anyhow)           | Flexible concrete Error type built on `std::error::Error`.                                   |
 | [futures](https://crates.io/crates/futures)         | Futures and streams featuring zero allocations, composability, and iterator-like interfaces. |
 | [itertools](https://crates.io/crates/itertools)     | Extra iterator adaptors, iterator methods, free functions, and macros.                       |
 | [lazy_static](https://crates.io/crates/lazy_static) | A macro for declaring lazily evaluated statics in Rust.                                      |
@@ -64,11 +65,12 @@ Rust. Some better-known crates are not displayed below, because I prefer the one
 
 ## Graphics and UI
 
-| Crate Name                                    | Description                                                                                             |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [image](https://crates.io/crates/image)       | Imaging library written in Rust. Provides basic filters and decoders for the most common image formats. |
-| [piet](https://crates.io/crates/piet)         | An abstraction for 2D graphics.                                                                         |
-| [piet-svg](https://crates.io/crates/piet-svg) | SVG backend for piet 2D graphics abstraction.                                                           |
+| Crate Name                                                  | Description                                                                                             |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [futures-signals](https://crates.io/crates/futures-signals) | Zero cost FRP signals using the futures crate.                                                          |
+| [image](https://crates.io/crates/image)                     | Imaging library written in Rust. Provides basic filters and decoders for the most common image formats. |
+| [piet](https://crates.io/crates/piet)                       | An abstraction for 2D graphics.                                                                         |
+| [piet-svg](https://crates.io/crates/piet-svg)               | SVG backend for piet 2D graphics abstraction.                                                           |
 
 ## Web
 
@@ -89,6 +91,7 @@ Rust. Some better-known crates are not displayed below, because I prefer the one
 | Crate Name                                                                    | Description                                                                    |
 | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [console_error_panic_hook](https://crates.io/crates/console_error_panic_hook) | A panic hook for `wasm32-unknown-unknown` that logs panics to `console.error`. |
+| [gloo](https://crates.io/crates/gloo)                                         | A toolkit for building fast, reliable Web applications and libraries.          |
 | [js-sys](https://crates.io/crates/js-sys)                                     | Bindings for all JS global objects and functions in all JS environments.       |
 | [piet-web](https://crates.io/crates/piet-web)                                 | Web canvas backend for piet 2D graphics abstraction.                           |
 | [wasm-bindgen](https://crates.io/crates/wasm-bindgen)                         | Easy support for interacting between JS and Rust.                              |
