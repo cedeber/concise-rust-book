@@ -4,8 +4,10 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Generics, Traits and Lifetimes - Concise Rust &amp; WebAssembly</title>
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -16,25 +18,28 @@
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
         <link rel="stylesheet" href="css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+
     </head>
     <body>
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -50,7 +55,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -62,7 +67,7 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
@@ -83,7 +88,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
+                                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,7 +98,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -113,6 +118,7 @@
                         <a href="https://github.com/cedeber/concise-rust-book" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -126,8 +132,9 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -142,39 +149,32 @@
 <p>Generics are abstract stand-ins for concrete types or other properties.</p>
 <p>We can use generics to create definitions for items like function signatures or structs, which we can then use with many concrete data types.</p>
 <p>To define the generic <code>largest</code> function, place type name declaration inside angle brackets, <code>&lt;&gt;</code>, between the name of the function and the parameter list.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T {}
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>We can also define structs to use a generic type parameter in one or more fields using the <code>&lt;&gt;</code> syntax.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Point&lt;T&gt; {
 	x: T,
 	y: T,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>To define a <code>Point</code> struct where <code>x</code> and <code>y</code> are both generics but could have different types, we can use multiple generic type parameters.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Point&lt;T, U&gt; {
 	x: T,
 	y: U,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <blockquote>
 <p>You can use as many generic type parameters in a definition as you want, but using more than a few makes your code hard to read.</p>
 </blockquote>
 <p>We can define enums to hold generic data types in their variants as we just see in <code>Option&lt;T&gt;</code> that returns <code>Some&lt;T&gt;</code> for instance.</p>
 <p>We can also implement methods on structs and enums and use generic types in their definitions, too.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Point&lt;T&gt; {
 	x: T,
@@ -186,23 +186,19 @@ impl&lt;T&gt; Point&lt;T&gt; {
 		&amp;self.x
 	}
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>Note that we have to declare <code>T</code> just after <code>impl</code> so we can use it to specify that we are implementing methods on the type <code>Point&lt;T&gt;</code>. By declaring <code>T</code> as a generic type after <code>impl</code>, Rust can identify that the type in the angle brackets in <code>Point</code> is a generic type rather than a concrete type.</p>
 <p>We could, for example, implement methods only on <code>Point&lt;f32&gt;</code> instances rather than on <code>Point&lt;T&gt;</code> instances with a generic type.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl Point&lt;f32&gt; {
 	fn distance_form_origin(&amp;self) -&gt; f32 {
 		(self.x.powi(2) + self.y.powi(2)).sqrt()
 	}
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>Generic type parameters in a struct definition aren't always the same as those you use in that struct`s method signatures.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Point&lt;T, U&gt; {
 	x: T,
@@ -217,8 +213,7 @@ impl&lt;T, U&gt; Point&lt;T, U&gt; {
 		}
 	}
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <blockquote>
 <p>Rust implements generics by performing monomorphization of the code that is using generics at compile time. <em>Monomorphization</em> is the process of turning generic code into specific code by filling in the concrete types that are used when compiled. With that, there is no runtime cost.</p>
 </blockquote>
@@ -253,77 +248,63 @@ fn main() {
 		&quot;The area of the rectangle is {} square pixels.&quot;,
 		rect.area()
 	);
-}
-</code></pre></pre>
+}</code></pre></pre>
 <p>The difference is that after <code>impl</code>, we put the trait name that we want to implement, then use the <code>for</code> keyword, and then specify the name of the type we want to implement the trait for. Within the <code>impl</code> block, we put the method signatures that the trait definition has defined.</p>
 <p>One restriction to note with trait implementations is that we can implement a trait on a type only if at least one of the trait or the type is local to our crate. But we can’t implement external traits on external types. This restriction is part of a property of programs called <em>coherence</em>, and more specifically the <em>orphan rule</em>, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust would not know which implementation to use.</p>
 <h3 id="default-implementations"><a class="header" href="#default-implementations">Default Implementations</a></h3>
 <p>Sometimes it’s useful to have default behavior for some or all of the methods in a trait instead of requiring implementations for all methods on every type.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>pub trait Summary {
     fn summarize(&amp;self) -&gt; String {
         String::from(&quot;(Read more...)&quot;)
     }
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <blockquote>
 <p>To use a default implementation we specify an empty <code>impl</code> block. Default implementations can call other methods in the same trait, even if those other methods don’t have a default implementation.</p>
 </blockquote>
 <h3 id="traits-as-parameters"><a class="header" href="#traits-as-parameters">Traits as Parameters</a></h3>
 <p>We can define a function that calls the method on its parameter, which is of some type that implements the trait. To do this we can use the <code>impl Trait</code> syntax.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>pub fn notify(item: &amp;impl Summary) {
     println!(&quot;Breaking news! {}&quot;, item.summarize());
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The <code>impl Trait</code> syntax works for straightforward cases but is actually syntax sugar for a longer form, which is called a <em>trait bound</em>.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>pub fn notify&lt;T: Summary&gt;(item: &amp;T) {
     println!(&quot;Breaking news! {}&quot;, item.summarize());
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>We can also specify more than one trait bound.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>pub fn notify(item: &amp;(impl Summary + Display)) {}
 pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) {}
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>Rust has alternate syntax for specifying trait bounds inside a <code>where</code> clause after the function signature.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn some_function&lt;T, U&gt;(t: &amp;T, u: &amp;U) -&gt; i32
     where T: Display + Clone,
           U: Clone + Debug
 {}
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h3 id="returning-types-that-implement-traits"><a class="header" href="#returning-types-that-implement-traits">Returning Types that Implement Traits</a></h3>
 <p>We can also use the 'impl Trait' syntax in the return position to return a value of some type that implements a trait.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn returns_summarizable() -&gt; impl Summary {
 	Tweet {
 		// --snip--
 	}
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The ability to return a type that is only specified by the trait it implements is especially useful in the context of closures and iterators. However, you can only use the <code>impl Trait</code> if you are returning a single type.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn returns_summarizable(switch: bool) -&gt; impl Summary {
 	if switch {
@@ -336,8 +317,7 @@ pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) {}
 		}
 	}
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <blockquote>
 <p>Returning either a NewsArticle or a Tweet isn't allowed due to restrictions around how the <code>impl Trait</code> is implemented in the compiler.</p>
 </blockquote>
@@ -347,8 +327,7 @@ pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) {}
 </blockquote>
 <h3 id="using-trait-bounds-to-conditionally-implement-methods"><a class="header" href="#using-trait-bounds-to-conditionally-implement-methods">Using Trait Bounds to Conditionally Implement Methods</a></h3>
 <p>By using a trait bound with an <code>impl</code> block that uses generic type parameters, we can implement methods conditionally for types that implement the specified traits.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct Pair&lt;T&gt; {
 	x: T,
@@ -358,17 +337,14 @@ pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) {}
 impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
 	// --snip--
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>We can also conditionally implement a trait for any type that implements another trait. Implementations of a trait on any type that satisfies the trait bounds are called <em>blanket implementations</em> and are extensively used in the Rust standard library.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;T: Display&gt; ToString for T {
     // --snip--
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <blockquote>
 <p>In dynamically typed languages, we would get an error at runtime if we called a method on a type which did not define the method. But Rust moves these errors to compile time, so we’re forced to fix the problems before our code is even able to run. Additionally, we don’t have to write code that checks for behavior at runtime because we’ve already checked at compile time.</p>
 </blockquote>
@@ -386,10 +362,8 @@ impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
 	}                     // -+       |
 						  //          |
 	println!(&quot;r: {}&quot;, r); //          |
-}                         // ---------+
-</code></pre></pre>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+}                         // ---------+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
 //            ----     ----     ^ expected named lifetime parameter
@@ -406,27 +380,22 @@ impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
 //   |
 //   | fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
 //   |           ++++     ++          ++          ++
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h3 id="lifetime-annotation"><a class="header" href="#lifetime-annotation">Lifetime annotation</a></h3>
 <p>Lifetime annotations have a slightly unusual syntax: the names of lifetime parameters must start with an apostrophe (<code>'</code>) and are usually all lowercase and very short, like generic types. Most people use the name <code>'a</code>. We place lifetime parameter annotations after the <code>&amp;</code> of a reference, using a space to separate the annotation from the reference’s type.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>&amp;i32        // a reference
 &amp;'a i32     // a reference with an explicit lifetime
 &amp;'a mut i32 // a mutable reference with an explicit lifetime
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>As with generic type parameters, we need to declare generic lifetime parameters inside angle brackets between the function name and the parameter list. The constraint we want to express in this signature is that the lifetimes of both of the parameters and the lifetime of the returned reference are related such that the returned reference will be valid as long as both the parameters are.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
 	// --snip--
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>Remember, when we specify the lifetime parameters in this function signature, we’re not changing the lifetimes of any values passed in or returned. Rather, we’re specifying that the borrow checker should reject any values that don’t adhere to these constraints.
 In other words, the generic lifetime <code>'a</code> will get the concrete lifetime that is equal to the smallest of the lifetimes of <code>x</code> and <code>y</code>.</p>
 <blockquote>
@@ -434,39 +403,33 @@ In other words, the generic lifetime <code>'a</code> will get the concrete lifet
 </blockquote>
 <p>So far, we’ve only defined structs to hold owned types. It’s possible for structs to hold references, but in that case we would need to add a lifetime annotation on every reference in the struct’s definition.
 We declare the name of the generic lifetime parameter inside angle brackets after the name of the struct, so we can use the lifetime parameter in the body of the struct definition.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct ImportantExcerpt&lt;'a&gt; {
     part: &amp;'a str,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h3 id="lifetime-elision"><a class="header" href="#lifetime-elision">Lifetime elision</a></h3>
 <p>You have learned that every reference has a lifetime and that you need to specify lifetime parameters for functions or structs that use references. The Rust team found that Rust programmers were entering the same lifetime annotations over and over in particular situations. These situations were predictable and followed a few deterministic patterns. The developers programmed these patterns into the compiler’s code so the borrow checker could infer the lifetimes in these situations and would not need explicit annotations.</p>
 <blockquote>
 <p>The patterns programmed into Rust’s analysis of references are called the <em>lifetime elision rules</em>. Lifetimes on function or method parameters are called <em>input lifetimes</em>, and lifetimes on return values are called <em>output lifetimes</em>.</p>
 </blockquote>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;'a&gt; ImportantExcerpt&lt;'a&gt; {
     fn level(&amp;self) -&gt; i32 {
         3
     }
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The lifetime parameter declaration after impl and its use after the type name are required, but we’re not required to annotate the lifetime of the reference to self because of the first elision rule.</p>
 <p>Check <a href="https://doc.rust-lang.org/nomicon/lifetime-elision.html">the Rustonomicon</a></p>
 <h3 id="the-static-lifetime"><a class="header" href="#the-static-lifetime">The Static Lifetime</a></h3>
 <p>One special lifetime we need to discuss is <code>'static</code>, which means that this reference can live for the entire duration of the program. All string literals have the <code>'static</code> lifetime.</p>
-<pre><pre class="playground"><code class="language-rust edition2021">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let s: &amp;'static str = &quot;I have a static lifetime.&quot;;
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 
                     </main>
 
@@ -475,9 +438,11 @@ We declare the name of the generic lifetime parameter inside angle brackets afte
                             <a rel="prev" href="ch01-04-structs-enums-implementation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
+
                             <a rel="next" href="ch01-06-collections.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
@@ -487,6 +452,7 @@ We declare the name of the generic lifetime parameter inside angle brackets afte
                     <a rel="prev" href="ch01-04-structs-enums-implementation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
+
                     <a rel="next" href="ch01-06-collections.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
@@ -494,24 +460,32 @@ We declare the name of the generic lifetime parameter inside angle brackets afte
 
         </div>
 
-        <script type="text/javascript">
+
+
+        <script>
             window.playground_line_numbers = true;
         </script>
-        <script type="text/javascript">
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="ace.js" type="text/javascript" charset="utf-8"></script>
-        <script src="editor.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mode-rust.js" type="text/javascript" charset="utf-8"></script>
-        <script src="theme-dawn.js" type="text/javascript" charset="utf-8"></script>
-        <script src="theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
+
+
     </body>
 </html>
