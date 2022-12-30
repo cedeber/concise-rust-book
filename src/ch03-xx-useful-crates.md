@@ -1,7 +1,8 @@
 # Useful Crates
 
-This list is obviously very **opinionated** and **not complete**. It's a list a useful crates I discovered while using
-Rust. Some better-known crates are not displayed below, because I prefer the ones listed here.
+This list is obviously very **opinionated** and **not complete**. It's a list a
+useful crates I discovered while using Rust. Some better-known crates are not
+displayed below, because I prefer the ones listed here.
 
 ## General purpose
 
@@ -71,6 +72,8 @@ Rust. Some better-known crates are not displayed below, because I prefer the one
 | [image](https://crates.io/crates/image)                     | Imaging library written in Rust. Provides basic filters and decoders for the most common image formats. |
 | [piet](https://crates.io/crates/piet)                       | An abstraction for 2D graphics.                                                                         |
 | [piet-svg](https://crates.io/crates/piet-svg)               | SVG backend for piet 2D graphics abstraction.                                                           |
+| [egui](https://crates.io/crates/egui)                       | An easy-to-use immediate mode GUI that runs on both web and native.                                     |
+| [bevy](https://crates.io/crates/bevy)                       | A refreshingly simple data-driven game engine and app framework.                                        |
 
 ## Web
 
